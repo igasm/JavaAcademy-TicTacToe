@@ -14,4 +14,6 @@ public class Player {
         return "player: " + name;
     }
 
+    //TODO implementacja klasy equals, taka że dwaj gracze o tym samym imieniu są equals??
+
 }
