@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayersRegister {
-    private List<Player> playersList;
+    private ArrayList<Player> playersList;
     private final int playersCount;
 
     PlayersRegister(int count){
@@ -16,6 +16,10 @@ public class PlayersRegister {
         }else{
             playersList.add(player);
         }
+    }
+
+    public ArrayList<Player> getPlayersList(){
+        return playersList;
     }
 
     @Override
