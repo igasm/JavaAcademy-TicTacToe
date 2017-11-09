@@ -1,33 +1,28 @@
-import java.util.ArrayList;
-import java.util.PriorityQueue;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.LinkedList;
 
 public class PlayersQueue{
 
     private final PlayersRegister playersRegister;
-    private LinkedBlockingQueue<Player> playerPriorityQueue;
+    private LinkedList<Player> queue;
 
     public PlayersQueue(PlayersRegister playersRegister) {
         this.playersRegister = playersRegister;
-        this.playerPriorityQueue = new LinkedBlockingQueue<Player>(playersRegister.getPlayersList());
+        this.queue = new LinkedList<Player>(playersRegister.getPlayersList());
     }
 
-    public void changeQueueOrder(Player firstPlayer){
-        if(!this.playerPriorityQueue.peek().equals(firstPlayer)){
-            playerPriorityQueue.clear();
-
-            ArrayList<Player> playersWithoutFirst = new ArrayList<Player>(playersRegister.getPlayersList());
-            playersWithoutFirst.remove(firstPlayer);
-
-            playerPriorityQueue.add(firstPlayer);
-            playerPriorityQueue.addAll(playersWithoutFirst);
+    public void changeQueueOrder(Player playerToSetFirst){
+        if(!this.queue.getFirst().equals(playerToSetFirst)){
+            Player previousFirstPlayer = this.queue.poll();
+            this.queue.addLast(previousFirstPlayer);
+            //in case there are more then two players in queue...
+            changeQueueOrder(playerToSetFirst);
         }
     }
 
     public Player getNextPlayer(){
-        Player lastPlayer = this.playerPriorityQueue.poll();
-        this.playerPriorityQueue.add(lastPlayer);
-        return lastPlayer;
+        Player nextPlayer = this.queue.poll();
+        this.queue.addLast(nextPlayer);
+        return nextPlayer;
     }
 
 

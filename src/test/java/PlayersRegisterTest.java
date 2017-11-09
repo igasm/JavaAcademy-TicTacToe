@@ -33,26 +33,5 @@ public class PlayersRegisterTest {
         assertEquals(playersRegister.getPlayerIndex(playerA), 0);
         assertEquals(playersRegister.getPlayerIndex(playerB), 1);
     }
-
-    @Test
-    public void whenNoNextPlayerWasSetThenNextPlayerShouldBeFirstAdded() throws Exception{
-        PlayersRegister playersRegister = new PlayersRegister(2);
-        Player playerA = new Player("A");
-        Player playerB = new Player("B");
-        playersRegister.registerPlayer(playerA);
-        playersRegister.registerPlayer(playerB);
-        assertEquals(playerA, playersRegister.getNextPlayer());
-    }
-
-    @Test
-    public void whenNextPlayerWasSetPlayerBThenNextPlayerShouldBePlayerB() throws Exception{
-        PlayersRegister playersRegister = new PlayersRegister(2);
-        Player playerA = new Player("A");
-        Player playerB = new Player("B");
-        playersRegister.registerPlayer(playerA);
-        playersRegister.registerPlayer(playerB);
-        int playerBIndex = playersRegister.getPlayerIndex(playerB);
-        playersRegister.setPlayerToBegin(playerBIndex);
-        assertEquals(playerB, playersRegister.getNextPlayer());
-    }
+    
 }
