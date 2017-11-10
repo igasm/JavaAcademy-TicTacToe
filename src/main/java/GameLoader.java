@@ -1,6 +1,6 @@
 public class GameLoader {
     public static void main(String[] args) {
-        Board board = new Board();
+        Board board = new Board(3, 3);
         Player playerA = new Player("playerA");
         Player playerB = new Player("playerB");
         PlayersRegister playersRegister;
