@@ -7,8 +7,8 @@ public class PlayersQueueTest {
     @Test
     public void testChangeQueueOrder() throws Exception{
         PlayersRegister playersRegister = new PlayersRegister(2);
-        Player playerA = new Player("A");
-        Player playerB = new Player("B");
+        Player playerA = new Player("A", "x");
+        Player playerB = new Player("B", "o");
         playersRegister.registerPlayer(playerA);
         playersRegister.registerPlayer(playerB);
         PlayersQueue playersQueue = new PlayersQueue(playersRegister);

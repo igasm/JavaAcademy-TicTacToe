@@ -1,33 +1,34 @@
 import java.util.List;
+import java.util.Scanner;
 
 public class BoardManager {
-    private final Board board;
-    private Translator translator;
-    private int matchPlayed;
+    private Board board;
+    private final PlayersQueue playersQueue;
+    private final MoveSupervisor moveSupervisor;
 
-    public BoardManager(Board board, Player playerA, Player playerB, Translator translator) {
+    public BoardManager(PlayersQueue playersQueue, MoveSupervisor moveSupervisor, Board board) {
+        this.playersQueue = playersQueue;
+        this.moveSupervisor = moveSupervisor;
         this.board = board;
-        this.translator = translator;
-        this.matchPlayed = 0;
     }
 
-    public void welcome(){
-        //language
-        //size of board
-        //player's names
-        //player's signs
-        //who begins
-        //who's turn
-    }
-
-    public void runGame() {
-        while(matchPlayed < 3){
-            runMatch();
-            matchPlayed++;
+    public void runGame(){
+        Scanner sc = new Scanner(System.in);
+        boolean gameOn = true;
+        while(gameOn){
+            Player currentPlayer = playersQueue.getNextPlayer();
+            System.out.println("\nRuch dla " + currentPlayer.getName());
+            System.out.println(board.getView());
+            System.out.println("\nPodaj numer pola");
+            int fieldNumber = sc.nextInt();
+            moveSupervisor.move(currentPlayer.getMark(), fieldNumber);
+            if(!moveSupervisor.isFreeMoveExists()){
+                System.out.println("Game's over");
+                gameOn=false;
+            }
         }
-    }
-
-    private void runMatch() {
 
     }
+
+
 }

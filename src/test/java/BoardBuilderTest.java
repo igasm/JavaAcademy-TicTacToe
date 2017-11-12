@@ -1,0 +1,29 @@
+import org.testng.annotations.Test;
+
+import java.util.List;
+
+import static org.testng.Assert.*;
+
+public class BoardBuilderTest {
+
+    @Test
+    public void whenBoardSize3x3_ThenBoardElementCountIs9(){
+        //given
+        BoardDimensions boardDimensions = new BoardDimensions(3,3);
+        BoardBuilder bulider = new BoardBuilder(boardDimensions);
+        List<Integer> board = bulider.buildBoardWithFieldNumbers();
+        //when - then
+        assertEquals(board.size(), 9);
+    }
+
+    @Test
+    public void boardSize3x3_boardElementsValuesTest(){
+        //given
+        BoardDimensions boardDimensions = new BoardDimensions(3,3);
+        BoardBuilder bulider = new BoardBuilder(boardDimensions);
+        List<Integer> board = bulider.buildBoardWithFieldNumbers();
+        //when - then
+        int[] expected = {0,1,2,3,4,5,6,7,8};
+        assertEquals(board.toArray(), expected);
+    }
+}

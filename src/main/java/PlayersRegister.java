@@ -10,9 +10,9 @@ public class PlayersRegister {
         playersList = new ArrayList<Player>(count);
     }
 
-    public void registerPlayer(Player player) throws Exception{
+    public void registerPlayer(Player player){
         if(playersList.size() >= playersCount){
-            throw new Exception("only " + playersCount + " players are allowed");
+            throw new RuntimeException("only " + playersCount + " players are allowed");
         }else{
             playersList.add(player);
         }
