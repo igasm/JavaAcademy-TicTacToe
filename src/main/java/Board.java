@@ -48,4 +48,12 @@ public class Board {
         return boardDimensions.getElementsCount();
     }
 
+    public int getWidth(){
+        return boardDimensions.getWidth();
+    }
+
+    public List<String> getBoardWithMarks() {
+        return boardWithMarks;
+    }
+
 }

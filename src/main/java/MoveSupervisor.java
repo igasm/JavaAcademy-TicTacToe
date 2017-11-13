@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class MoveSupervisor {
 
     private final Board board;
@@ -30,4 +32,5 @@ public class MoveSupervisor {
             return false;
         }
     }
+
 }
