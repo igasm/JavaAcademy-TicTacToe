@@ -7,7 +7,7 @@ public class GameLoader {
         BoardBuilder boardBuilder = new BoardBuilder(boardDimensions);
         Board board = new Board(boardBuilder.buildBoardWithFieldNumbers(), boardBuilder.buildBoardWithMarks() ,boardDimensions);
         Scanner sc = new Scanner(System.in);
-        MoveSupervisor moveSupervisor = new MoveSupervisor(board);
+        MoveSupervisor moveSupervisor = new MoveSupervisor(board, 3);
         PlayersRegister playersRegister = new PlayersRegister(2);
         System.out.println("Podaj imię pierwszego gracza");
         playersRegister.registerPlayer(new Player(sc.nextLine(), "x"));

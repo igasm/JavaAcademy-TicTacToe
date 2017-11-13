@@ -7,6 +7,7 @@ public class BoardScannerTest {
 
     BoardScanner boardScanner;
     Board board;
+    MoveSupervisor moveSupervisor;
 
     @BeforeMethod
     public void beforeMethod(){
@@ -17,6 +18,7 @@ public class BoardScannerTest {
                 boardBuilder.buildBoardWithMarks(),
                 boardDimensions);
         boardScanner = new BoardScanner(board);
+        moveSupervisor = new MoveSupervisor(board, 3);
     }
 
     @Test
@@ -30,7 +32,6 @@ public class BoardScannerTest {
     @Test
     public void givenBoard3x3WithCrossAtField4_whenScanningVerticallyField4_shouldEquals_exe(){
         //given
-        MoveSupervisor moveSupervisor = new MoveSupervisor(board);
         moveSupervisor.move("x", 4);
         //when
         Sequence sequence = boardScanner.scanVertically(4);
@@ -49,7 +50,6 @@ public class BoardScannerTest {
     @Test
     public void givenBoard3x3WithCrossAtField4_whenScanningHorizontallyField4_shouldEquals_exe(){
         //given
-        MoveSupervisor moveSupervisor = new MoveSupervisor(board);
         moveSupervisor.move("x", 4);
         //when
         Sequence sequence = boardScanner.scanHorizontally(4);
@@ -60,7 +60,6 @@ public class BoardScannerTest {
     @Test
     public void givenBoard3x3WithCrossAtField7_whenScanningHorizontallyField4_shouldEquals_eex(){
         //given
-        MoveSupervisor moveSupervisor = new MoveSupervisor(board);
         moveSupervisor.move("x", 7);
         //when
         Sequence sequence = boardScanner.scanHorizontally(4);
@@ -71,7 +70,6 @@ public class BoardScannerTest {
     @Test
     public void givenBoard3x3WithCrossesAtDiagonal_scanTest(){
         //given
-        MoveSupervisor moveSupervisor = new MoveSupervisor(board);
         moveSupervisor.move("x", 0);
         moveSupervisor.move("x", 4);
         moveSupervisor.move("x", 8);
@@ -84,7 +82,6 @@ public class BoardScannerTest {
     @Test
     public void givenBoard3x3WithCrossesAtDiagonal_scanTest2(){
         //given
-        MoveSupervisor moveSupervisor = new MoveSupervisor(board);
         moveSupervisor.move("x", 6);
         moveSupervisor.move("x", 4);
         moveSupervisor.move("x", 2);
@@ -97,7 +94,6 @@ public class BoardScannerTest {
     @Test
     public void givenBoard3x3WithCrossesAtDiagonal_scanTest3(){
         //given
-        MoveSupervisor moveSupervisor = new MoveSupervisor(board);
         moveSupervisor.move("x", 6);
         moveSupervisor.move("x", 4);
         moveSupervisor.move("x", 2);
@@ -110,7 +106,6 @@ public class BoardScannerTest {
     @Test
     public void givenBoard3x3WithCrossesAtDiagonal_scanTest4(){
         //given
-        MoveSupervisor moveSupervisor = new MoveSupervisor(board);
         moveSupervisor.move("x", 6);
         moveSupervisor.move("x", 4);
         moveSupervisor.move("x", 2);

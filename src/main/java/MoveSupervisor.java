@@ -1,14 +1,14 @@
-import java.util.List;
-
 public class MoveSupervisor {
 
     private final Board board;
     private int movesCount;
     private final MoveValidator moveValidator;
+    private final int winningCondition;
 
-    public MoveSupervisor(Board board) {
+    public MoveSupervisor(Board board, int winningCondition) {
         this.board = board;
         this.moveValidator = new MoveValidator(board);
+        this.winningCondition = winningCondition;
     }
 
     public void move(String mark, int fieldNumber){
