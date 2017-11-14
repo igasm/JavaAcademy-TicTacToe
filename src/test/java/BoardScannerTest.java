@@ -115,5 +115,39 @@ public class BoardScannerTest {
         assertEquals(sequence.toString(), "exe");
     }
 
+    @Test
+    public void givenBoard3x3WithCrossAtTopLeft_SequenceIs_xee(){
+        //given
+        moveSupervisor.move("x", 0);
+        //when
+        Sequence sequence = boardScanner.scanFromLeftTopToRightBottom(0);
+        assertEquals(sequence.toString(), "xee");
+    }
 
+    @Test
+    public void givenBoard3x3WithCrossAtTopRight_SequenceIs_x(){
+        //given
+        moveSupervisor.move("x", 2);
+        //when
+        Sequence sequence = boardScanner.scanFromLeftTopToRightBottom(2);
+        assertEquals(sequence.toString(), "x");
+    }
+
+    @Test
+    public void givenBoard3x3WithCrossAtBottomLeft_SequenceIs_x(){
+        //given
+        moveSupervisor.move("x", 6);
+        //when
+        Sequence sequence = boardScanner.scanFromLeftTopToRightBottom(6);
+        assertEquals(sequence.toString(), "x");
+    }
+
+    @Test
+    public void givenBoard3x3WithCrossAtBottomRight_SequenceIs_eex(){
+        //given
+        moveSupervisor.move("x", 8);
+        //when
+        Sequence sequence = boardScanner.scanFromLeftTopToRightBottom(8);
+        assertEquals(sequence.toString(), "eex");
+    }
 }
