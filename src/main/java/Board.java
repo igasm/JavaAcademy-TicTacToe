@@ -16,13 +16,17 @@ public class Board {
     public String getView(){
         StringBuilder stringBuilder = new StringBuilder();
         for(int i = 0; i< boardWithFieldNumbers.size(); i++){
+            stringBuilder.append("|");
             if(boardWithMarks.get(i).equals("e")) {
                 stringBuilder.append(boardWithFieldNumbers.get(i));
+                if(i<10){
+                    stringBuilder.append(" ");
+                }
             }else{
-                stringBuilder.append(boardWithMarks.get(i));
+                stringBuilder.append(boardWithMarks.get(i) + " ");
             }
             if((i+1)%boardDimensions.getWidth() == 0){
-                stringBuilder.append("\n");
+                stringBuilder.append("|\n");
             }
         }
         return stringBuilder.toString().toString().trim();
