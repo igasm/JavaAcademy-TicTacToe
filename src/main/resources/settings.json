@@ -1,0 +1,7 @@
+{
+    "board_dimensions": {
+        "width": 5,
+        "height": 5
+    },
+    "winning_condition": 5
+}

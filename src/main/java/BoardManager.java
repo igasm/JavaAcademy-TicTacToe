@@ -17,7 +17,7 @@ public class BoardManager {
         boolean gameOn = true;
         while(gameOn){
             Player currentPlayer = playersQueue.getNextPlayer();
-            System.out.println("\nRuch dla " + currentPlayer.getName());
+            System.out.println("\nRuch dla " + currentPlayer.getName() + " " + currentPlayer.getMark() );
             System.out.println(board.getView());
             System.out.println("\nPodaj numer pola");
             int fieldNumber = sc.nextInt();
