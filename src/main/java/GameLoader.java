@@ -17,7 +17,7 @@ public class GameLoader {
     public BoardManager load(){
         BoardBuilder boardBuilder = new BoardBuilder(settingsLoader.getBoardDimensions());
         Board board = new Board(boardBuilder.buildBoardWithFieldNumbers(), boardBuilder.buildBoardWithMarks(), settingsLoader.getBoardDimensions());
-        MoveSupervisor moveSupervisor = new MoveSupervisor(board);
+        MoveSupervisor moveSupervisor = new MoveSupervisor(board, settingsLoader.getWinningCondition());
         PlayersRegister playersRegister = new PlayersRegister(2);
         consoleWriter.accept("Podaj imię pierwszego gracza");
         playersRegister.registerPlayer(new Player(consoleReader.get(), "x"));

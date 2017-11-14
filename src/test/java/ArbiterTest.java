@@ -5,11 +5,20 @@ import static org.testng.Assert.assertTrue;
 public class ArbiterTest {
 
     @Test
-    public void horizontalRowOfNaughts_NaughtWins(){
+    public void horizontalRowOfCrosses_CrossesWins(){
         //given
-        String plansza = "XXX";
-        Arbiter arbiter = new Arbiter();
+        String sequenceString = "xxx";
+        Arbiter arbiter = new Arbiter(3);
         //when - then
-        assertTrue(arbiter.isXWins(plansza));
+        assertTrue(arbiter.isXWins(sequenceString));
+    }
+
+    @Test
+    public void horizontalRowOfNaughtsAndCrosses_NoCrossesWin(){
+        //given
+        String sequenceString = "xox";
+        Arbiter arbiter = new Arbiter(3);
+        //when - then
+        assertTrue(!arbiter.isXWins(sequenceString));
     }
 }
