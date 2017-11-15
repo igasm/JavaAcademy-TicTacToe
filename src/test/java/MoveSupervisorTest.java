@@ -1,6 +1,7 @@
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import java.util.function.Consumer;
 
 import static org.testng.Assert.*;
 
@@ -12,10 +13,11 @@ public class MoveSupervisorTest {
     public void beforeMethod(){
         BoardDimensions boardDimensions = new BoardDimensions(3, 3);
         BoardBuilder boardBuilder = new BoardBuilder(boardDimensions);
+        Consumer<String> consoleWriter = System.out::println;
         Board board = new Board(boardBuilder.buildBoardWithFieldNumbers(),
                 boardBuilder.buildBoardWithMarks(),
-                boardDimensions);
-        moveSupervisor = new MoveSupervisor(board, 3);
+                boardDimensions, consoleWriter);
+        moveSupervisor = new MoveSupervisor(board, 3, new MovesRegistry());
     }
 
     @Test

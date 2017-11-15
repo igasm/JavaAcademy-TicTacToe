@@ -15,8 +15,10 @@ public class GameLoader {
 
     public BoardManager load(){
         BoardBuilder boardBuilder = new BoardBuilder(settings.getBoardDimensions());
-        Board board = new Board(boardBuilder.buildBoardWithFieldNumbers(), boardBuilder.buildBoardWithMarks(), settings.getBoardDimensions());
-        MoveSupervisor moveSupervisor = new MoveSupervisor(board, settings.getWinningCondition());
+        Board board = new Board(boardBuilder.buildBoardWithFieldNumbers(), boardBuilder.buildBoardWithMarks(), settings.getBoardDimensions(), consoleWriter);
+        MovesRegistry movesRegistry = new MovesRegistry();
+        movesRegistry.register(board);
+        MoveSupervisor moveSupervisor = new MoveSupervisor(board, settings.getWinningCondition(), movesRegistry);
         PlayersLoader playersLoader = new PlayersLoader(consoleWriter, consoleReader);
         PlayersRegister playersRegister = playersLoader.load();
         PlayersQueue playersQueue = new PlayersQueue(playersRegister);

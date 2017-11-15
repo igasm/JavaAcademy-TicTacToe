@@ -1,6 +1,8 @@
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.function.Consumer;
+
 import static org.testng.Assert.*;
 
 public class BoardScannerTest {
@@ -12,13 +14,14 @@ public class BoardScannerTest {
     @BeforeMethod
     public void beforeMethod(){
         //given
+        Consumer<String> consoleWriter = System.out::println;
         BoardDimensions boardDimensions = new BoardDimensions(3, 3);
         BoardBuilder boardBuilder = new BoardBuilder(boardDimensions);
         board = new Board(boardBuilder.buildBoardWithFieldNumbers(),
                 boardBuilder.buildBoardWithMarks(),
-                boardDimensions);
+                boardDimensions, consoleWriter);
         boardScanner = new BoardScanner(board);
-        moveSupervisor = new MoveSupervisor(board, 3);
+        moveSupervisor = new MoveSupervisor(board, 3, new MovesRegistry());
     }
 
     @Test

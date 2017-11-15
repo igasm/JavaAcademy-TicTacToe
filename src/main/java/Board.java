@@ -1,16 +1,18 @@
 import java.util.List;
+import java.util.function.Consumer;
 
-public class Board {
+public class Board implements Observer{
 
     private List<Integer> boardWithFieldNumbers; //pola zawsze interfejsami!!!
     private List<String> boardWithMarks; //pola zawsze interfejsami!!!
     private BoardDimensions boardDimensions;
+    private final Consumer<String> consoleWriter;
 
-
-    public Board(List<Integer> boardWithFieldNumbers, List<String> boardWithMarks, BoardDimensions boardDimensions) {
+    public Board(List<Integer> boardWithFieldNumbers, List<String> boardWithMarks, BoardDimensions boardDimensions, Consumer<String> consoleWriter) {
        this.boardWithFieldNumbers = boardWithFieldNumbers;
        this.boardWithMarks = boardWithMarks;
        this.boardDimensions = boardDimensions;
+        this.consoleWriter = consoleWriter;
     }
 
     public void clearMarks(){
@@ -19,8 +21,10 @@ public class Board {
         }
     }
 
+
+
     //TODO: jak to się różni od toString?
-    public String getView(){
+    public String toString(){
         StringBuilder stringBuilder = new StringBuilder();
         for(int i = 0; i < boardWithFieldNumbers.size(); i++){
             stringBuilder.append("|");
@@ -67,4 +71,14 @@ public class Board {
         return boardWithMarks;
     }
 
+    @Override
+    public void update(MovesRegistry movesRegistry) {
+        clearMarks();
+        for (int i = 0; i < boardWithFieldNumbers.size(); i++) {
+            if (movesRegistry.moveExists(i)) {
+                boardWithMarks.set(i, movesRegistry.getMove(i));
+            }
+        }
+        consoleWriter.accept(toString());
+    }
 }

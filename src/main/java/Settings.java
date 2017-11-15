@@ -19,6 +19,7 @@ public class Settings {
 
 
     public String load(){
+        String newline = System.getProperty("line.separator");
         String message;
         try {
             Object obj = jsonParser.parse(new FileReader("./src/main/resources/settings.json"));
@@ -29,15 +30,15 @@ public class Settings {
             boardDimensions = new BoardDimensions(width.intValue(), height.intValue());
             winningCondition = ((Long) jsonObject.get("winning_condition")).intValue();
             message = "Wczytane ustawienia planszy:" +
-                    "\n\tWymiary planszy: " + width + "x" + height +
-                    "\n\tWarunek wygranej: " + winningCondition + " znaków\n";
+                    newline + "\tWymiary planszy: " + width + "x" + height +
+                    newline + "\tWarunek wygranej: " + winningCondition + " znaków" + newline;
         }catch (Exception e){
             exceptionHandler.accept(e);
             boardDimensions = new BoardDimensions(3, 3);
             winningCondition = 3;
             message = "Wczytywanie domyślnych ustawień" +
-                    "\n\tWymiary planszy: 3x3." +
-                    "\n\tWarunek wygranej: 3 znaki\n";
+                    newline + "\tWymiary planszy: 3x3." +
+                    newline + "\tWarunek wygranej: 3 znaki" + newline;
         }
 
         return message;

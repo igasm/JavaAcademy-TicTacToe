@@ -1,4 +1,4 @@
-package PACKAGE_NAME;
+interface Observer {
 
-public class Observer {
+    void update(MovesRegistry movesRegistry);
 }

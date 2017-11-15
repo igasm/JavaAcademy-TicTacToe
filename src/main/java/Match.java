@@ -27,13 +27,13 @@ public class Match {
 
     public void run(){
         Scanner sc = new Scanner(System.in);
+        String newline = System.getProperty("line.separator");
         board.clearMarks();
         matchOn = true;
+        consoleWriter.accept(board.toString());
         while(matchOn){
             Player currentPlayer = playersQueue.getNextPlayer();
-            consoleWriter.accept("\nRuch dla " + currentPlayer.getName() + " (" + currentPlayer.getMark() +")" );
-            consoleWriter.accept(board.getView());
-            consoleWriter.accept("\nPodaj numer pola");
+            consoleWriter.accept(newline + "Ruch dla " + currentPlayer.getName() + " (" + currentPlayer.getMark() +"), podaj numer pola" );
             int fieldNumber = sc.nextInt();
             moveSupervisor.move(currentPlayer.getMark(), fieldNumber);
             List<Sequence> sequences = boardScanner.scanAllDirections(fieldNumber);

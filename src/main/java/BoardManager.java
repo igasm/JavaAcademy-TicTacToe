@@ -21,8 +21,8 @@ public class BoardManager {
 
     public void runGame(){
         Match match = new Match(consoleWriter, playersQueue, board, moveSupervisor, boardScanner, settings, scoresManager);
-        for(int i=0; i<3; i++) {
-            consoleWriter.accept("Mecz nr " + i);
+        for(int i=1; i<=3; i++) {
+            consoleWriter.accept("Runda nr " + i);
             match.run();
         }
     }

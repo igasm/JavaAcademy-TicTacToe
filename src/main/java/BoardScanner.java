@@ -15,7 +15,7 @@ public class BoardScanner {
         sequences.add(scanFromLeftTopToRightBottom(fieldNumber));
         sequences.add(scanHorizontally(fieldNumber));
         sequences.add(scanVertically(fieldNumber));
-//        sequences.add(scanFromLeftBottomToRightTop(fieldNumber));
+       sequences.add(scanFromLeftBottomToRightTop(fieldNumber));
         return sequences;
     }
 
