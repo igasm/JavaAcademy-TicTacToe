@@ -17,11 +17,8 @@ public class GameLoader {
         BoardBuilder boardBuilder = new BoardBuilder(settings.getBoardDimensions());
         Board board = new Board(boardBuilder.buildBoardWithFieldNumbers(), boardBuilder.buildBoardWithMarks(), settings.getBoardDimensions());
         MoveSupervisor moveSupervisor = new MoveSupervisor(board, settings.getWinningCondition());
-        PlayersRegister playersRegister = new PlayersRegister(2);
-        consoleWriter.accept("Podaj imię pierwszego gracza");
-        playersRegister.registerPlayer(new Player(consoleReader.get(), "x"));
-        consoleWriter.accept("Podaj imię drugiego gracza");
-        playersRegister.registerPlayer(new Player(consoleReader.get(), "o"));
+        PlayersLoader playersLoader = new PlayersLoader(consoleWriter, consoleReader);
+        PlayersRegister playersRegister = playersLoader.load();
         PlayersQueue playersQueue = new PlayersQueue(playersRegister);
         ScoresManager scoresManager = new ScoresManager(playersRegister);
         return new BoardManager(playersQueue, moveSupervisor, board, consoleWriter, settings, scoresManager);
