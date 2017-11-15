@@ -52,11 +52,13 @@ public class Board implements Observer{
     }
 
     public boolean isFieldEmpty(int fieldNumber){
-        if(boardWithMarks.get(fieldNumber).equals("e")){ //TODO: czy porównanie Stringów z equals jest odpowiednie? "e".equals("E")?
-            return true;
-        }else{
-            return false;
-        } // if warunek return true else return false => return warunek?
+        return boardWithMarks.get(fieldNumber).toUpperCase().trim().equals("E");
+
+//        if(boardWithMarks.get(fieldNumber).equals("e")){ //TODO: czy porównanie Stringów z equals jest odpowiednie? "e".equals("E")?
+//            return true;
+//        }else{
+//            return false;
+//        } // if warunek return true else return false => return warunek?
     }
 
     public int getElementsCount(){

@@ -40,18 +40,18 @@ public class Match {
             Arbiter arbiter = new Arbiter(settings.getWinningCondition());
             for(Sequence sequence : sequences ){
                 if (arbiter.isWin(currentPlayer.getMark(), sequence.toString())) {
-                    consoleWriter.accept(currentPlayer.getName() + " wygrywa mecz");
+                    consoleWriter.accept(currentPlayer.getName() + " wygrywa rundę");
                     scoresManager.addWin(currentPlayer);
                     matchOn=false;
                 }
             }
             if(!moveSupervisor.isFreeMoveExists()){
-                consoleWriter.accept("Koniec meczu - remis");
+                consoleWriter.accept("Koniec rundy - remis");
                 scoresManager.addDraw();
                 matchOn=false;
             }
         }
-        consoleWriter.accept("Wyniki meczu");
+        consoleWriter.accept(newline + "Wyniki rundy");
         consoleWriter.accept(scoresManager.getSubmit());
     }
 
