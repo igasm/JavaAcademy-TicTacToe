@@ -12,7 +12,7 @@ public class BoardScanner {
 
     public List<Sequence> scanAllDirections(int fieldNumber){
         List<Sequence> sequences = new ArrayList<>();
-//        sequences.add(scanFromLeftTopToRightBottom(fieldNumber));
+        sequences.add(scanFromLeftTopToRightBottom(fieldNumber));
         sequences.add(scanHorizontally(fieldNumber));
         sequences.add(scanVertically(fieldNumber));
 //        sequences.add(scanFromLeftBottomToRightTop(fieldNumber));

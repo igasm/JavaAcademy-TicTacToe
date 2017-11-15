@@ -10,7 +10,7 @@ public class BoardTest {
         BoardBuilder builder = new BoardBuilder(boardDimensions);
         Board board = new Board(builder.buildBoardWithFieldNumbers(), builder.buildBoardWithMarks() ,boardDimensions);
         //when - then
-        String expectedPrint = "012\n345\n678";
+        String expectedPrint = "|0 |1 |2 |\n|3 |4 |5 |\n|6 |7 |8 |";
         assertEquals(board.getView(), expectedPrint);
     }
 
@@ -22,7 +22,7 @@ public class BoardTest {
         //when
         board.setCross(0);
         //then
-        String expectedPrint = "x12\n345\n678";
+        String expectedPrint = "|x |1 |2 |\n|3 |4 |5 |\n|6 |7 |8 |";
         assertEquals(board.getView(), expectedPrint);
     }
 
@@ -34,7 +34,7 @@ public class BoardTest {
         //when
         board.setNought(7);
         //then
-        String expectedPrint = "012\n345\n6o8";
+        String expectedPrint = "|0 |1 |2 |\n|3 |4 |5 |\n|6 |o |8 |";
         assertEquals(board.getView(), expectedPrint);
     }
 

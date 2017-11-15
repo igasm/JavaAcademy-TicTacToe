@@ -10,7 +10,7 @@ public class ArbiterTest {
         String sequenceString = "xxx";
         Arbiter arbiter = new Arbiter(3);
         //when - then
-        assertTrue(arbiter.isXWins(sequenceString));
+        assertTrue(arbiter.isWin("x", sequenceString));
     }
 
     @Test
@@ -19,6 +19,6 @@ public class ArbiterTest {
         String sequenceString = "xox";
         Arbiter arbiter = new Arbiter(3);
         //when - then
-        assertTrue(!arbiter.isXWins(sequenceString));
+        assertTrue(!arbiter.isWin("x", sequenceString));
     }
 }

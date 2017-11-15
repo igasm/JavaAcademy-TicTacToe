@@ -5,8 +5,8 @@ public class Arbiter {
         this.winningCondition = winningCondition;
     }
 
-    public boolean isXWins(String seqenceString) {
-        String regex = ".*x{" + winningCondition +",}.*";
+    public boolean isWin(String mark, String seqenceString) {
+        String regex = ".*"+mark+"{" + winningCondition +",}.*";
         return seqenceString.matches(regex);
     }
 }

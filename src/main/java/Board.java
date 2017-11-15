@@ -13,20 +13,27 @@ public class Board {
        this.boardDimensions = boardDimensions;
     }
 
+    public void clearMarks(){
+        for(String mark : boardWithMarks){
+            mark = "e";
+        }
+    }
+
+    //TODO: jak to się różni od toString?
     public String getView(){
         StringBuilder stringBuilder = new StringBuilder();
-        for(int i = 0; i< boardWithFieldNumbers.size(); i++){
+        for(int i = 0; i < boardWithFieldNumbers.size(); i++){
             stringBuilder.append("|");
-            if(boardWithMarks.get(i).equals("e")) {
+            if (boardWithMarks.get(i).equals("e")) {
                 stringBuilder.append(boardWithFieldNumbers.get(i));
-                if(i<10){
+                if (i<10){
                     stringBuilder.append(" ");
                 }
-            }else{
+            } else {
                 stringBuilder.append(boardWithMarks.get(i) + " ");
             }
-            if((i+1)%boardDimensions.getWidth() == 0){
-                stringBuilder.append("|\n");
+            if ((i+1)%boardDimensions.getWidth() == 0){
+                stringBuilder.append("|\n"); //TODO: czy /n działa tak samo na wszystkich systemach operacyjnych?
             }
         }
         return stringBuilder.toString().toString().trim();
@@ -41,11 +48,11 @@ public class Board {
     }
 
     public boolean isFieldEmpty(int fieldNumber){
-        if(boardWithMarks.get(fieldNumber).equals("e")){
+        if(boardWithMarks.get(fieldNumber).equals("e")){ //TODO: czy porównanie Stringów z equals jest odpowiednie? "e".equals("E")?
             return true;
         }else{
             return false;
-        }
+        } // if warunek return true else return false => return warunek?
     }
 
     public int getElementsCount(){

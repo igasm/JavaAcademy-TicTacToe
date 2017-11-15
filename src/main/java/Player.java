@@ -18,6 +18,10 @@ public class Player implements Comparable<Player> {
         return score;
     }
 
+    public void addPoints(int value){
+        this.score += value;
+    }
+
     public String getMark() {
         return mark;
     }
@@ -29,7 +33,5 @@ public class Player implements Comparable<Player> {
     public int compareTo(Player o) {
        return this.name.compareTo(o.name);
     }
-
-    //TODO implementacja klasy equals, taka że dwaj gracze o tym samym imieniu są equals??
 
 }
