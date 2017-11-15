@@ -6,7 +6,7 @@ public class ScoresManager {
     }
 
     public void addWin(Player player){
-        player.addPoints(1);
+        player.addPoints(3);
     }
 
     public void addDraw(){
@@ -19,7 +19,7 @@ public class ScoresManager {
         String newline = System.getProperty("line.separator");
         StringBuilder stringBuilder = new StringBuilder();
         for(Player player : playersRegister.getPlayersList()){
-            stringBuilder.append(player.getName() + ": " + player.getMark() + newline);
+            stringBuilder.append(player.getName() + ": " + player.getScore() + newline);
         }
         return stringBuilder.toString();
     }
