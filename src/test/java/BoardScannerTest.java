@@ -1,5 +1,12 @@
+import board.Board;
+import board.BoardBuilder;
+import game.BoardScanner;
+import game.MoveSupervisor;
+import game.MovesRegistry;
+import game.Sequence;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import settings.BoardDimensions;
 
 import java.util.function.Consumer;
 

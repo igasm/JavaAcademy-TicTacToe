@@ -1,3 +1,7 @@
+package game;
+
+import board.Board;
+
 public class MoveValidator {
     private final Board board;
 

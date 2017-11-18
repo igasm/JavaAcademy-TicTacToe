@@ -1,3 +1,5 @@
+package settings;
+
 public class BoardDimensions {
 
     private final int width;

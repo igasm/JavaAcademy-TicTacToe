@@ -1,3 +1,10 @@
+package game;
+
+import board.Board;
+import players.Player;
+import players.PlayersQueue;
+import settings.Settings;
+
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Consumer;

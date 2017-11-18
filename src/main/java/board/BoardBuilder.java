@@ -1,3 +1,7 @@
+package board;
+
+import settings.BoardDimensions;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -11,12 +15,12 @@ public class BoardBuilder {
         this.boardDimensions = boardDimensions;
     }
 
-    List<Integer> buildBoardWithFieldNumbers(){
+    public List<Integer> buildBoardWithFieldNumbers(){
         List<Integer> board = IntStream.range(0, boardDimensions.getElementsCount()).mapToObj(a->new Integer(a)).collect(Collectors.toList());
         return board;
     }
 
-    List<String> buildBoardWithMarks(){
+    public List<String> buildBoardWithMarks(){
         List<String> board = Stream.generate(() -> new String("e")).limit(boardDimensions.getElementsCount()).collect(Collectors.toList());
         return board;
     }

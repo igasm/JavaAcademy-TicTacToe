@@ -1,3 +1,5 @@
+package players;
+
 import java.util.LinkedList;
 
 public class PlayersQueue{

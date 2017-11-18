@@ -1,3 +1,9 @@
+package game;
+
+import board.Board;
+import players.PlayersQueue;
+import settings.Settings;
+
 import java.util.function.Consumer;
 
 public class BoardManager {

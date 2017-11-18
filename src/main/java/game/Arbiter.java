@@ -1,3 +1,5 @@
+package game;
+
 public class Arbiter {
     private final int winningCondition;
 

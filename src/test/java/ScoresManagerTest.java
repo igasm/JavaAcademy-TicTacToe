@@ -1,7 +1,8 @@
+import game.ScoresManager;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.awt.*;
+import players.Player;
+import players.PlayersRegister;
 
 import static org.testng.Assert.*;
 

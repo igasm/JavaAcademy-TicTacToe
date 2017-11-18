@@ -1,11 +1,14 @@
+package players;
+
+import players.Player;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class PlayersRegister {
     private ArrayList<Player> playersList;
     private final int playersCount;
 
-    PlayersRegister(int count){
+    public PlayersRegister(int count){
         this.playersCount = count;
         playersList = new ArrayList<Player>(count);
     }

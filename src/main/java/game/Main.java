@@ -1,3 +1,7 @@
+package game;
+
+import settings.Settings;
+
 import java.util.Scanner;
 import java.util.function.Consumer;
 import java.util.function.Supplier;

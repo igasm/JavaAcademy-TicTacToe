@@ -1,4 +1,7 @@
 import org.testng.annotations.Test;
+import players.Player;
+import players.PlayersQueue;
+import players.PlayersRegister;
 
 import static org.testng.Assert.*;
 

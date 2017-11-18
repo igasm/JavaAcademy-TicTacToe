@@ -1,3 +1,12 @@
+package game;
+
+import board.Board;
+import board.BoardBuilder;
+import players.PlayersLoader;
+import players.PlayersQueue;
+import players.PlayersRegister;
+import settings.Settings;
+
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 

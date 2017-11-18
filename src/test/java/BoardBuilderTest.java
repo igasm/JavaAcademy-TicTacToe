@@ -1,4 +1,6 @@
+import board.BoardBuilder;
 import org.testng.annotations.Test;
+import settings.BoardDimensions;
 
 import java.util.List;
 

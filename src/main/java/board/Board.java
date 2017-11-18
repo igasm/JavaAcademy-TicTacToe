@@ -1,7 +1,13 @@
+package board;
+
+import game.MovesRegistry;
+import game.Observer;
+import settings.BoardDimensions;
+
 import java.util.List;
 import java.util.function.Consumer;
 
-public class Board implements Observer{
+public class Board implements Observer {
 
     private List<Integer> boardWithFieldNumbers; //pola zawsze interfejsami!!!
     private List<String> boardWithMarks; //pola zawsze interfejsami!!!

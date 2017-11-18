@@ -1,3 +1,8 @@
+package game;
+
+import players.Player;
+import players.PlayersRegister;
+
 public class ScoresManager {
     private final PlayersRegister playersRegister;
 
