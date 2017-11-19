@@ -22,4 +22,13 @@ public class ArbiterTest {
         //when - then
         assertTrue(!arbiter.isWin("x", sequenceString));
     }
+
+    @Test
+    public void givenSequenceOfNaughts_NaughtWin(){
+        //given
+        String sequenceString = "ooo";
+        Arbiter arbiter = new Arbiter(3);
+        //when - then
+        assertTrue(arbiter.isWin("o", sequenceString));
+    }
 }

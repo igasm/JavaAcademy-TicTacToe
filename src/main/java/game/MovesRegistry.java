@@ -4,8 +4,8 @@ import java.util.*;
 
 public class MovesRegistry implements Observed {
 
-    List<Observer> observers = new ArrayList<>();
-    Map<Integer, String> moves = new HashMap<>();
+    private List<Observer> observers = new ArrayList<>();
+    private Map<Integer, String> moves = new HashMap<>();
 
     public void register(Observer observer){
         observers.add(observer);
@@ -28,5 +28,13 @@ public class MovesRegistry implements Observed {
 
     public boolean moveExists(int fieldNumber){
         return moves.containsKey(fieldNumber);
+    }
+
+    public void clear(){
+        moves.clear();
+    }
+
+    public int movesCount(){
+        return moves.size();
     }
 }

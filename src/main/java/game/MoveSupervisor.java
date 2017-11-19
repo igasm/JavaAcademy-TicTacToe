@@ -1,6 +1,7 @@
 package game;
 
 import board.Board;
+import settings.Settings;
 
 public class MoveSupervisor {
 
@@ -9,10 +10,12 @@ public class MoveSupervisor {
     private final MoveValidator moveValidator;
     private final int winningCondition;
     private final MovesRegistry movesRegistry;
+    private final Settings settings;
 
-    public MoveSupervisor(Board board, int winningCondition, MovesRegistry movesRegistry) {
+    public MoveSupervisor(Board board, int winningCondition, MovesRegistry movesRegistry, Settings settings) {
         this.board = board;
-        this.moveValidator = new MoveValidator(board);
+        this.settings = settings;
+        this.moveValidator = new MoveValidator(settings, movesRegistry);
         this.winningCondition = winningCondition;
         this.movesRegistry = movesRegistry;
     }
@@ -20,11 +23,8 @@ public class MoveSupervisor {
     public void move(String mark, int fieldNumber){
         if (moveValidator.moveIsValid(fieldNumber)) {
             movesRegistry.addMove(fieldNumber, mark);
-            if (mark.equals("o")) {
-                board.setNought(fieldNumber);
-                movesCount++;
-            } else if (mark.equals("x")) {
-                board.setCross(fieldNumber);
+            if (mark.equals("o") || mark.equals("x")) {
+                movesRegistry.addMove(fieldNumber, mark);
                 movesCount++;
             } else {
                 throw new RuntimeException("Mark : " + mark + " is no valid");
@@ -33,11 +33,7 @@ public class MoveSupervisor {
     }
 
     public boolean isFreeMoveExists(){
-        if(movesCount < board.getElementsCount()){
-            return true;
-        }else{
-            return false;
-        }
+        return movesRegistry.movesCount() < board.getElementsCount();
     }
 
 }

@@ -1,24 +1,26 @@
 package game;
 
-import board.Board;
+import settings.Settings;
 
 public class MoveValidator {
-    private final Board board;
+    private final Settings settings;
+    private final MovesRegistry movesRegistry;
 
-    public MoveValidator(Board board) {
-        this.board = board;
+    public MoveValidator(Settings settings, MovesRegistry movesRegistry) {
+        this.settings = settings;
+        this.movesRegistry = movesRegistry;
     }
 
     public boolean moveIsValid(int fieldNumber){
         boolean moveIsValid = true;
-        if(fieldNumber >= board.getElementsCount()){
+        if(fieldNumber >= settings.getBoardElementsCount()){
             throw new IndexOutOfBoundsException("Field number "
                     + fieldNumber
                     + " is greater than number of last field"
-                    + board.getElementsCount());
+                    + settings.getBoardElementsCount());
         }
 
-        if(!board.isFieldEmpty(fieldNumber)){
+        if(movesRegistry.moveExists(fieldNumber)){
             throw new RuntimeException("Field number " + fieldNumber + " is already marked");
         }
         return moveIsValid;

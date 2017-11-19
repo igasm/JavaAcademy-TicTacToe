@@ -1,12 +1,13 @@
 import board.Board;
 import board.BoardBuilder;
-import game.BoardScanner;
+import game.MoveScanner;
 import game.MoveSupervisor;
 import game.MovesRegistry;
 import game.Sequence;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import settings.BoardDimensions;
+import settings.Settings;
 
 import java.util.function.Consumer;
 
@@ -14,67 +15,68 @@ import static org.testng.Assert.*;
 
 public class BoardScannerTest {
 
-    BoardScanner boardScanner;
+    MoveScanner boardScanner;
     Board board;
     MoveSupervisor moveSupervisor;
 
     @BeforeMethod
     public void beforeMethod(){
         //given
+        Consumer<Exception> exceptionHandler = e -> System.out.println("Exception occured " + e.getMessage());
         Consumer<String> consoleWriter = System.out::println;
         BoardDimensions boardDimensions = new BoardDimensions(3, 3);
         BoardBuilder boardBuilder = new BoardBuilder(boardDimensions);
-        board = new Board(boardBuilder.buildBoardWithFieldNumbers(),
-                boardBuilder.buildBoardWithMarks(),
-                boardDimensions, consoleWriter);
-        boardScanner = new BoardScanner(board);
-        moveSupervisor = new MoveSupervisor(board, 3, new MovesRegistry());
+        board = new Board(boardBuilder.buildBoardWithFieldNumbers(), boardDimensions, consoleWriter);
+        MovesRegistry movesRegistry = new MovesRegistry();
+        Settings settings = new Settings(exceptionHandler, boardDimensions, 3);
+        boardScanner = new MoveScanner(movesRegistry, settings);
+        moveSupervisor = new MoveSupervisor(board, 3, movesRegistry, settings);
     }
 
     @Test
-    public void givenClearBoard3x3_whenScanningVerticallyField4_shouldEquals_eee(){
+    public void givenClearBoard3x3_whenScanningVerticallyField4_shouldEqualsEmptyString(){
         //when
         Sequence sequence = boardScanner.scanVertically(4);
         //then
-        assertEquals(sequence.toString(), "eee");
+        assertEquals(sequence.toString(), "");
     }
 
     @Test
-    public void givenBoard3x3WithCrossAtField4_whenScanningVerticallyField4_shouldEquals_exe(){
+    public void givenBoard3x3WithCrossAtField4_whenScanningVerticallyField4_shouldEquals_x(){
         //given
         moveSupervisor.move("x", 4);
         //when
         Sequence sequence = boardScanner.scanVertically(4);
         //then
-        assertEquals(sequence.toString(), "exe");
+        assertEquals(sequence.toString(), "x");
     }
 
     @Test
-    public void givenClearBoard3x3_ScanningHorizontallyField4_shouldEquals_eee(){
+    public void givenClearBoard3x3_ScanningHorizontallyField4_shouldEquals_EmptyString(){
         //when
         Sequence sequence = boardScanner.scanHorizontally(4);
         //then
-        assertEquals(sequence.toString(), "eee");
+        assertEquals(sequence.toString(), "");
     }
 
     @Test
-    public void givenBoard3x3WithCrossAtField4_whenScanningHorizontallyField4_shouldEquals_exe(){
+    public void givenBoard3x3WithCrossAtField4_whenScanningHorizontallyField4_shouldEquals_x(){
         //given
         moveSupervisor.move("x", 4);
         //when
         Sequence sequence = boardScanner.scanHorizontally(4);
         //then
-        assertEquals(sequence.toString(), "exe");
+        assertEquals(sequence.toString(), "x");
     }
 
     @Test
-    public void givenBoard3x3WithCrossAtField7_whenScanningHorizontallyField4_shouldEquals_eex(){
+    public void givenBoard3x3WithCrossAtField7_whenScanningVerticallyField4_shouldEquals_x(){
         //given
         moveSupervisor.move("x", 7);
         //when
-        Sequence sequence = boardScanner.scanHorizontally(4);
+        Sequence sequence = boardScanner.scanVertically(4);
         //then
-        assertEquals(sequence.toString(), "eex");
+        assertEquals(sequence.toString(), "x");
     }
 
     @Test
@@ -98,7 +100,7 @@ public class BoardScannerTest {
         //when
         Sequence sequence = boardScanner.scanFromLeftTopToRightBottom(4);
         //then
-        assertEquals(sequence.toString(), "exe");
+        assertEquals(sequence.toString(), "x");
     }
 
     @Test
@@ -122,16 +124,16 @@ public class BoardScannerTest {
         //when
         Sequence sequence = boardScanner.scanFromLeftTopToRightBottom(4);
         //then
-        assertEquals(sequence.toString(), "exe");
+        assertEquals(sequence.toString(), "x");
     }
 
     @Test
-    public void givenBoard3x3WithCrossAtTopLeft_SequenceIs_xee(){
+    public void givenBoard3x3WithCrossAtTopLeft_SequenceIs_x(){
         //given
         moveSupervisor.move("x", 0);
         //when
         Sequence sequence = boardScanner.scanFromLeftTopToRightBottom(0);
-        assertEquals(sequence.toString(), "xee");
+        assertEquals(sequence.toString(), "x");
     }
 
     @Test
@@ -153,11 +155,11 @@ public class BoardScannerTest {
     }
 
     @Test
-    public void givenBoard3x3WithCrossAtBottomRight_SequenceIs_eex(){
+    public void givenBoard3x3WithCrossAtBottomRight_SequenceIs_x(){
         //given
         moveSupervisor.move("x", 8);
         //when
         Sequence sequence = boardScanner.scanFromLeftTopToRightBottom(8);
-        assertEquals(sequence.toString(), "eex");
+        assertEquals(sequence.toString(), "x");
     }
 }

@@ -5,6 +5,7 @@ import game.MovesRegistry;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import settings.BoardDimensions;
+import settings.Settings;
 
 import java.util.function.Consumer;
 
@@ -16,13 +17,13 @@ public class MoveSupervisorTest {
 
     @BeforeMethod
     public void beforeMethod(){
+        Consumer<Exception> exceptionHandler = e -> System.out.println("Exception occured " + e.getMessage());
         BoardDimensions boardDimensions = new BoardDimensions(3, 3);
         BoardBuilder boardBuilder = new BoardBuilder(boardDimensions);
         Consumer<String> consoleWriter = System.out::println;
-        Board board = new Board(boardBuilder.buildBoardWithFieldNumbers(),
-                boardBuilder.buildBoardWithMarks(),
-                boardDimensions, consoleWriter);
-        moveSupervisor = new MoveSupervisor(board, 3, new MovesRegistry());
+        Board board = new Board(boardBuilder.buildBoardWithFieldNumbers(), boardDimensions, consoleWriter);
+        Settings settings = new Settings(exceptionHandler, boardDimensions, 3);
+        moveSupervisor = new MoveSupervisor(board, 3, new MovesRegistry(), settings);
     }
 
     @Test

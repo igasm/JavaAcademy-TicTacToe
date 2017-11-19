@@ -24,14 +24,14 @@ public class GameLoader {
 
     public BoardManager load(){
         BoardBuilder boardBuilder = new BoardBuilder(settings.getBoardDimensions());
-        Board board = new Board(boardBuilder.buildBoardWithFieldNumbers(), boardBuilder.buildBoardWithMarks(), settings.getBoardDimensions(), consoleWriter);
+        Board board = new Board(boardBuilder.buildBoardWithFieldNumbers(), settings.getBoardDimensions(), consoleWriter);
         MovesRegistry movesRegistry = new MovesRegistry();
-        movesRegistry.register(board);
-        MoveSupervisor moveSupervisor = new MoveSupervisor(board, settings.getWinningCondition(), movesRegistry);
+//        movesRegistry.register(board);
+        MoveSupervisor moveSupervisor = new MoveSupervisor(board, settings.getWinningCondition(), movesRegistry, settings);
         PlayersLoader playersLoader = new PlayersLoader(consoleWriter, consoleReader);
         PlayersRegister playersRegister = playersLoader.load();
         PlayersQueue playersQueue = new PlayersQueue(playersRegister);
         ScoresManager scoresManager = new ScoresManager(playersRegister);
-        return new BoardManager(playersQueue, moveSupervisor, board, consoleWriter, settings, scoresManager);
+        return new BoardManager(playersQueue, moveSupervisor, board, consoleWriter, settings, scoresManager, movesRegistry, consoleReader);
     }
 }

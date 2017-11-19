@@ -20,8 +20,14 @@ public class Settings {
         jsonParser = new JSONParser();
     }
 
+    public Settings(Consumer<Exception> exceptionHandler, BoardDimensions boardDimensions, int winningCondition){
+        this.exceptionHandler = exceptionHandler;
+        this.boardDimensions = boardDimensions;
+        this.winningCondition = winningCondition;
+    }
 
-    public String load(){
+
+    public String loadFromJSONFile(){
         String newline = System.getProperty("line.separator");
         String message;
         try {
@@ -54,4 +60,6 @@ public class Settings {
     public int getWinningCondition() {
         return winningCondition;
     }
+
+    public int getBoardElementsCount() { return boardDimensions.getWidth() * boardDimensions.getHeight(); }
 }
