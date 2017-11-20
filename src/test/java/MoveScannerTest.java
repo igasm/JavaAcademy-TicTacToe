@@ -26,57 +26,11 @@ public class BoardScannerTest {
         Consumer<String> consoleWriter = System.out::println;
         BoardDimensions boardDimensions = new BoardDimensions(3, 3);
         BoardBuilder boardBuilder = new BoardBuilder(boardDimensions);
-        board = new Board(boardBuilder.buildBoardWithFieldNumbers(), boardDimensions, consoleWriter);
+        board = new Board(boardBuilder.asList(), boardDimensions, consoleWriter);
         MovesRegistry movesRegistry = new MovesRegistry();
         Settings settings = new Settings(exceptionHandler, boardDimensions, 3);
         boardScanner = new MoveScanner(movesRegistry, settings);
         moveSupervisor = new MoveSupervisor(board, 3, movesRegistry, settings);
-    }
-
-    @Test
-    public void givenClearBoard3x3_whenScanningVerticallyField4_shouldEqualsEmptyString(){
-        //when
-        Sequence sequence = boardScanner.scanVertically(4);
-        //then
-        assertEquals(sequence.toString(), "");
-    }
-
-    @Test
-    public void givenBoard3x3WithCrossAtField4_whenScanningVerticallyField4_shouldEquals_x(){
-        //given
-        moveSupervisor.move("x", 4);
-        //when
-        Sequence sequence = boardScanner.scanVertically(4);
-        //then
-        assertEquals(sequence.toString(), "x");
-    }
-
-    @Test
-    public void givenClearBoard3x3_ScanningHorizontallyField4_shouldEquals_EmptyString(){
-        //when
-        Sequence sequence = boardScanner.scanHorizontally(4);
-        //then
-        assertEquals(sequence.toString(), "");
-    }
-
-    @Test
-    public void givenBoard3x3WithCrossAtField4_whenScanningHorizontallyField4_shouldEquals_x(){
-        //given
-        moveSupervisor.move("x", 4);
-        //when
-        Sequence sequence = boardScanner.scanHorizontally(4);
-        //then
-        assertEquals(sequence.toString(), "x");
-    }
-
-    @Test
-    public void givenBoard3x3WithCrossAtField7_whenScanningVerticallyField4_shouldEquals_x(){
-        //given
-        moveSupervisor.move("x", 7);
-        //when
-        Sequence sequence = boardScanner.scanVertically(4);
-        //then
-        assertEquals(sequence.toString(), "x");
     }
 
     @Test
