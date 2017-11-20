@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 
 import static org.testng.Assert.*;
 
-public class BoardScannerTest {
+public class MoveScannerTest {
 
     MoveScanner boardScanner;
     Board board;
@@ -26,7 +26,7 @@ public class BoardScannerTest {
         Consumer<String> consoleWriter = System.out::println;
         BoardDimensions boardDimensions = new BoardDimensions(3, 3);
         BoardBuilder boardBuilder = new BoardBuilder(boardDimensions);
-        board = new Board(boardBuilder.asList(), boardDimensions, consoleWriter);
+        board = new Board(boardBuilder.buildBoardWithFieldNumbers(), boardDimensions, consoleWriter);
         MovesRegistry movesRegistry = new MovesRegistry();
         Settings settings = new Settings(exceptionHandler, boardDimensions, 3);
         boardScanner = new MoveScanner(movesRegistry, settings);
