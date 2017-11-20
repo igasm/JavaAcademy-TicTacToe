@@ -1,3 +1,5 @@
+package game;
+
 import game.ScoresManager;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

@@ -1,3 +1,5 @@
+package game;
+
 import board.Board;
 import board.BoardBuilder;
 import game.MoveSupervisor;

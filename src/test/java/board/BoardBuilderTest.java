@@ -1,4 +1,5 @@
-import board.BoardBuilder;
+package board;
+
 import org.testng.annotations.Test;
 import settings.BoardDimensions;
 
