@@ -1,5 +1,6 @@
 package game;
 
+import io.ConsoleReader;
 import settings.Settings;
 
 import java.util.Scanner;
@@ -8,7 +9,7 @@ import java.util.function.Supplier;
 
 public class Main {
     public static void main(String[] args) {
-        Supplier<String> consoleReader = () -> new Scanner(System.in).nextLine();
+        ConsoleReader consoleReader = new ConsoleReader();
         Consumer<String> consoleWriter = System.out::println;
         Consumer<Exception> exceptionHandler = e -> System.out.println("Exception occured " + e.getMessage());
         consoleWriter.accept("Witaj w grze kółko i krzyżyk\n");

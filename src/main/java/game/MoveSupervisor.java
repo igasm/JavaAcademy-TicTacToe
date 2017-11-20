@@ -20,16 +20,19 @@ public class MoveSupervisor {
         this.movesRegistry = movesRegistry;
     }
 
-    public void move(String mark, int fieldNumber){
+    public boolean move(String mark, int fieldNumber){
+        boolean moved = false;
         if (moveValidator.moveIsValid(fieldNumber)) {
             movesRegistry.addMove(fieldNumber, mark);
             if (mark.equals("o") || mark.equals("x")) {
                 movesRegistry.addMove(fieldNumber, mark);
                 movesCount++;
+                moved = true;
             } else {
                 throw new RuntimeException("Mark : " + mark + " is no valid");
             }
         }
+        return moved;
     }
 
     public boolean isFreeMoveExists(){

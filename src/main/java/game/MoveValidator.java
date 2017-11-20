@@ -14,14 +14,14 @@ public class MoveValidator {
     public boolean moveIsValid(int fieldNumber){
         boolean moveIsValid = true;
         if(fieldNumber >= settings.getBoardElementsCount()){
-            throw new IndexOutOfBoundsException("Field number "
+            throw new IndexOutOfBoundsException("Numer pola "
                     + fieldNumber
-                    + " is greater than number of last field"
-                    + settings.getBoardElementsCount());
+                    + " jest większe niż numer ostatniego pola ("
+                    + settings.getBoardElementsCount() + ")");
         }
 
         if(movesRegistry.moveExists(fieldNumber)){
-            throw new RuntimeException("Field number " + fieldNumber + " is already marked");
+            throw new RuntimeException("Pole o numerze " + fieldNumber + " jest już zaznaczone");
         }
         return moveIsValid;
     }

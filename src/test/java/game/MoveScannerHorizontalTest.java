@@ -20,7 +20,7 @@ public class MoveScannerHorizontalTest {
     @BeforeMethod
     public void beforeMethod(){
         //given
-        Consumer<Exception> exceptionHandler = e -> System.out.println("Exception occured " + e.getMessage());
+        Consumer<Exception> exceptionHandler = e -> System.out.println("Wystąpił błąd " + e.getMessage());
         Consumer<String> consoleWriter = System.out::println;
         BoardDimensions boardDimensions = new BoardDimensions(3, 3);
         BoardBuilder boardBuilder = new BoardBuilder(boardDimensions);

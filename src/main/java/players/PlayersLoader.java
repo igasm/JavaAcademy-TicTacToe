@@ -1,5 +1,6 @@
 package players;
 
+import io.ConsoleReader;
 import players.Player;
 import players.PlayersRegister;
 
@@ -9,9 +10,9 @@ import java.util.function.Supplier;
 public class PlayersLoader {
 
     private final Consumer<String> consoleWriter;
-    private final Supplier<String> consoleReader;
+    private final ConsoleReader consoleReader;
 
-    public PlayersLoader(Consumer<String> consoleWriter, Supplier<String> consoleReader) {
+    public PlayersLoader(Consumer<String> consoleWriter, ConsoleReader consoleReader) {
         this.consoleWriter = consoleWriter;
         this.consoleReader = consoleReader;
     }
@@ -19,9 +20,9 @@ public class PlayersLoader {
     public PlayersRegister load(){
         PlayersRegister playersRegister = new PlayersRegister(2);
         consoleWriter.accept("Podaj imię pierwszego gracza");
-        playersRegister.registerPlayer(new Player(consoleReader.get(), "x"));
+        playersRegister.registerPlayer(new Player(consoleReader.getString(), "x"));
         consoleWriter.accept("Podaj imię drugiego gracza");
-        playersRegister.registerPlayer(new Player(consoleReader.get(), "o"));
+        playersRegister.registerPlayer(new Player(consoleReader.getString(), "o"));
         return playersRegister;
     }
 

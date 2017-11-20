@@ -1,6 +1,7 @@
 package game;
 
 import board.Board;
+import io.ConsoleReader;
 import players.PlayersQueue;
 import settings.Settings;
 
@@ -16,9 +17,9 @@ public class BoardManager {
     private final Settings settings;
     private final ScoresManager scoresManager;
     private final MovesRegistry movesRegistry;
-    private final Supplier<String> consoleReader;
+    private final ConsoleReader consoleReader;
 
-    public BoardManager(PlayersQueue playersQueue, MoveSupervisor moveSupervisor, Board board, Consumer<String> consoleWriter, Settings settings, ScoresManager scoresManager, MovesRegistry movesRegistry, Supplier<String> consoleReader) {
+    public BoardManager(PlayersQueue playersQueue, MoveSupervisor moveSupervisor, Board board, Consumer<String> consoleWriter, Settings settings, ScoresManager scoresManager, MovesRegistry movesRegistry, ConsoleReader consoleReader) {
         this.playersQueue = playersQueue;
         this.moveSupervisor = moveSupervisor;
         this.board = board;

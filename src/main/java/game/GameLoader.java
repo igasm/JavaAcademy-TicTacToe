@@ -2,6 +2,7 @@ package game;
 
 import board.Board;
 import board.BoardBuilder;
+import io.ConsoleReader;
 import players.PlayersLoader;
 import players.PlayersQueue;
 import players.PlayersRegister;
@@ -13,10 +14,10 @@ import java.util.function.Supplier;
 public class GameLoader {
 
     final private Consumer<String> consoleWriter;
-    final private Supplier<String> consoleReader;
+    final private ConsoleReader consoleReader;
     final private Settings settings;
 
-    public GameLoader(Consumer<String> consoleWriter, Supplier<String> consoleReader, Settings settingsLoader) {
+    public GameLoader(Consumer<String> consoleWriter, ConsoleReader consoleReader, Settings settingsLoader) {
         this.consoleWriter = consoleWriter;
         this.consoleReader = consoleReader;
         this.settings = settingsLoader;
@@ -26,7 +27,6 @@ public class GameLoader {
         BoardBuilder boardBuilder = new BoardBuilder(settings.getBoardDimensions());
         Board board = new Board(boardBuilder.buildBoardWithFieldNumbers(), settings.getBoardDimensions(), consoleWriter);
         MovesRegistry movesRegistry = new MovesRegistry();
-//        movesRegistry.register(board);
         MoveSupervisor moveSupervisor = new MoveSupervisor(board, settings.getWinningCondition(), movesRegistry, settings);
         PlayersLoader playersLoader = new PlayersLoader(consoleWriter, consoleReader);
         PlayersRegister playersRegister = playersLoader.load();
