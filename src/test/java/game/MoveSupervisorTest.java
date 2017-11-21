@@ -1,7 +1,5 @@
 package game;
 
-import board.Board;
-import board.BoardBuilder;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import settings.BoardDimensions;
@@ -19,11 +17,14 @@ public class MoveSupervisorTest {
     public void beforeMethod(){
         Consumer<Exception> exceptionHandler = e -> System.out.println("Exception occured " + e.getMessage());
         BoardDimensions boardDimensions = new BoardDimensions(3, 3);
-        BoardBuilder boardBuilder = new BoardBuilder(boardDimensions);
-        Consumer<String> consoleWriter = System.out::println;
-        Board board = new Board(boardBuilder.buildBoardWithFieldNumbers(), boardDimensions, consoleWriter);
         Settings settings = new Settings(exceptionHandler, boardDimensions, 3);
         moveSupervisor = new MoveSupervisor(new MovesRegistry(), settings);
+    }
+
+    @Test
+    public void givenBoard3x3_WhenNoMoveIsMade_ThereAreFreeMoves(){
+        //when - then
+        assertTrue(moveSupervisor.isFreeMoveExists());
     }
 
     @Test
@@ -48,4 +49,8 @@ public class MoveSupervisorTest {
         assertFalse(moveSupervisor.isFreeMoveExists());
     }
 
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void givenBoard3x3_WhenAddingMarkT_ExceptionExpected(){
+        moveSupervisor.move("T", 0);
+    }
 }

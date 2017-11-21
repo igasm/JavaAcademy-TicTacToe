@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 
 import static org.testng.Assert.*;
 
-public class MoveScannerMajorDiagonalDirectionTest {
+public class MoveScannerMajorDiagonalTest {
 
     MoveScanner boardScanner;
     Board board;
@@ -32,7 +32,7 @@ public class MoveScannerMajorDiagonalDirectionTest {
     }
 
     @Test
-    public void givenBoard3x3WithNoughtsAtDiagonal_whenScanningField8_SequenceShouldBe_ooo(){
+    public void givenBoard3x3WithNoughtsAtMajorDiagonal_whenScanningField8_SequenceShouldBe_ooo(){
         //given
         moveSupervisor.move("o", 0);
         moveSupervisor.move("x", 3);
@@ -41,13 +41,13 @@ public class MoveScannerMajorDiagonalDirectionTest {
         moveSupervisor.move("x", 7);
         moveSupervisor.move("o", 8);
         //when
-        Sequence sequence = boardScanner.scanFromLeftTopToRightBottom(8);
+        Sequence sequence = boardScanner.scanMajorDiagonal(8);
         //then
         assertEquals(sequence.toString(), "ooo");
     }
 
     @Test
-    public void givenBoard3x3WithNoughtsAtDiagonal_whenScanningField4_SequenceShouldBe_ooo(){
+    public void givenBoard3x3WithNoughtsAtMajorDiagonal_whenScanningField4_SequenceShouldBe_ooo(){
         //given
         moveSupervisor.move("o", 0);
         moveSupervisor.move("x", 3);
@@ -56,13 +56,13 @@ public class MoveScannerMajorDiagonalDirectionTest {
         moveSupervisor.move("x", 7);
         moveSupervisor.move("o", 8);
         //when
-        Sequence sequence = boardScanner.scanFromLeftTopToRightBottom(4);
+        Sequence sequence = boardScanner.scanMajorDiagonal(4);
         //then
         assertEquals(sequence.toString(), "ooo");
     }
 
     @Test
-    public void givenBoard3x3WithNoughtsAtDiagonal_whenScanningField0_SequenceShouldBe_ooo(){
+    public void givenBoard3x3WithNoughtsAtMajorDiagonal_whenScanningField0_SequenceShouldBe_ooo(){
         //given
         moveSupervisor.move("o", 0);
         moveSupervisor.move("x", 3);
@@ -71,7 +71,7 @@ public class MoveScannerMajorDiagonalDirectionTest {
         moveSupervisor.move("x", 7);
         moveSupervisor.move("o", 8);
         //when
-        Sequence sequence = boardScanner.scanFromLeftTopToRightBottom(4);
+        Sequence sequence = boardScanner.scanMajorDiagonal(4);
         //then
         assertEquals(sequence.toString(), "ooo");
     }
@@ -82,7 +82,7 @@ public class MoveScannerMajorDiagonalDirectionTest {
         moveSupervisor.move("o", 1);
         moveSupervisor.move("o", 5);
         //when
-        Sequence sequence = boardScanner.scanFromLeftTopToRightBottom(1);
+        Sequence sequence = boardScanner.scanMajorDiagonal(1);
         //then
         assertEquals(sequence.toString(), "oo");
     }
@@ -93,7 +93,7 @@ public class MoveScannerMajorDiagonalDirectionTest {
         moveSupervisor.move("o", 1);
         moveSupervisor.move("o", 5);
         //when
-        Sequence sequence = boardScanner.scanFromLeftTopToRightBottom(5);
+        Sequence sequence = boardScanner.scanMajorDiagonal(5);
         //then
         assertEquals(sequence.toString(), "oo");
     }
@@ -104,7 +104,7 @@ public class MoveScannerMajorDiagonalDirectionTest {
         moveSupervisor.move("o", 3);
         moveSupervisor.move("o", 7);
         //when
-        Sequence sequence = boardScanner.scanFromLeftTopToRightBottom(3);
+        Sequence sequence = boardScanner.scanMajorDiagonal(3);
         //then
         assertEquals(sequence.toString(), "oo");
     }
@@ -115,9 +115,58 @@ public class MoveScannerMajorDiagonalDirectionTest {
         moveSupervisor.move("o", 3);
         moveSupervisor.move("o", 7);
         //when
-        Sequence sequence = boardScanner.scanFromLeftTopToRightBottom(7);
+        Sequence sequence = boardScanner.scanMajorDiagonal(7);
         //then
         assertEquals(sequence.toString(), "oo");
+    }
+
+    @Test
+    public void givenBoard3x3WithCrossesAtMinorDiagonal_whenScanningField4_SequenceShouldBe_x(){
+        //given
+        moveSupervisor.move("x", 6);
+        moveSupervisor.move("x", 4);
+        moveSupervisor.move("x", 2);
+        //when
+        Sequence sequence = boardScanner.scanMajorDiagonal(4);
+        //then
+        assertEquals(sequence.toString(), "x");
+    }
+
+
+    @Test
+    public void givenBoard3x3WithCrossAtTopLeftCorner_SequenceIs_x(){
+        //given
+        moveSupervisor.move("x", 0);
+        //when
+        Sequence sequence = boardScanner.scanMajorDiagonal(0);
+        assertEquals(sequence.toString(), "x");
+    }
+
+    @Test
+    public void givenBoard3x3WithCrossAtTopRightCorner_SequenceIs_x(){
+        //given
+        moveSupervisor.move("x", 2);
+        //when
+        Sequence sequence = boardScanner.scanMajorDiagonal(2);
+        assertEquals(sequence.toString(), "x");
+    }
+
+    @Test
+    public void givenBoard3x3WithCrossAtBottomLeftCorner_SequenceIs_x(){
+        //given
+        moveSupervisor.move("x", 6);
+        //when
+        Sequence sequence = boardScanner.scanMajorDiagonal(6);
+        assertEquals(sequence.toString(), "x");
+    }
+
+    @Test
+    public void givenBoard3x3WithCrossAtBottomRightCorner_SequenceIs_x(){
+        //given
+        moveSupervisor.move("x", 8);
+        //when
+        Sequence sequence = boardScanner.scanMajorDiagonal(8);
+        assertEquals(sequence.toString(), "x");
     }
 
 }

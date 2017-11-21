@@ -23,10 +23,10 @@ public class MoveScanner {
 
     public List<Sequence> scanAllDirections(int fieldNumber){
         List<Sequence> sequences = new ArrayList<>();
-        sequences.add(scanFromLeftTopToRightBottom(fieldNumber));
+        sequences.add(scanMajorDiagonal(fieldNumber));
         sequences.add(scanHorizontally(fieldNumber));
         sequences.add(scanVertically(fieldNumber));
-        sequences.add(scanFromLeftBottomToRightTop(fieldNumber));
+        sequences.add(scanMinorDiagonal(fieldNumber));
         return sequences;
     }
 
@@ -55,37 +55,6 @@ public class MoveScanner {
         return new Sequence(column);
     }
 
-    public Sequence scanHorizontally2(int fieldNumber){
-        LinkedList<String> row = new LinkedList<>();
-        int interval = 1;
-        //scan initial field
-        if(movesRegistry.moveExists(fieldNumber)){
-            row.addFirst(movesRegistry.getMove(fieldNumber));
-        }
-
-        int fieldNumberToCheck;
-        //scanBackward
-        for(int i=0; i<=settings.getWinningCondition(); i++){
-            fieldNumberToCheck = fieldNumber - i*interval;
-            if(movesRegistry.moveExists(fieldNumberToCheck)){
-                row.addFirst(movesRegistry.getMove(fieldNumberToCheck));
-            }else{
-                break;
-            }
-        }
-        //scanForward
-        for (int i=1; i<=settings.getWinningCondition(); i++){
-            fieldNumberToCheck = fieldNumber + i*interval;
-            if(movesRegistry.moveExists(fieldNumberToCheck)){
-                row.addLast(movesRegistry.getMove(fieldNumberToCheck));
-            }else{
-                break;
-            }
-        }
-        return new Sequence(row);
-    }
-
-    //scanFromLeftTopToRightBottom
     public Sequence scanDiagonal(int fieldNumber, int interval, int backwardBoundaryConditions, int forwardBoundaryConditions){
         LinkedList<String> diagonal = new LinkedList<>();
         boolean executeLoop = true;
@@ -149,14 +118,14 @@ public class MoveScanner {
         return scanDiagonal(fieldNumber, interval, backwardBoundaryConditions, forwardBoundaryConditions);
     }
 
-    public Sequence scanFromLeftBottomToRightTop(int fieldNumber){
+    public Sequence scanMinorDiagonal(int fieldNumber){
         int interval = settings.getBoardDimensions().getWidth() - 1;
         int backwardBoundaryConditions = settings.getBoardDimensions().getWidth() - 1;
         int forwardBoundaryConditions = 0;
         return scanDiagonal(fieldNumber, interval, backwardBoundaryConditions, forwardBoundaryConditions);
     }
 
-    public Sequence scanFromLeftTopToRightBottom(int fieldNumber){
+    public Sequence scanMajorDiagonal(int fieldNumber){
         int interval = settings.getBoardDimensions().getWidth() + 1;
         int backwardBoundaryConditions = 0;
         int forwardBoundaryConditions = settings.getBoardDimensions().getWidth() - 1;

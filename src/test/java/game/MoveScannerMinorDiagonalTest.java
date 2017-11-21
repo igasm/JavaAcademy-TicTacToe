@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 
 import static org.testng.Assert.*;
 
-public class MoveScannerTest {
+public class MoveScannerMinorDiagonalTest {
 
     MoveScanner boardScanner;
     Board board;
@@ -32,86 +32,76 @@ public class MoveScannerTest {
     }
 
     @Test
-    public void givenBoard3x3WithCrossesAtDiagonal_scanTest(){
+    public void givenBoard3x3WithCrossesAtMinorDiagonal_whenScanningField4_seqenceIs_xxx(){
         //given
-        moveSupervisor.move("x", 0);
+        moveSupervisor.move("x", 6);
         moveSupervisor.move("x", 4);
-        moveSupervisor.move("x", 8);
+        moveSupervisor.move("x", 2);
         //when
-        Sequence sequence = boardScanner.scanFromLeftTopToRightBottom(4);
+        Sequence sequence = boardScanner.scanMinorDiagonal(4);
         //then
         assertEquals(sequence.toString(), "xxx");
     }
 
     @Test
-    public void givenBoard3x3WithCrossesAtDiagonal_scanTest2(){
+    public void givenBoard3x3WithCrossesBelowMinorDiagonal_whenScanningField5_seqenceIs_xx(){
         //given
-        moveSupervisor.move("x", 6);
-        moveSupervisor.move("x", 4);
-        moveSupervisor.move("x", 2);
+        moveSupervisor.move("x", 7);
+        moveSupervisor.move("x", 5);
         //when
-        Sequence sequence = boardScanner.scanFromLeftTopToRightBottom(4);
+        Sequence sequence = boardScanner.scanMinorDiagonal(5);
         //then
-        assertEquals(sequence.toString(), "x");
+        assertEquals(sequence.toString(), "xx");
     }
 
     @Test
-    public void givenBoard3x3WithCrossesAtDiagonal_scanTest3(){
+    public void givenBoard3x3WithCrossesAboveMinorDiagonal_whenScanningField1_seqenceIs_xx(){
         //given
-        moveSupervisor.move("x", 6);
-        moveSupervisor.move("x", 4);
-        moveSupervisor.move("x", 2);
+        moveSupervisor.move("x", 3);
+        moveSupervisor.move("x", 1);
         //when
-        Sequence sequence = boardScanner.scanFromLeftBottomToRightTop(4);
+        Sequence sequence = boardScanner.scanMinorDiagonal(1);
         //then
-        assertEquals(sequence.toString(), "xxx");
+        assertEquals(sequence.toString(), "xx");
     }
 
     @Test
-    public void givenBoard3x3WithCrossesAtDiagonal_scanTest4(){
-        //given
-        moveSupervisor.move("x", 6);
-        moveSupervisor.move("x", 4);
-        moveSupervisor.move("x", 2);
-        //when
-        Sequence sequence = boardScanner.scanFromLeftTopToRightBottom(4);
-        //then
-        assertEquals(sequence.toString(), "x");
-    }
-
-    @Test
-    public void givenBoard3x3WithCrossAtTopLeft_SequenceIs_x(){
+    public void givenBoard3x3WithCrossAtTopLeftCorner_whenScanningIt_seqenceIs_x(){
         //given
         moveSupervisor.move("x", 0);
         //when
-        Sequence sequence = boardScanner.scanFromLeftTopToRightBottom(0);
+        Sequence sequence = boardScanner.scanMinorDiagonal(0);
+        //then
         assertEquals(sequence.toString(), "x");
     }
 
     @Test
-    public void givenBoard3x3WithCrossAtTopRight_SequenceIs_x(){
+    public void givenBoard3x3WithCrossAtTopRightCorner_whenScanningIt_seqenceIs_x(){
         //given
         moveSupervisor.move("x", 2);
         //when
-        Sequence sequence = boardScanner.scanFromLeftTopToRightBottom(2);
+        Sequence sequence = boardScanner.scanMinorDiagonal(2);
+        //then
         assertEquals(sequence.toString(), "x");
     }
 
     @Test
-    public void givenBoard3x3WithCrossAtBottomLeft_SequenceIs_x(){
-        //given
-        moveSupervisor.move("x", 6);
-        //when
-        Sequence sequence = boardScanner.scanFromLeftTopToRightBottom(6);
-        assertEquals(sequence.toString(), "x");
-    }
-
-    @Test
-    public void givenBoard3x3WithCrossAtBottomRight_SequenceIs_x(){
+    public void givenBoard3x3WithCrossAtBottomRightCorner_whenScanningIt_seqenceIs_x(){
         //given
         moveSupervisor.move("x", 8);
         //when
-        Sequence sequence = boardScanner.scanFromLeftTopToRightBottom(8);
+        Sequence sequence = boardScanner.scanMinorDiagonal(8);
+        //then
+        assertEquals(sequence.toString(), "x");
+    }
+
+    @Test
+    public void givenBoard3x3WithCrossAtBottomLeftCorner_whenScanningIt_seqenceIs_x(){
+        //given
+        moveSupervisor.move("x", 6);
+        //when
+        Sequence sequence = boardScanner.scanMinorDiagonal(6);
+        //then
         assertEquals(sequence.toString(), "x");
     }
 }

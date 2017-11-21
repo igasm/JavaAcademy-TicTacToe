@@ -22,7 +22,7 @@ public class MoveSupervisor {
                 movesRegistry.addMove(fieldNumber, mark);
                 moved = true;
             } else {
-                throw new RuntimeException("Mark : " + mark + " is no valid");
+                throw new IllegalArgumentException("Mark : " + mark + " is no valid");
             }
         }
         return moved;
