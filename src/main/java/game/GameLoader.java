@@ -21,12 +21,10 @@ class GameLoader {
     }
 
     BoardManager load(){
-        MovesRegistry movesRegistry = new MovesRegistry();
-        MoveSupervisor moveSupervisor = new MoveSupervisor(movesRegistry, settings);
         PlayersLoader playersLoader = new PlayersLoader(consoleWriter, consoleReader);
         PlayersRegister playersRegister = playersLoader.load();
         PlayersQueue playersQueue = new PlayersQueue(playersRegister);
         ScoresManager scoresManager = new ScoresManager(playersRegister);
-        return new BoardManager(playersQueue, moveSupervisor, consoleWriter, settings, scoresManager, movesRegistry, consoleReader);
+        return new BoardManager(playersQueue, consoleWriter, settings, scoresManager, consoleReader);
     }
 }

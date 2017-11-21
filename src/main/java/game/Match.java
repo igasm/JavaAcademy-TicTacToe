@@ -15,7 +15,7 @@ class Match {
     private final Consumer<String> consoleWriter;
     private final PlayersQueue playersQueue;
     private final MoveSupervisor moveSupervisor;
-    private final MoveScanner boardScanner;
+    private final MoveScanner moveScanner;
     private final Settings settings;
     private final ScoresManager scoresManager;
     private final MovesRegistry movesRegistry;
@@ -23,17 +23,17 @@ class Match {
     private final ConsoleReader consoleReader;
     private final BoardBuilder boardBuilder;
 
-    Match(Consumer<String> consoleWriter, PlayersQueue playersQueue, MoveSupervisor moveSupervisor, MoveScanner boardScanner, Settings settings, ScoresManager scoresManager, MovesRegistry movesRegistry, ConsoleReader consoleReader) {
+    Match(Consumer<String> consoleWriter, PlayersQueue playersQueue, Settings settings, ScoresManager scoresManager, ConsoleReader consoleReader) {
         this.consoleWriter = consoleWriter;
         this.playersQueue = playersQueue;
-        this.moveSupervisor = moveSupervisor;
-        this.boardScanner = boardScanner;
         this.settings = settings;
         this.scoresManager = scoresManager;
         this.consoleReader = consoleReader;
         this.matchOn = true;
-        this.movesRegistry = movesRegistry;
         this.boardBuilder = new BoardBuilder(settings.getBoardDimensions());
+        this.movesRegistry = new MovesRegistry();
+        this.moveScanner = new MoveScanner(movesRegistry, settings);
+        this.moveSupervisor = new MoveSupervisor(movesRegistry, settings);
     }
 
 
@@ -58,7 +58,7 @@ class Match {
                 }
             }
             boardPrinter.printBoardWithMoves(movesRegistry);
-            List<Sequence> sequences = boardScanner.scanAllDirections(fieldNumber);
+            List<Sequence> sequences = moveScanner.scanAllDirections(fieldNumber);
             Arbiter arbiter = new Arbiter(settings.getWinningCondition());
             for(Sequence sequence : sequences ){
                 if (arbiter.isWin(currentPlayer.getMark(), sequence.toString())) {
@@ -68,7 +68,7 @@ class Match {
                     matchOn=false;
                 }
             }
-            if(!moveSupervisor.isFreeMoveExists()){
+            if(matchOn && !moveSupervisor.isFreeMoveExists()){
                 consoleWriter.accept(newline + "Koniec rundy - remis");
                 scoresManager.addDraw();
                 consoleReader.getString();
