@@ -9,7 +9,6 @@ import players.PlayersRegister;
 import settings.Settings;
 
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class GameLoader {
 
@@ -27,7 +26,7 @@ public class GameLoader {
         BoardBuilder boardBuilder = new BoardBuilder(settings.getBoardDimensions());
         Board board = new Board(boardBuilder.buildBoardWithFieldNumbers(), settings.getBoardDimensions(), consoleWriter);
         MovesRegistry movesRegistry = new MovesRegistry();
-        MoveSupervisor moveSupervisor = new MoveSupervisor(board, settings.getWinningCondition(), movesRegistry, settings);
+        MoveSupervisor moveSupervisor = new MoveSupervisor(movesRegistry, settings);
         PlayersLoader playersLoader = new PlayersLoader(consoleWriter, consoleReader);
         PlayersRegister playersRegister = playersLoader.load();
         PlayersQueue playersQueue = new PlayersQueue(playersRegister);

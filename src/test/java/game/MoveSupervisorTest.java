@@ -2,8 +2,6 @@ package game;
 
 import board.Board;
 import board.BoardBuilder;
-import game.MoveSupervisor;
-import game.MovesRegistry;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import settings.BoardDimensions;
@@ -25,7 +23,7 @@ public class MoveSupervisorTest {
         Consumer<String> consoleWriter = System.out::println;
         Board board = new Board(boardBuilder.buildBoardWithFieldNumbers(), boardDimensions, consoleWriter);
         Settings settings = new Settings(exceptionHandler, boardDimensions, 3);
-        moveSupervisor = new MoveSupervisor(board, 3, new MovesRegistry(), settings);
+        moveSupervisor = new MoveSupervisor(new MovesRegistry(), settings);
     }
 
     @Test
@@ -44,7 +42,7 @@ public class MoveSupervisorTest {
 
     @Test
     public void givenBoard3x3_When9MovesAreMade_ThenThereAreNoFreeMoves(){
-                for(int i=0; i<9; i++){
+        for(int i=0; i<9; i++){
             moveSupervisor.move("x", i);
         }
         assertFalse(moveSupervisor.isFreeMoveExists());

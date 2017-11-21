@@ -2,10 +2,6 @@ package game;
 
 import board.Board;
 import board.BoardBuilder;
-import game.MoveScanner;
-import game.MoveSupervisor;
-import game.MovesRegistry;
-import game.Sequence;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import settings.BoardDimensions;
@@ -32,7 +28,7 @@ public class MoveScannerTest {
         MovesRegistry movesRegistry = new MovesRegistry();
         Settings settings = new Settings(exceptionHandler, boardDimensions, 3);
         boardScanner = new MoveScanner(movesRegistry, settings);
-        moveSupervisor = new MoveSupervisor(board, 3, movesRegistry, settings);
+        moveSupervisor = new MoveSupervisor(movesRegistry, settings);
     }
 
     @Test

@@ -28,7 +28,7 @@ public class MoveScannerHorizontalTest {
         MovesRegistry movesRegistry = new MovesRegistry();
         Settings settings = new Settings(exceptionHandler, boardDimensions, 3);
         boardScanner = new MoveScanner(movesRegistry, settings);
-        moveSupervisor = new MoveSupervisor(board, 3, movesRegistry, settings);
+        moveSupervisor = new MoveSupervisor(movesRegistry, settings);
     }
 
     @Test
