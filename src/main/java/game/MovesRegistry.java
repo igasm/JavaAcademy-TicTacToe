@@ -11,7 +11,7 @@ public class MovesRegistry implements Observed {
         observers.add(observer);
     }
 
-    public void addMove(int fieldNumber, String mark){
+    void addMove(int fieldNumber, String mark){
         moves.put(fieldNumber, mark);
         makeNotify();
     }
@@ -30,11 +30,11 @@ public class MovesRegistry implements Observed {
         return moves.containsKey(fieldNumber);
     }
 
-    public void clear(){
+    void clear(){
         moves.clear();
     }
 
-    public int movesCount(){
+    int movesCount(){
         return moves.size();
     }
 }

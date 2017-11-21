@@ -14,7 +14,7 @@ public class BoardBuilderTest {
         //given
         BoardDimensions boardDimensions = new BoardDimensions(3,3);
         BoardBuilder bulider = new BoardBuilder(boardDimensions);
-        List<Integer> board = bulider.buildBoardWithFieldNumbers();
+        List<Integer> board = bulider.viaList();
         //when - then
         assertEquals(board.size(), 9);
     }
@@ -24,7 +24,7 @@ public class BoardBuilderTest {
         //given
         BoardDimensions boardDimensions = new BoardDimensions(3,3);
         BoardBuilder bulider = new BoardBuilder(boardDimensions);
-        List<Integer> board = bulider.buildBoardWithFieldNumbers();
+        List<Integer> board = bulider.viaList();
         //when - then
         int[] expected = {0,1,2,3,4,5,6,7,8};
         assertEquals(board.toArray(), expected);

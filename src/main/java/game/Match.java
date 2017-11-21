@@ -1,6 +1,6 @@
 package game;
 
-import board.Board;
+import board.BoardBuilder;
 import board.BoardPrinter;
 import io.ConsoleReader;
 import players.Player;
@@ -9,13 +9,11 @@ import settings.Settings;
 
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
-public class Match {
+class Match {
 
     private final Consumer<String> consoleWriter;
     private final PlayersQueue playersQueue;
-    private final Board board;
     private final MoveSupervisor moveSupervisor;
     private final MoveScanner boardScanner;
     private final Settings settings;
@@ -23,11 +21,11 @@ public class Match {
     private final MovesRegistry movesRegistry;
     private boolean matchOn;
     private final ConsoleReader consoleReader;
+    private final BoardBuilder boardBuilder;
 
-    public Match(Consumer<String> consoleWriter, PlayersQueue playersQueue, Board board, MoveSupervisor moveSupervisor, MoveScanner boardScanner, Settings settings, ScoresManager scoresManager, MovesRegistry movesRegistry, ConsoleReader consoleReader) {
+    Match(Consumer<String> consoleWriter, PlayersQueue playersQueue, MoveSupervisor moveSupervisor, MoveScanner boardScanner, Settings settings, ScoresManager scoresManager, MovesRegistry movesRegistry, ConsoleReader consoleReader) {
         this.consoleWriter = consoleWriter;
         this.playersQueue = playersQueue;
-        this.board = board;
         this.moveSupervisor = moveSupervisor;
         this.boardScanner = boardScanner;
         this.settings = settings;
@@ -35,17 +33,18 @@ public class Match {
         this.consoleReader = consoleReader;
         this.matchOn = true;
         this.movesRegistry = movesRegistry;
+        this.boardBuilder = new BoardBuilder(settings.getBoardDimensions());
     }
 
 
-    public void run(){
+    void run(){
         movesRegistry.clear();
         String newline = System.getProperty("line.separator");
-        BoardPrinter boardPrinter = new BoardPrinter(board, settings.getBoardDimensions(), consoleWriter);
+        BoardPrinter boardPrinter = new BoardPrinter(boardBuilder.viaBoard(), settings.getBoardDimensions(), consoleWriter);
         matchOn = true;
         boolean moveIsCorrect;
         int fieldNumber = 0;
-        consoleWriter.accept(board.toString());
+        boardPrinter.printBord();
         while(matchOn){
             moveIsCorrect = false;
             Player currentPlayer = playersQueue.getNextPlayer();

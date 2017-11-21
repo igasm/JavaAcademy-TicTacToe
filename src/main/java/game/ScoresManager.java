@@ -3,24 +3,24 @@ package game;
 import players.Player;
 import players.PlayersRegister;
 
-public class ScoresManager {
+class ScoresManager {
     private final PlayersRegister playersRegister;
 
-    public ScoresManager(PlayersRegister playersRegister) {
+    ScoresManager(PlayersRegister playersRegister) {
         this.playersRegister = playersRegister;
     }
 
-    public void addWin(Player player){
+    void addWin(Player player){
         player.addPoints(3);
     }
 
-    public void addDraw(){
+    void addDraw(){
         for(Player player : playersRegister.getPlayersList()){
             player.addPoints(1);
         }
     }
 
-    public String getSubmit(){
+    String getSubmit(){
         String newline = System.getProperty("line.separator");
         StringBuilder stringBuilder = new StringBuilder();
         for(Player player : playersRegister.getPlayersList()){

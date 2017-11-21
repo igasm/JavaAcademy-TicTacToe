@@ -1,15 +1,12 @@
 package game;
 
-import board.Board;
 import io.ConsoleReader;
 import players.PlayersQueue;
 import settings.Settings;
 
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
-public class BoardManager {
-    private Board board;
+class BoardManager {
     private final PlayersQueue playersQueue;
     private final MoveSupervisor moveSupervisor;
     private final MoveScanner boardScanner;
@@ -19,10 +16,9 @@ public class BoardManager {
     private final MovesRegistry movesRegistry;
     private final ConsoleReader consoleReader;
 
-    public BoardManager(PlayersQueue playersQueue, MoveSupervisor moveSupervisor, Board board, Consumer<String> consoleWriter, Settings settings, ScoresManager scoresManager, MovesRegistry movesRegistry, ConsoleReader consoleReader) {
+    BoardManager(PlayersQueue playersQueue, MoveSupervisor moveSupervisor, Consumer<String> consoleWriter, Settings settings, ScoresManager scoresManager, MovesRegistry movesRegistry, ConsoleReader consoleReader) {
         this.playersQueue = playersQueue;
         this.moveSupervisor = moveSupervisor;
-        this.board = board;
         this.consoleWriter = consoleWriter;
         this.settings = settings;
         this.scoresManager = scoresManager;
@@ -31,9 +27,9 @@ public class BoardManager {
         boardScanner = new MoveScanner(movesRegistry, settings);
     }
 
-    public void runGame(){
+    void runGame(){
         String newline = System.getProperty("line.separator");
-        Match match = new Match(consoleWriter, playersQueue, board, moveSupervisor, boardScanner, settings, scoresManager, movesRegistry, consoleReader);
+        Match match = new Match(consoleWriter, playersQueue, moveSupervisor, boardScanner, settings, scoresManager, movesRegistry, consoleReader);
         for(int i=1; i<=3; i++) {
             consoleWriter.accept(newline + "==== Runda nr " + i + "====" + newline);
             match.run();

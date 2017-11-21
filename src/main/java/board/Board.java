@@ -9,12 +9,10 @@ public class Board{
 
     private List<Integer> board; //pola zawsze interfejsami!!!
     private BoardDimensions boardDimensions;
-    private final Consumer<String> consoleWriter;
 
-    public Board(List<Integer> board, BoardDimensions boardDimensions, Consumer<String> consoleWriter) {
+    public Board(List<Integer> board, BoardDimensions boardDimensions) {
        this.board = board;
        this.boardDimensions = boardDimensions;
-       this.consoleWriter = consoleWriter;
     }
 
     public String toString(){
@@ -27,14 +25,6 @@ public class Board{
             }
         }
         return stringBuilder.toString().toString().trim();
-    }
-
-    public int getElementsCount(){
-        return boardDimensions.getElementsCount();
-    }
-
-    public int getWidth(){
-        return boardDimensions.getWidth();
     }
 
     public int getFieldNumber(int i) { return board.get(i); }

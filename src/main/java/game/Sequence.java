@@ -2,11 +2,11 @@ package game;
 
 import java.util.List;
 
-public class Sequence {
+class Sequence {
 
     private final List<String> sequencyList;
 
-    public Sequence(List<String> sequencyList) {
+    Sequence(List<String> sequencyList) {
         this.sequencyList = sequencyList;
     }
 

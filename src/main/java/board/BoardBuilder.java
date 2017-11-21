@@ -15,13 +15,14 @@ public class BoardBuilder {
         this.boardDimensions = boardDimensions;
     }
 
-    public List<Integer> buildBoardWithFieldNumbers(){
+    public List<Integer> viaList(){
         List<Integer> board = IntStream.range(0, boardDimensions.getElementsCount()).mapToObj(a->new Integer(a)).collect(Collectors.toList());
         return board;
     }
 
-    public List<String> buildBoardWithMarks(){
-        List<String> board = Stream.generate(() -> new String("e")).limit(boardDimensions.getElementsCount()).collect(Collectors.toList());
-        return board;
+    public Board viaBoard(){
+        return new Board(viaList(), boardDimensions);
     }
+
+
 }

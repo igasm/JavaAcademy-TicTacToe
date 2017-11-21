@@ -2,16 +2,16 @@ package game;
 
 import settings.Settings;
 
-public class MoveValidator {
+class MoveValidator {
     private final Settings settings;
     private final MovesRegistry movesRegistry;
 
-    public MoveValidator(Settings settings, MovesRegistry movesRegistry) {
+    MoveValidator(Settings settings, MovesRegistry movesRegistry) {
         this.settings = settings;
         this.movesRegistry = movesRegistry;
     }
 
-    public boolean moveIsValid(int fieldNumber){
+    boolean moveIsValid(int fieldNumber){
         boolean moveIsValid = true;
         if(fieldNumber >= settings.getBoardElementsCount()){
             throw new IndexOutOfBoundsException("Numer pola "
