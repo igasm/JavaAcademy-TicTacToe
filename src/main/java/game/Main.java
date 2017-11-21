@@ -3,9 +3,7 @@ package game;
 import io.ConsoleReader;
 import settings.Settings;
 
-import java.util.Scanner;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,7 +15,7 @@ public class Main {
         consoleWriter.accept(settingsLoader.loadFromJSONFile());
 
         GameLoader gameLoader = new GameLoader(consoleWriter, consoleReader, settingsLoader);
-        BoardManager boardManager = gameLoader.load();
+        GameManager boardManager = gameLoader.load();
         boardManager.runGame();
     }
 }

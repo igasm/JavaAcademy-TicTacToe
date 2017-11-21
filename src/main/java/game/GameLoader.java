@@ -20,11 +20,11 @@ class GameLoader {
         this.settings = settingsLoader;
     }
 
-    BoardManager load(){
+    GameManager load(){
         PlayersLoader playersLoader = new PlayersLoader(consoleWriter, consoleReader);
         PlayersRegister playersRegister = playersLoader.load();
         PlayersQueue playersQueue = new PlayersQueue(playersRegister);
         ScoresManager scoresManager = new ScoresManager(playersRegister);
-        return new BoardManager(playersQueue, consoleWriter, settings, scoresManager, consoleReader);
+        return new GameManager(playersQueue, consoleWriter, settings, scoresManager, consoleReader);
     }
 }
