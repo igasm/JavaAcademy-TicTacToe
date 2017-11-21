@@ -41,4 +41,11 @@ public class ScoresManagerTest {
         assertEquals(playerA.getScore(), 1);
         assertEquals(playerB.getScore(), 1);
     }
+
+    @Test
+    public void whenNoMatchPlayed_playersHave0Points(){
+        //when-then
+        assertEquals(playerA.getScore(), 0);
+        assertEquals(playerB.getScore(), 0);
+    }
 }
