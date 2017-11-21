@@ -18,6 +18,8 @@ class MoveValidator {
                     + fieldNumber
                     + " jest większe niż numer ostatniego pola ("
                     + settings.getBoardElementsCount() + ")");
+        }else if(fieldNumber < 0){
+            throw new IndexOutOfBoundsException("Numer pola nie może byc ujemny ");
         }
 
         if(movesRegistry.moveExists(fieldNumber)){
