@@ -1,7 +1,1 @@
-{
-    "board_dimensions": {
-        "width": 3,
-        "height": 3
-    },
-    "winning_condition": 3
-}
+{"winning_condition":8,"board_dimensions":{"width":50,"height":50}}

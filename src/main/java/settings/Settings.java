@@ -1,9 +1,12 @@
 package settings;
 
+import io.ConsoleReader;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.function.Consumer;
 
 public class Settings {
@@ -11,7 +14,7 @@ public class Settings {
     private JSONParser jsonParser;
     private final Consumer<Exception> exceptionHandler;
     private BoardDimensions boardDimensions;
-
+    private String settingsFilePath = "./src/main/resources/settings.json";
     private int winningCondition;
 
     public Settings(Consumer<Exception> exceptionHandler) {
@@ -30,7 +33,7 @@ public class Settings {
         String newline = System.getProperty("line.separator");
         String message;
         try {
-            Object obj = jsonParser.parse(new FileReader("./src/main/resources/settings.json"));
+            Object obj = jsonParser.parse(new FileReader(settingsFilePath));
             JSONObject jsonObject = (JSONObject) obj;
             JSONObject jsonObjectDimensions = (JSONObject) jsonObject.get("board_dimensions");
             Long width = (Long) jsonObjectDimensions.get("width");
@@ -61,4 +64,31 @@ public class Settings {
     }
 
     public int getBoardElementsCount() { return boardDimensions.getWidth() * boardDimensions.getHeight(); }
+
+    public void reconfigure(ConsoleReader consoleReader, Consumer<String> consoleWriter) {
+        consoleWriter.accept("Podaj szerkość planszy");
+        int width = consoleReader.getInt();
+        consoleWriter.accept("Podaj wysokość planszy");
+        int height = consoleReader.getInt();
+        boardDimensions = new BoardDimensions(width, height);
+        consoleWriter.accept("Podaj warunek wygranej (liczba znaków w linii)");
+        winningCondition = consoleReader.getInt();
+        JSONObject mainObj = new JSONObject();
+        JSONObject boarDimensionsObj = new JSONObject();
+        boarDimensionsObj.put("width", width);
+        boarDimensionsObj.put("height", height);
+        mainObj.put("board_dimensions", boarDimensionsObj);
+        mainObj.put("winning_condition", winningCondition);
+
+        try (FileWriter file = new FileWriter(settingsFilePath)) {
+
+            file.write(mainObj.toJSONString());
+            file.flush();
+
+        } catch (IOException e) {
+            exceptionHandler.accept(e);
+        }
+
+        consoleWriter.accept("Ustawienia zostały zapisane");
+    }
 }
