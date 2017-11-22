@@ -8,7 +8,7 @@ public class Player {
 
     public Player(String name, String mark) {
         if(name.matches("^\\s+$")){
-            throw new IllegalArgumentException("players name consist only from whitespaces");
+            throw new IllegalArgumentException("players name could not consist only from whitespaces");
         }else if(name == ""){
             throw new IllegalArgumentException("players name is empty");
         }else if(!name.matches("[a-zA-Z0-9]+")){
