@@ -1,3 +1,5 @@
+package players;
+
 import org.testng.annotations.Test;
 import players.Player;
 import players.PlayersRegister;

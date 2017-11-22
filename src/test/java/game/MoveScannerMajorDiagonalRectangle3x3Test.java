@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 
 import static org.testng.Assert.*;
 
-public class MoveScannerMajorDiagonalTest {
+public class MoveScannerMajorDiagonalRectangle3x3Test {
 
     MoveScanner boardScanner;
     Board board;
@@ -21,7 +21,6 @@ public class MoveScannerMajorDiagonalTest {
     public void beforeMethod(){
         //given
         Consumer<Exception> exceptionHandler = e -> System.out.println("Exception occured " + e.getMessage());
-        Consumer<String> consoleWriter = System.out::println;
         BoardDimensions boardDimensions = new BoardDimensions(3, 3);
         BoardBuilder boardBuilder = new BoardBuilder(boardDimensions);
         board = new Board(boardBuilder.viaList(), boardDimensions);

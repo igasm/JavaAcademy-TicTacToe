@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 
 import static org.testng.Assert.assertEquals;
 
-public class MoveScannerMajorDiagonalRectangleBoardTest {
+public class MoveScannerMajorDiagonalRectangle5x3BoardTest {
 
     MoveScanner boardScanner;
     Board board;
