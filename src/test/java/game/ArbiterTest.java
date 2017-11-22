@@ -1,6 +1,5 @@
 package game;
 
-import game.Arbiter;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
@@ -13,7 +12,7 @@ public class ArbiterTest {
         String sequenceString = "xxx";
         Arbiter arbiter = new Arbiter(3);
         //when - then
-        assertTrue(arbiter.isWin("x", sequenceString));
+        assertTrue(arbiter.isWin(MarkType.CROSS, sequenceString));
     }
 
     @Test
@@ -22,7 +21,7 @@ public class ArbiterTest {
         String sequenceString = "xox";
         Arbiter arbiter = new Arbiter(3);
         //when - then
-        assertTrue(!arbiter.isWin("x", sequenceString));
+        assertTrue(!arbiter.isWin(MarkType.CROSS, sequenceString));
     }
 
     @Test
@@ -31,6 +30,6 @@ public class ArbiterTest {
         String sequenceString = "ooo";
         Arbiter arbiter = new Arbiter(3);
         //when - then
-        assertTrue(arbiter.isWin("o", sequenceString));
+        assertTrue(arbiter.isWin(MarkType.NAUGHT, sequenceString));
     }
 }

@@ -1,12 +1,14 @@
 package players;
 
+import game.MarkType;
+
 public class Player {
 
     private String name;
     private int score;
-    private String mark;
+    private MarkType mark;
 
-    public Player(String name, String mark) {
+    public Player(String name, MarkType mark) {
         if(name.matches("^\\s+$")){
             throw new IllegalArgumentException("players name could not consist only from whitespaces");
         }else if(name == ""){
@@ -31,7 +33,7 @@ public class Player {
         this.score += value;
     }
 
-    public String getMark() {
+    public MarkType getMark() {
         return mark;
     }
 

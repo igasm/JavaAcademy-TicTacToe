@@ -38,7 +38,7 @@ class MoveScanner {
         for(int i=0; i<=settings.getWinningCondition(); i++){
             fieldNumberToCheck = fieldNumber - i*interval;
             if(movesRegistry.moveExists(fieldNumberToCheck)){
-                column.addFirst(movesRegistry.getMove(fieldNumberToCheck));
+                column.addFirst(movesRegistry.getMove(fieldNumberToCheck).toString());
             }else{
                 break;
             }
@@ -47,7 +47,7 @@ class MoveScanner {
         for (int i=1; i<=settings.getWinningCondition(); i++){
             fieldNumberToCheck = fieldNumber + i*interval;
             if(movesRegistry.moveExists(fieldNumberToCheck)){
-                column.addLast(movesRegistry.getMove(fieldNumberToCheck));
+                column.addLast(movesRegistry.getMove(fieldNumberToCheck).toString());
             }else{
                 break;
             }
@@ -62,7 +62,7 @@ class MoveScanner {
 
         //scan chosen field
         if(movesRegistry.moveExists(fieldNumberToCheck)){
-            diagonal.addFirst(movesRegistry.getMove(fieldNumberToCheck));
+            diagonal.addFirst(movesRegistry.getMove(fieldNumberToCheck).toString());
         }else{
             return new Sequence(diagonal);
         }
@@ -76,7 +76,7 @@ class MoveScanner {
             for (int i = 0; i <= settings.getWinningCondition(); i++) {
                 fieldNumberToCheck = fieldNumberToCheck - interval;
                 if (movesRegistry.moveExists(fieldNumberToCheck)) {
-                    diagonal.addFirst(movesRegistry.getMove(fieldNumberToCheck));
+                    diagonal.addFirst(movesRegistry.getMove(fieldNumberToCheck).toString());
                     if (fieldNumberToCheck % settings.getBoardDimensions().getWidth() == backwardBoundaryConditions) {
                         break;
                     }
@@ -99,7 +99,7 @@ class MoveScanner {
             for(int i=0; i<=settings.getWinningCondition(); i++){
                 fieldNumberToCheck = fieldNumberToCheck + interval;
                 if(movesRegistry.moveExists(fieldNumberToCheck)){
-                    diagonal.addLast(movesRegistry.getMove(fieldNumberToCheck));
+                    diagonal.addLast(movesRegistry.getMove(fieldNumberToCheck).toString());
                     if (fieldNumberToCheck % settings.getBoardDimensions().getWidth() == forwardBoundaryConditions){
                         break;
                     }

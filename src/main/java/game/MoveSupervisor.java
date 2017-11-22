@@ -14,16 +14,10 @@ class MoveSupervisor {
         this.movesRegistry = movesRegistry;
     }
 
-    boolean move(String mark, int fieldNumber){
-        boolean moved = false;
-        if (moveValidator.moveIsValid(fieldNumber)) {
+    boolean move(MarkType mark, int fieldNumber){
+        boolean moved;
+        if (moved = moveValidator.moveIsValid(fieldNumber)) {
             movesRegistry.addMove(fieldNumber, mark);
-            if (mark.equals("o") || mark.equals("x")) {
-                movesRegistry.addMove(fieldNumber, mark);
-                moved = true;
-            } else {
-                throw new IllegalArgumentException("Mark : " + mark + " is no valid");
-            }
         }
         return moved;
     }

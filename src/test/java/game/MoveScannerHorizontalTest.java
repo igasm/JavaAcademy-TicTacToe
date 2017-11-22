@@ -34,13 +34,13 @@ public class MoveScannerHorizontalTest {
     @Test
     public void givenBoard3x3With_oxo_AtFirstRow_whenScanningField2_SequenceShouldBe_oxo(){
         //given
-        moveSupervisor.move("o", 0);
-        moveSupervisor.move("x", 1);
-        moveSupervisor.move("o", 2);
-        moveSupervisor.move("o", 3);
-        moveSupervisor.move("o", 4);
-        moveSupervisor.move("x", 7);
-        moveSupervisor.move("x", 8);
+        moveSupervisor.move(MarkType.NAUGHT, 0);
+        moveSupervisor.move(MarkType.CROSS, 1);
+        moveSupervisor.move(MarkType.NAUGHT, 2);
+        moveSupervisor.move(MarkType.CROSS, 3);
+        moveSupervisor.move(MarkType.CROSS, 4);
+        moveSupervisor.move(MarkType.CROSS, 7);
+        moveSupervisor.move(MarkType.CROSS, 8);
 
         //when
         Sequence sequence = boardScanner.scanHorizontally(2);

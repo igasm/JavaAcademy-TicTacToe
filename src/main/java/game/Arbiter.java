@@ -7,8 +7,8 @@ class Arbiter {
         this.winningCondition = winningCondition;
     }
 
-    boolean isWin(String mark, String seqenceString) {
-        String regex = ".*"+mark+"{" + winningCondition +",}.*";
+    boolean isWin(MarkType mark, String seqenceString) {
+        String regex = ".*"+mark.toString()+"{" + winningCondition +",}.*";
         return seqenceString.matches(regex);
     }
 }

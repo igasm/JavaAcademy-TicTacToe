@@ -50,7 +50,7 @@ class Match {
             Player currentPlayer = playersQueue.getNextPlayer();
             while (!moveIsCorrect) {
                 try {
-                    consoleWriter.accept(newline + "Ruch dla " + currentPlayer.getName() + " (" + currentPlayer.getMark() +"), podaj numer pola" );
+                    consoleWriter.accept(newline + "Ruch dla " + currentPlayer.getName() + " (" + currentPlayer.getMark().toString() +"), podaj numer pola" );
                     fieldNumber = consoleReader.getInt();
                     moveIsCorrect = moveSupervisor.move(currentPlayer.getMark(), fieldNumber);
                 }catch (Exception e){
@@ -75,7 +75,7 @@ class Match {
                 matchOn=false;
             }
         }
-        consoleWriter.accept(newline + "Wyniki rundy");
+        consoleWriter.accept(newline + "Wyniki po rundzie");
         consoleWriter.accept(scoresManager.getSubmit());
     }
 

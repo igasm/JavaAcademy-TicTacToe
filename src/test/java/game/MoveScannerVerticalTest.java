@@ -34,9 +34,9 @@ public class MoveScannerVerticalTest {
     @Test
     public void givenBoard3x3With_xxx_AtFirstColumn_whenScanningField3_SequenceShouldBe_xxx(){
         //given
-        moveSupervisor.move("x", 0);
-        moveSupervisor.move("x", 3);
-        moveSupervisor.move("x", 6);
+        moveSupervisor.move(MarkType.CROSS, 0);
+        moveSupervisor.move(MarkType.CROSS, 3);
+        moveSupervisor.move(MarkType.CROSS, 6);
 
         //when
         Sequence sequence = boardScanner.scanVertically(3);

@@ -35,9 +35,9 @@ public class MoveScannerMajorDiagonalRectangle5x3BoardTest {
     @Test
     public void givenBoard5x3WithCrossesAtMajorDiagonal_whenScanningField6_SequenceIs_xxx(){
         //given
-        moveSupervisor.move("x", 0);
-        moveSupervisor.move("x", 6);
-        moveSupervisor.move("x", 12);
+        moveSupervisor.move(MarkType.CROSS, 0);
+        moveSupervisor.move(MarkType.CROSS, 6);
+        moveSupervisor.move(MarkType.CROSS, 12);
         //when
         Sequence sequence = boardScanner.scanMajorDiagonal(6);
         assertEquals(sequence.toString(), "xxx");
@@ -47,7 +47,7 @@ public class MoveScannerMajorDiagonalRectangle5x3BoardTest {
     public void givenBoard5x3FullOfCrosses_whenScanningField0_SequenceIs_xxx(){
         //given
         for(int i=0; i<settings.getBoardElementsCount(); i++) {
-            moveSupervisor.move("x", i);
+            moveSupervisor.move(MarkType.CROSS, i);
         }
         //when
         Sequence sequence = boardScanner.scanMajorDiagonal(0);
@@ -58,7 +58,7 @@ public class MoveScannerMajorDiagonalRectangle5x3BoardTest {
     public void givenBoard5x3FullOfCrosses_whenScanningField12_SequenceIs_xxx(){
         //given
         for(int i=0; i<settings.getBoardElementsCount(); i++) {
-            moveSupervisor.move("x", i);
+            moveSupervisor.move(MarkType.CROSS, i);
         }
         //when
         Sequence sequence = boardScanner.scanMajorDiagonal(12);
@@ -69,18 +69,18 @@ public class MoveScannerMajorDiagonalRectangle5x3BoardTest {
     public void givenBoard5x3FullOfCrosses_whenScanningField4_SequenceIs_x(){
         //given
         for(int i=0; i<settings.getBoardElementsCount(); i++) {
-            moveSupervisor.move("x", i);
+            moveSupervisor.move(MarkType.CROSS, i);
         }
         //when
         Sequence sequence = boardScanner.scanMajorDiagonal(4);
-        assertEquals(sequence.toString(), "x");
+        assertEquals(sequence.toString(), MarkType.CROSS.toString());
     }
 
     @Test
     public void givenBoard5x3FullOfCrosses_whenScanningField3_SequenceIs_xx(){
         //given
         for(int i=0; i<settings.getBoardElementsCount(); i++) {
-            moveSupervisor.move("x", i);
+            moveSupervisor.move(MarkType.CROSS, i);
         }
         //when
         Sequence sequence = boardScanner.scanMajorDiagonal(3);

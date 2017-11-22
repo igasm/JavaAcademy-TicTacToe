@@ -35,9 +35,9 @@ public class MoveScannerMinorDiagonalRectangleBoardTest {
     @Test
     public void givenBoard5x3WithCrossesAtMinorDiagonal_whenScanningField6_SequenceIs_xxx(){
         //given
-        moveSupervisor.move("x", 10);
-        moveSupervisor.move("x", 6);
-        moveSupervisor.move("x", 2);
+        moveSupervisor.move(MarkType.CROSS, 10);
+        moveSupervisor.move(MarkType.CROSS, 6);
+        moveSupervisor.move(MarkType.CROSS, 2);
         //when
         Sequence sequence = boardScanner.scanMinorDiagonal(6);
         assertEquals(sequence.toString(), "xxx");
@@ -47,18 +47,18 @@ public class MoveScannerMinorDiagonalRectangleBoardTest {
     public void givenBoard5x3FullOfCrosses_whenScanningField0_SequenceIs_x(){
         //given
         for(int i=0; i<settings.getBoardElementsCount(); i++) {
-            moveSupervisor.move("x", i);
+            moveSupervisor.move(MarkType.CROSS, i);
         }
         //when
         Sequence sequence = boardScanner.scanMinorDiagonal(0);
-        assertEquals(sequence.toString(), "x");
+        assertEquals(sequence.toString(), MarkType.CROSS.toString());
     }
 
     @Test
     public void givenBoard5x3FullOfCrosses_whenScanningField12_SequenceIs_xxx(){
         //given
         for(int i=0; i<settings.getBoardElementsCount(); i++) {
-            moveSupervisor.move("x", i);
+            moveSupervisor.move(MarkType.CROSS, i);
         }
         //when
         Sequence sequence = boardScanner.scanMinorDiagonal(12);
@@ -69,7 +69,7 @@ public class MoveScannerMinorDiagonalRectangleBoardTest {
     public void givenBoard5x3FullOfCrosses_whenScanningField4_SequenceIs_xxx(){
         //given
         for(int i=0; i<settings.getBoardElementsCount(); i++) {
-            moveSupervisor.move("x", i);
+            moveSupervisor.move(MarkType.CROSS, i);
         }
         //when
         Sequence sequence = boardScanner.scanMinorDiagonal(4);
@@ -80,7 +80,7 @@ public class MoveScannerMinorDiagonalRectangleBoardTest {
     public void givenBoard5x3FullOfCrosses_whenScanningField3_SequenceIs_xxx(){
         //given
         for(int i=0; i<settings.getBoardElementsCount(); i++) {
-            moveSupervisor.move("x", i);
+            moveSupervisor.move(MarkType.CROSS, i);
         }
         //when
         Sequence sequence = boardScanner.scanMinorDiagonal(3);
@@ -91,7 +91,7 @@ public class MoveScannerMinorDiagonalRectangleBoardTest {
     public void givenBoard5x3FullOfCrosses_whenScanningField1_SequenceIs_xx(){
         //given
         for(int i=0; i<settings.getBoardElementsCount(); i++) {
-            moveSupervisor.move("x", i);
+            moveSupervisor.move(MarkType.CROSS, i);
         }
         //when
         Sequence sequence = boardScanner.scanMinorDiagonal(1);

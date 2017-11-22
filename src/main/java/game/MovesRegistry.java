@@ -5,13 +5,13 @@ import java.util.*;
 public class MovesRegistry implements Observed {
 
     private List<Observer> observers = new ArrayList<>();
-    private Map<Integer, String> moves = new HashMap<>();
+    private Map<Integer, MarkType> moves = new HashMap<>();
 
     public void register(Observer observer){
         observers.add(observer);
     }
 
-    void addMove(int fieldNumber, String mark){
+    void addMove(int fieldNumber, MarkType mark){
         moves.put(fieldNumber, mark);
         makeNotify();
     }
@@ -22,7 +22,7 @@ public class MovesRegistry implements Observed {
         }
     }
 
-    public String getMove(int fieldNumber) {
+    public MarkType getMove(int fieldNumber) {
         return moves.get(fieldNumber);
     }
 

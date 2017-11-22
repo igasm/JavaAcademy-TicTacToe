@@ -49,7 +49,7 @@ public class MoveValidatorTest {
         Consumer<Exception> exceptionHandler = e -> System.out.println("Exception occured " + e.getMessage());
         Settings settings = new Settings(exceptionHandler, new BoardDimensions(3, 3), 3);
         MovesRegistry movesRegistry = new MovesRegistry();
-        movesRegistry.addMove(5, "x");
+        movesRegistry.addMove(5, MarkType.CROSS);
         MoveValidator moveValidator = new MoveValidator(settings, movesRegistry);
         //when - then
         moveValidator.moveIsValid(5); //here -> exception expected

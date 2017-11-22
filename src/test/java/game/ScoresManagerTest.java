@@ -17,8 +17,8 @@ public class ScoresManagerTest {
     @BeforeMethod
     public void beforeMethod(){
         //given
-        playerA = new Player("Adam","x");
-        playerB = new Player("Beata", "o");
+        playerA = new Player("Adam",MarkType.CROSS);
+        playerB = new Player("Beata", MarkType.NAUGHT);
         PlayersRegister playersRegister = new PlayersRegister(2);
         playersRegister.registerPlayer(playerA);
         playersRegister.registerPlayer(playerB);

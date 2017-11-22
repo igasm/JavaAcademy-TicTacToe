@@ -34,11 +34,11 @@ public class MoveScannerMajorDiagonalRectangle5x10BoardTest {
     @Test
     public void givenCrossesAtMajorDiagonal_whenScanningField29_SequenceIs_xxxxx(){
         //given
-        moveSupervisor.move("x", 29);
-        moveSupervisor.move("x", 23);
-        moveSupervisor.move("x", 17);
-        moveSupervisor.move("x", 11);
-        moveSupervisor.move("x", 5);
+        moveSupervisor.move(MarkType.CROSS, 29);
+        moveSupervisor.move(MarkType.CROSS, 23);
+        moveSupervisor.move(MarkType.CROSS, 17);
+        moveSupervisor.move(MarkType.CROSS, 11);
+        moveSupervisor.move(MarkType.CROSS, 5);
         //when
         Sequence sequence = boardScanner.scanMajorDiagonal(29);
         assertEquals(sequence.toString(), "xxxxx");
@@ -47,11 +47,11 @@ public class MoveScannerMajorDiagonalRectangle5x10BoardTest {
     @Test
     public void givenCrossesAtMajorDiagonal_whenScanningField5_SequenceIs_xxxxx(){
         //given
-        moveSupervisor.move("x", 29);
-        moveSupervisor.move("x", 23);
-        moveSupervisor.move("x", 17);
-        moveSupervisor.move("x", 11);
-        moveSupervisor.move("x", 5);
+        moveSupervisor.move(MarkType.CROSS, 29);
+        moveSupervisor.move(MarkType.CROSS, 23);
+        moveSupervisor.move(MarkType.CROSS, 17);
+        moveSupervisor.move(MarkType.CROSS, 11);
+        moveSupervisor.move(MarkType.CROSS, 5);
         //when
         Sequence sequence = boardScanner.scanMajorDiagonal(5);
         assertEquals(sequence.toString(), "xxxxx");
@@ -60,11 +60,11 @@ public class MoveScannerMajorDiagonalRectangle5x10BoardTest {
     @Test
     public void givenCrossesAtMajorDiagonal_whenScanningField17_SequenceIs_xxxxx(){
         //given
-        moveSupervisor.move("x", 29);
-        moveSupervisor.move("x", 23);
-        moveSupervisor.move("x", 17);
-        moveSupervisor.move("x", 11);
-        moveSupervisor.move("x", 5);
+        moveSupervisor.move(MarkType.CROSS, 29);
+        moveSupervisor.move(MarkType.CROSS, 23);
+        moveSupervisor.move(MarkType.CROSS, 17);
+        moveSupervisor.move(MarkType.CROSS, 11);
+        moveSupervisor.move(MarkType.CROSS, 5);
         //when
         Sequence sequence = boardScanner.scanMajorDiagonal(29);
         assertEquals(sequence.toString(), "xxxxx");
@@ -73,8 +73,8 @@ public class MoveScannerMajorDiagonalRectangle5x10BoardTest {
     @Test
     public void givenCrossesAtField23And29_whenScanningField23_SequenceIs_xx(){
         //given
-        moveSupervisor.move("x", 29);
-        moveSupervisor.move("x", 23);
+        moveSupervisor.move(MarkType.CROSS, 29);
+        moveSupervisor.move(MarkType.CROSS, 23);
         //when
         Sequence sequence = boardScanner.scanMajorDiagonal(29);
         assertEquals(sequence.toString(), "xx");
@@ -83,11 +83,11 @@ public class MoveScannerMajorDiagonalRectangle5x10BoardTest {
     @Test
     public void givenCrossesAndNoughtsAtMajorDiagonalFrom5To29_whenScanningField23_SequenceIsWithCrossesAndNoughts(){
         //given
-        moveSupervisor.move("o", 29);
-        moveSupervisor.move("x", 23);
-        moveSupervisor.move("o", 17);
-        moveSupervisor.move("x", 11);
-        moveSupervisor.move("o", 5);
+        moveSupervisor.move(MarkType.NAUGHT, 29);
+        moveSupervisor.move(MarkType.CROSS, 23);
+        moveSupervisor.move(MarkType.NAUGHT, 17);
+        moveSupervisor.move(MarkType.CROSS, 11);
+        moveSupervisor.move(MarkType.NAUGHT, 5);
         //when
         Sequence sequence = boardScanner.scanMajorDiagonal(23);
         assertEquals(sequence.toString(), "oxoxo");
