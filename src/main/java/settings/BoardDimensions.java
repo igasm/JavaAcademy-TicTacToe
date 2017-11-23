@@ -22,4 +22,12 @@ public class BoardDimensions {
     public int getElementsCount(){
         return width * height;
     }
+
+    public int getMinDimension(){
+        if(width <= height){
+            return width;
+        }else {
+            return height;
+        }
+    }
 }

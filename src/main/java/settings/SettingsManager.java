@@ -6,6 +6,9 @@ import java.util.function.Consumer;
 
 public class SettingsManager {
 
+    private final Integer minBorderDimension = 3;
+    private final Integer maxBorderDimension = 101;
+    private final Integer minWinningCondition = minBorderDimension;
     private final String settingsFilePath = "./src/main/resources/settings.json";
     private final Consumer<String> consoleWriter;
     private final ConsoleReader consoleReader;
@@ -48,13 +51,39 @@ public class SettingsManager {
     }
 
     Settings reconfigure(ConsoleReader consoleReader, Consumer<String> consoleWriter) {
-        consoleWriter.accept("Podaj szerkość planszy");
-        int width = consoleReader.getInt();
-        consoleWriter.accept("Podaj wysokość planszy");
-        int height = consoleReader.getInt();
+        int width = 3, height = 3, winningCondition = 3;
+        boolean validValue = false;
+        SettingsValidator settingsValidator = new SettingsValidator(minBorderDimension, maxBorderDimension, minWinningCondition);
+        consoleWriter.accept("Minimalna szerokość/wysokość planszy  to " + minBorderDimension);
+        consoleWriter.accept("Maksymalna szerokość/wysokość planszy  to " +  maxBorderDimension);
+
+        consoleWriter.accept("");
+        while (!validValue){
+            consoleWriter.accept("Podaj szerokość planszy");
+            width = consoleReader.getInt();
+            validValue = settingsValidator.validBorderDimension(width);
+        }
+
+        consoleWriter.accept("");
+        validValue = false;
+        while (!validValue){
+            consoleWriter.accept("Podaj wysokość planszy");
+            height = consoleReader.getInt();
+            validValue = settingsValidator.validBorderDimension(height);
+        }
+
         BoardDimensions boardDimensions = new BoardDimensions(width, height);
-        consoleWriter.accept("Podaj warunek wygranej (liczba znaków w linii)");
-        int winningCondition = consoleReader.getInt();
+
+        consoleWriter.accept("");
+        validValue = false;
+        while (!validValue){
+            consoleWriter.accept("Podaj warunek wygranej (liczba znaków w linii)");
+            consoleWriter.accept("(Maksymalny dopuszczalny warunek zwycięstwa to "
+                    + boardDimensions.getMinDimension() + " znaki)");
+            winningCondition = consoleReader.getInt();
+            validValue = settingsValidator.validWinningCondition(boardDimensions, winningCondition);
+        }
+
         Settings settings = new Settings(boardDimensions, winningCondition);
         SettingsWriter settingsWriter = new SettingsWriter(settingsFilePath);
         if(settingsWriter.save(settings)){
@@ -62,6 +91,7 @@ public class SettingsManager {
         }else{
             consoleWriter.accept("Zapisywanie ustawień nie powiodło się");
         }
+        consoleWriter.accept("");
         return settings;
     }
 
