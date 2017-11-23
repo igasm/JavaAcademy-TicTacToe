@@ -75,7 +75,7 @@ class Match {
                 matchOn=false;
             }
         }
-        consoleWriter.accept(newline + "Wyniki po rundzie");
+        consoleWriter.accept(newline + "Wyniki");
         consoleWriter.accept(scoresManager.getSubmit());
     }
 

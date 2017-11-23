@@ -27,4 +27,9 @@ public class ConsoleReader {
         }
         return value;
     }
+
+    @Override
+    public void finalize(){
+        scanner.close();
+    }
 }

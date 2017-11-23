@@ -4,11 +4,9 @@ import java.util.LinkedList;
 
 public class PlayersQueue{
 
-    private final PlayersRegister playersRegister;
     private LinkedList<Player> queue;
 
     public PlayersQueue(PlayersRegister playersRegister) {
-        this.playersRegister = playersRegister;
         this.queue = new LinkedList<Player>(playersRegister.getPlayersList());
     }
 

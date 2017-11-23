@@ -28,4 +28,9 @@ class ScoresManager {
         }
         return stringBuilder.toString();
     }
+
+    PlayersRegister getPlayersRegister(){
+        return playersRegister;
+    }
+
 }

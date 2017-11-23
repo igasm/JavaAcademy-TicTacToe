@@ -12,6 +12,7 @@ class GameManager {
     private final Settings settings;
     private final ScoresManager scoresManager;
     private final ConsoleReader consoleReader;
+    private final GameEnd gameEnd;
 
     GameManager(PlayersQueue playersQueue, Consumer<String> consoleWriter, Settings settings, ScoresManager scoresManager, ConsoleReader consoleReader) {
         this.playersQueue = playersQueue;
@@ -19,6 +20,7 @@ class GameManager {
         this.settings = settings;
         this.scoresManager = scoresManager;
         this.consoleReader = consoleReader;
+        gameEnd = new GameEnd(scoresManager);
     }
 
     void runGame(){
@@ -28,6 +30,8 @@ class GameManager {
             consoleWriter.accept(newline + "==== Runda nr " + i + "====" + newline);
             match.run();
         }
+        consoleWriter.accept(newline + "=========================");
+        consoleWriter.accept(gameEnd.announce());
     }
 
 
