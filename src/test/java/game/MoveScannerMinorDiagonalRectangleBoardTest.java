@@ -21,13 +21,11 @@ public class MoveScannerMinorDiagonalRectangleBoardTest {
     @BeforeMethod
     public void beforeMethod(){
         //given
-        Consumer<Exception> exceptionHandler = e -> System.out.println("Exception occured " + e.getMessage());
-        Consumer<String> consoleWriter = System.out::println;
         BoardDimensions boardDimensions = new BoardDimensions(5, 3);
         BoardBuilder boardBuilder = new BoardBuilder(boardDimensions);
         board = new Board(boardBuilder.viaList(), boardDimensions);
         MovesRegistry movesRegistry = new MovesRegistry();
-        settings = new Settings(exceptionHandler, boardDimensions, 3);
+        settings = new Settings(boardDimensions, 3);
         boardScanner = new MoveScanner(movesRegistry, settings);
         moveSupervisor = new MoveSupervisor(movesRegistry, settings);
     }

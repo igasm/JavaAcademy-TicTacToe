@@ -13,8 +13,7 @@ public class MoveValidatorTest {
     @Test
     public void givenClearBoard3x3_whenMovingToField3_moveIsCorrect(){
         //given
-        Consumer<Exception> exceptionHandler = e -> System.out.println("Exception occured " + e.getMessage());
-        Settings settings = new Settings(exceptionHandler, new BoardDimensions(3, 3), 3);
+        Settings settings = new Settings(new BoardDimensions(3, 3), 3);
         MovesRegistry movesRegistry = new MovesRegistry();
         MoveValidator moveValidator = new MoveValidator(settings, movesRegistry);
         //when - then
@@ -24,8 +23,7 @@ public class MoveValidatorTest {
     @Test(expectedExceptions = IndexOutOfBoundsException.class)
     public void givenClearBoard3x3_whenMovingToFieldWithNumberLowerThen0_exceptionExpected(){
         //given
-        Consumer<Exception> exceptionHandler = e -> System.out.println("Exception occured " + e.getMessage());
-        Settings settings = new Settings(exceptionHandler, new BoardDimensions(3, 3), 3);
+        Settings settings = new Settings(new BoardDimensions(3, 3), 3);
         MovesRegistry movesRegistry = new MovesRegistry();
         MoveValidator moveValidator = new MoveValidator(settings, movesRegistry);
         //when - then
@@ -35,8 +33,7 @@ public class MoveValidatorTest {
     @Test(expectedExceptions = IndexOutOfBoundsException.class)
     public void givenClearBoard3x3_whenMovingToFieldWithNumberGraterThenLastFieldNumber_exceptionExpected(){
         //given
-        Consumer<Exception> exceptionHandler = e -> System.out.println("Exception occured " + e.getMessage());
-        Settings settings = new Settings(exceptionHandler, new BoardDimensions(3, 3), 3);
+        Settings settings = new Settings(new BoardDimensions(3, 3), 3);
         MovesRegistry movesRegistry = new MovesRegistry();
         MoveValidator moveValidator = new MoveValidator(settings, movesRegistry);
         //when - then
@@ -46,8 +43,7 @@ public class MoveValidatorTest {
     @Test(expectedExceptions = RuntimeException.class)
     public void givenClearBoard3x3_whenMovingCheckingMoveOnFieldWithMark_exceptionExpected(){
         //given
-        Consumer<Exception> exceptionHandler = e -> System.out.println("Exception occured " + e.getMessage());
-        Settings settings = new Settings(exceptionHandler, new BoardDimensions(3, 3), 3);
+        Settings settings = new Settings(new BoardDimensions(3, 3), 3);
         MovesRegistry movesRegistry = new MovesRegistry();
         movesRegistry.addMove(5, MarkType.CROSS);
         MoveValidator moveValidator = new MoveValidator(settings, movesRegistry);

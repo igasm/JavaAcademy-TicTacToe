@@ -15,9 +15,8 @@ public class MoveSupervisorTest {
 
     @BeforeMethod
     public void beforeMethod(){
-        Consumer<Exception> exceptionHandler = e -> System.out.println("Exception occured " + e.getMessage());
         BoardDimensions boardDimensions = new BoardDimensions(3, 3);
-        Settings settings = new Settings(exceptionHandler, boardDimensions, 3);
+        Settings settings = new Settings(boardDimensions, 3);
         moveSupervisor = new MoveSupervisor(new MovesRegistry(), settings);
     }
 

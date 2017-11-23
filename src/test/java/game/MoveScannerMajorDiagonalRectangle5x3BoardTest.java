@@ -27,7 +27,7 @@ public class MoveScannerMajorDiagonalRectangle5x3BoardTest {
         BoardBuilder boardBuilder = new BoardBuilder(boardDimensions);
         board = new Board(boardBuilder.viaList(), boardDimensions);
         MovesRegistry movesRegistry = new MovesRegistry();
-        settings = new Settings(exceptionHandler, boardDimensions, 3);
+        settings = new Settings(boardDimensions, 3);
         boardScanner = new MoveScanner(movesRegistry, settings);
         moveSupervisor = new MoveSupervisor(movesRegistry, settings);
     }
