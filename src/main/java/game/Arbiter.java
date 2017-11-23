@@ -1,6 +1,9 @@
 package game;
 
 class Arbiter {
+
+
+
     private final int winningCondition;
 
     Arbiter(int winningCondition) {

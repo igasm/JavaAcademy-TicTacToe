@@ -1,5 +1,8 @@
 Requirement | Done | Date
 ------------ | ----- | -----
+It must work |
+60% unit test code coverage |
+Code quality – non-OO code is tolerated in little amounts |
 Characters: O (naught) and X (cross) | Yes
 Players have names and scores | Yes
 Winner has better score. Draw is possible. | Yes

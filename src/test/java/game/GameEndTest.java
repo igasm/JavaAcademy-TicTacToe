@@ -1,6 +1,7 @@
 package game;
 
 import org.testng.annotations.Test;
+import players.InvalidPlayerNameException;
 import players.Player;
 import players.PlayersRegister;
 
@@ -9,7 +10,7 @@ import static org.testng.Assert.*;
 public class GameEndTest {
 
     @Test
-    public void whenPlayerAHas3PointsAndPlayerBHas3Points_thenGetWinnerReturnsNull(){
+    public void whenPlayerAHas3PointsAndPlayerBHas3Points_thenGetWinnerReturnsNull() throws InvalidPlayerNameException {
         PlayersRegister playersRegister = new PlayersRegister(2);
         Player playerA = new Player("John", MarkType.NAUGHT);
         playerA.addPoints(3);
@@ -23,7 +24,7 @@ public class GameEndTest {
     }
 
     @Test
-    public void whenPlayerAHas3PointsAndPlayerBHas0Points_thenGetWinnerReturnsPlayerA(){
+    public void whenPlayerAHas3PointsAndPlayerBHas0Points_thenGetWinnerReturnsPlayerA() throws InvalidPlayerNameException {
         PlayersRegister playersRegister = new PlayersRegister(2);
         Player playerA = new Player("John", MarkType.NAUGHT);
         playerA.addPoints(3);

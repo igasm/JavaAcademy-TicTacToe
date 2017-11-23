@@ -1,12 +1,11 @@
 package board;
 
 import game.MovesRegistry;
-import game.Observer;
 import settings.BoardDimensions;
 
 import java.util.function.Consumer;
 
-public class BoardPrinter implements Observer {
+public class BoardPrinter {
 
     private final Board board;
     private final BoardDimensions boardDimensions;
@@ -38,8 +37,4 @@ public class BoardPrinter implements Observer {
         consoleWriter.accept(stringBuilder.toString().toString().trim());
     }
 
-    @Override
-    public void update(MovesRegistry movesRegistry) {
-        printBoardWithMoves(movesRegistry);
-    }
 }

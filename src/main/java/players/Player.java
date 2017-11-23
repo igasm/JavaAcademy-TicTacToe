@@ -8,13 +8,13 @@ public class Player {
     private int score;
     private MarkType mark;
 
-    public Player(String name, MarkType mark) {
+    public Player(String name, MarkType mark) throws InvalidPlayerNameException {
         if(name.matches("^\\s+$")){
-            throw new IllegalArgumentException("players name could not consist only from whitespaces");
+            throw new InvalidPlayerNameException("Imię gracza nie może składac się wyłącznie z baiłych znaków");
         }else if(name == ""){
-            throw new IllegalArgumentException("players name is empty");
+            throw new InvalidPlayerNameException("Imię gracza nie może byc puste");
         }else if(!name.matches("[a-zA-Z0-9]+")){
-            throw new IllegalArgumentException("only alphanumeric characters for player name");
+            throw new InvalidPlayerNameException("Imię gracza może się składać wyłącznie ze znaków alfanumerycznych");
         }
         this.name = name;
         this.score = 0;
@@ -38,7 +38,7 @@ public class Player {
     }
 
     public String toString(){
-        return "player: " + name;
+        return name + " (" + mark + ")";
     }
 
 }

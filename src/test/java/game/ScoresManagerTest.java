@@ -3,6 +3,7 @@ package game;
 import game.ScoresManager;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import players.InvalidPlayerNameException;
 import players.Player;
 import players.PlayersRegister;
 
@@ -15,7 +16,7 @@ public class ScoresManagerTest {
     Player playerB;
 
     @BeforeMethod
-    public void beforeMethod(){
+    public void beforeMethod() throws InvalidPlayerNameException {
         //given
         playerA = new Player("Adam",MarkType.CROSS);
         playerB = new Player("Beata", MarkType.NAUGHT);

@@ -2,24 +2,12 @@ package game;
 
 import java.util.*;
 
-public class MovesRegistry implements Observed {
+public class MovesRegistry {
 
-    private List<Observer> observers = new ArrayList<>();
     private Map<Integer, MarkType> moves = new HashMap<>();
-
-    public void register(Observer observer){
-        observers.add(observer);
-    }
 
     void addMove(int fieldNumber, MarkType mark){
         moves.put(fieldNumber, mark);
-        makeNotify();
-    }
-
-    public void makeNotify(){
-        for(Observer observer : observers){
-            observer.update(this);
-        }
     }
 
     public MarkType getMove(int fieldNumber) {

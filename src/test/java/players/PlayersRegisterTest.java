@@ -38,5 +38,27 @@ public class PlayersRegisterTest {
         assertEquals(playersRegister.getPlayerIndex(playerA), 0);
         assertEquals(playersRegister.getPlayerIndex(playerB), 1);
     }
+
+    @Test
+    public void givenPlayerAWithMarkCrossAndPlayerBWithMarkNaught_whenGettingPlayerByMarkCross_shouldReturnsPlayerA() throws InvalidPlayerNameException {
+        PlayersRegister playersRegister = new PlayersRegister(2);
+        Player playerA = new Player("A", MarkType.CROSS);
+        Player playerB = new Player("B", MarkType.NAUGHT);
+        playersRegister.registerPlayer(playerA);
+        playersRegister.registerPlayer(playerB);
+        Player playerWithCross = playersRegister.getPlayerByMark(MarkType.CROSS);
+        assertEquals(playerA, playerWithCross);
+    }
+
+    @Test
+    public void givenPlayerAWithMarkCrossAndPlayerBWithMarkNaught_whenGettingPlayerByMarkNaught_shouldReturnsPlayerB() throws InvalidPlayerNameException {
+        PlayersRegister playersRegister = new PlayersRegister(2);
+        Player playerA = new Player("A", MarkType.CROSS);
+        Player playerB = new Player("B", MarkType.NAUGHT);
+        playersRegister.registerPlayer(playerA);
+        playersRegister.registerPlayer(playerB);
+        Player playerWithNaught = playersRegister.getPlayerByMark(MarkType.NAUGHT);
+        assertEquals(playerB, playerWithNaught);
+    }
     
 }

@@ -12,19 +12,36 @@ public class PlayersLoader {
 
     private final Consumer<String> consoleWriter;
     private final ConsoleReader consoleReader;
+    PlayersRegister playersRegister;
 
     public PlayersLoader(Consumer<String> consoleWriter, ConsoleReader consoleReader) {
         this.consoleWriter = consoleWriter;
         this.consoleReader = consoleReader;
+        playersRegister = new PlayersRegister(2);
     }
 
     public PlayersRegister load(){
-        PlayersRegister playersRegister = new PlayersRegister(2);
-        consoleWriter.accept("Podaj imię gracza grającego x");
-        playersRegister.registerPlayer(new Player(consoleReader.getString(), MarkType.CROSS));
-        consoleWriter.accept("Podaj imię gracza grajacego o");
-        playersRegister.registerPlayer(new Player(consoleReader.getString(), MarkType.NAUGHT));
+        boolean registered = false;
+        while (!registered){
+            registered = registerPlayer(MarkType.CROSS);
+        }
+        registered = false;
+        while (!registered){
+            registered = registerPlayer(MarkType.NAUGHT);
+        }
         return playersRegister;
+    }
+
+    private boolean registerPlayer(MarkType markType){
+        boolean registered = false;
+        try {
+            consoleWriter.accept("Podaj imię gracza grającego " + markType.toString());
+            playersRegister.registerPlayer(new Player(consoleReader.getString(), markType));
+            registered = true;
+        } catch (InvalidPlayerNameException e) {
+            consoleWriter.accept(e.getMessage());
+        }
+        return registered;
     }
 
 }

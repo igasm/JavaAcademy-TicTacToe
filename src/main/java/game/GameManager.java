@@ -31,6 +31,7 @@ class GameManager {
             match.run();
         }
         consoleWriter.accept(newline + "=========================");
+        consoleWriter.accept("Podsumowanie gry");
         consoleWriter.accept(gameEnd.announce());
     }
 

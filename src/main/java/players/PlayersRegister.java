@@ -1,5 +1,6 @@
 package players;
 
+import game.MarkType;
 import players.Player;
 
 import java.util.ArrayList;
@@ -13,12 +14,15 @@ public class PlayersRegister {
         playersList = new ArrayList<Player>(count);
     }
 
-    public void registerPlayer(Player player){
+    public boolean registerPlayer(Player player){
+        boolean registered = false;
         if(playersList.size() >= playersCount){
             throw new RuntimeException("only " + playersCount + " players are allowed");
         }else{
             playersList.add(player);
+            registered = true;
         }
+        return registered;
     }
 
     public ArrayList<Player> getPlayersList(){
@@ -27,9 +31,10 @@ public class PlayersRegister {
 
     @Override
     public String toString(){
+        String newline = System.getProperty("line.separator");
         String body = "";
         for(int i=0; i<playersList.size(); i++){
-            body += i + ") " + playersList.get(i) + "\n";
+            body += playersList.get(i).toString() + newline;
         }
         return body;
     }
@@ -45,6 +50,17 @@ public class PlayersRegister {
             }
         }
         return playerIndex;
+    }
+
+    public Player getPlayerByMark(MarkType markType){
+        Player player = null;
+        for(Player player1 : playersList){
+            if(player1.getMark().equals(markType)){
+                player = player1;
+            }
+        }
+
+        return player;
     }
 
 }

@@ -18,4 +18,6 @@ public enum MarkType {
     public String toString() {
         return mark;
     }
+
+
 }

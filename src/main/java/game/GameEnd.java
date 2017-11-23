@@ -32,7 +32,8 @@ class GameEnd {
             message = "Remis";
         }
 
-        return message += newline + scoresManager.getSubmit();
+        message += newline + scoresManager.getSubmit();
+        return message;
     }
 
 
