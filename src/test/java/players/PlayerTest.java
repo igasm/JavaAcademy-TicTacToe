@@ -7,21 +7,6 @@ import static org.testng.Assert.*;
 
 public class PlayerTest {
 
-    @Test(expectedExceptions = InvalidPlayerNameException.class)
-    public void whenAddingPlayerWithOnlyWhitespacesInName_errorExpected() throws InvalidPlayerNameException {
-        Player player = new Player("     ", MarkType.CROSS);
-    }
-
-    @Test(expectedExceptions = InvalidPlayerNameException.class)
-    public void whenAddingPlayerWithEmptyName_errorExpected() throws InvalidPlayerNameException {
-        Player player = new Player("", MarkType.CROSS);
-    }
-
-    @Test(expectedExceptions = InvalidPlayerNameException.class)
-    public void whenAddingPlayerWithSpecialCharacters_errorExpected() throws InvalidPlayerNameException {
-        Player player = new Player("iga?*_", MarkType.CROSS);
-    }
-
     @Test
     public void whenCreatingNewPlayer_getScoreReturns0() throws InvalidPlayerNameException {
         Player player = new Player("iga77", MarkType.CROSS);

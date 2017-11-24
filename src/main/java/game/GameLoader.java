@@ -48,6 +48,9 @@ class GameLoader {
         return playersQueue;
     }
 
+    //TODO nie zwracać boolena! stworzyć walidator
+    //z funkcjami: boolean isValid(String )
+    //              getMarkType()
     MarkType getMarkType(String mark){
         HashMap<String, MarkType> markTypeHashMap = new HashMap<>();
         markTypeHashMap.put("X", MarkType.CROSS);

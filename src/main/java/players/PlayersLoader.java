@@ -2,11 +2,8 @@ package players;
 
 import game.MarkType;
 import io.ConsoleReader;
-import players.Player;
-import players.PlayersRegister;
 
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class PlayersLoader {
 
@@ -21,27 +18,25 @@ public class PlayersLoader {
     }
 
     public PlayersRegister load(){
-        boolean registered = false;
-        while (!registered){
-            registered = registerPlayer(MarkType.CROSS);
-        }
-        registered = false;
-        while (!registered){
-            registered = registerPlayer(MarkType.NAUGHT);
-        }
+        PlayerNameValidator validator = new PlayerNameValidator();
+        registerPlayer(MarkType.CROSS, validator);
+        registerPlayer(MarkType.NAUGHT, validator);
         return playersRegister;
     }
 
-    private boolean registerPlayer(MarkType markType){
-        boolean registered = false;
-        try {
-            consoleWriter.accept("Podaj imię gracza grającego " + markType.toString());
-            playersRegister.registerPlayer(new Player(consoleReader.getString(), markType));
-            registered = true;
-        } catch (InvalidPlayerNameException e) {
-            consoleWriter.accept(e.getMessage());
+    private void registerPlayer(MarkType markType, PlayerNameValidator playerNameValidator){
+        boolean valid = false;
+        String playerName = "";
+        while (!valid){
+            try {
+                consoleWriter.accept("Podaj imię gracza grającego " + markType.toString());
+                playerName = consoleReader.getString();
+                valid = playerNameValidator.validate(playerName);
+            } catch (InvalidPlayerNameException e) {
+                consoleWriter.accept(e.getMessage());
+            }
         }
-        return registered;
+        playersRegister.registerPlayer(new Player(playerName, markType));
     }
 
 }

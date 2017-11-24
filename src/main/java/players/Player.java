@@ -8,14 +8,7 @@ public class Player {
     private int score;
     private MarkType mark;
 
-    public Player(String name, MarkType mark) throws InvalidPlayerNameException {
-        if(name.matches("^\\s+$")){
-            throw new InvalidPlayerNameException("Imię gracza nie może składac się wyłącznie z baiłych znaków");
-        }else if(name == ""){
-            throw new InvalidPlayerNameException("Imię gracza nie może byc puste");
-        }else if(!name.matches("[a-zA-Z0-9]+")){
-            throw new InvalidPlayerNameException("Imię gracza może się składać wyłącznie ze znaków alfanumerycznych");
-        }
+    public Player(String name, MarkType mark){
         this.name = name;
         this.score = 0;
         this.mark = mark;

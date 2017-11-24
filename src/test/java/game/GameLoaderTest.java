@@ -10,8 +10,6 @@ import settings.Settings;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.testng.Assert.*;
-
 public class GameLoaderTest {
 
     @DataProvider(name = "dataProviderForMarkTypeValidation")
