@@ -3,6 +3,7 @@ Requirement | Done | Date
 It must work |
 60% unit test code coverage |
 Code quality – non-OO code is tolerated in little amounts |
+Best of tree |
 Characters: O (naught) and X (cross) |
 Players have names and scores |
 Winner has better score. Draw is possible. |
