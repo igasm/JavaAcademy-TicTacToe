@@ -32,17 +32,27 @@ class GameLoader {
 
     PlayersQueue playersOrderSetting(PlayersQueue playersQueue, PlayersRegister playersRegister){
         String newline = System.getProperty("line.separator");
-        HashMap<String, MarkType> markTypeHashMap = new HashMap<>();
-        markTypeHashMap.put("X", MarkType.CROSS);
-        markTypeHashMap.put("O", MarkType.NAUGHT);
 
         consoleWriter.accept(newline);
         consoleWriter.accept("Gracze:");
         consoleWriter.accept(playersRegister.toString());
-        consoleWriter.accept("Wybierz gracza, który zaczyna grę (x/o)");
-        MarkType markType = markTypeHashMap.get(consoleReader.getString().toUpperCase());
+
+        MarkType markType = null;
+        while (markType == null){
+            consoleWriter.accept("Wybierz gracza, który zaczyna grę (x/o)");
+            markType = getMarkType(consoleReader.getString());
+        }
+
         playersQueue.changeQueueOrder(playersRegister.getPlayerByMark(markType));
 
         return playersQueue;
+    }
+
+    MarkType getMarkType(String mark){
+        HashMap<String, MarkType> markTypeHashMap = new HashMap<>();
+        markTypeHashMap.put("X", MarkType.CROSS);
+        markTypeHashMap.put("O", MarkType.NAUGHT);
+        MarkType markType = markTypeHashMap.get(mark.toUpperCase());
+        return markType;
     }
 }
