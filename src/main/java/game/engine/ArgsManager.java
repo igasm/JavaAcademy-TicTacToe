@@ -1,0 +1,23 @@
+package game.engine;
+
+public class ArgsManager {
+    private final String args[];
+
+    ArgsManager(String[] args) {
+        this.args = args;
+    }
+
+    private String byIndex(Integer index){
+        if(args == null) {
+            return "";
+        } else if(args.length > index){
+            return args[index];
+        }else{
+            return "";
+        }
+    }
+
+    String getOutputArg(){
+        return byIndex(0);
+    }
+}
