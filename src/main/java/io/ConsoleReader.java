@@ -5,8 +5,10 @@ import java.util.Scanner;
 public class ConsoleReader {
 
     private final Scanner scanner;
+    private final Writer consoleWriter;
 
-    public ConsoleReader() {
+    public ConsoleReader(Writer consoleWriter) {
+        this.consoleWriter = consoleWriter;
         scanner = new Scanner(System.in);
     }
 

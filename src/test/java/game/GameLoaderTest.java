@@ -1,6 +1,7 @@
 package game;
 
 import io.ConsoleReader;
+import io.Writer;
 import io.WriterBuilder;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
@@ -15,9 +16,10 @@ public class GameLoaderTest {
 
     @BeforeTest
     public void beforeTest(){
+        Writer writer = new WriterBuilder().byDefault();
         gameLoader = new GameLoader(
-                new WriterBuilder().byDefault(),
-                new ConsoleReader(),
+                writer,
+                new ConsoleReader(writer),
                 new Settings(new BoardDimensions(3, 3), 3)
         );
     }
