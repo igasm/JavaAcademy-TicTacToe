@@ -15,6 +15,7 @@ class MoveScanner {
 
     private final MovesRegistry movesRegistry;
     private final Settings settings;
+    private enum SequenceType { majorDiagonal, minorDiagonal, vertical, horizontal };
 
     MoveScanner(MovesRegistry movesRegistry, Settings settings) {
         this.movesRegistry = movesRegistry;
@@ -55,10 +56,46 @@ class MoveScanner {
         return new Sequence(column);
     }
 
-    Sequence scanDiagonal(int fieldNumber, int interval, int backwardBoundaryConditions, int forwardBoundaryConditions){
+    private Integer calculateStep(SequenceType sequenceType){
+        Integer step;
+        switch (sequenceType){
+            case majorDiagonal : step = settings.getBoardDimensions().getWidth() + 1; break;
+            case minorDiagonal : step = settings.getBoardDimensions().getWidth() - 1; break;
+            case horizontal : step = 1; break;
+            default: step = 0;
+        }
+        return step;
+    }
+
+    private Integer calculateBackwardBoundaryCondition(SequenceType sequenceType){
+        Integer condition;
+        switch (sequenceType){
+            case majorDiagonal : condition = 0; break;
+            case minorDiagonal : condition = settings.getBoardDimensions().getWidth() - 1; break;
+            case horizontal : condition = 0; break;
+            default: condition = 0;
+        }
+        return condition;
+    }
+
+    private Integer calculateForwardBoundaryConditions(SequenceType sequenceType){
+        Integer condition;
+        switch (sequenceType){
+            case majorDiagonal : condition = settings.getBoardDimensions().getWidth() - 1; break;
+            case minorDiagonal : condition = 0; break;
+            case horizontal : condition = settings.getBoardDimensions().getWidth() - 1; break;
+            default: condition = 0;
+        }
+        return condition;
+    }
+
+    Sequence scanDiagonal(SequenceType sequenceType, int fieldNumber){
         LinkedList<String> diagonal = new LinkedList<>();
         boolean executeLoop = true;
         int fieldNumberToCheck = fieldNumber;
+        Integer step = calculateStep(sequenceType);
+        Integer backwardBoundaryConditions = calculateBackwardBoundaryCondition(sequenceType);
+        Integer forwardBoundaryConditions = calculateForwardBoundaryConditions(sequenceType);
 
         //scan chosen field
         if(movesRegistry.moveExists(fieldNumberToCheck)){
@@ -74,7 +111,7 @@ class MoveScanner {
         //scanBackward
         if(executeLoop) {
             for (int i = 0; i <= settings.getWinningCondition(); i++) {
-                fieldNumberToCheck = fieldNumberToCheck - interval;
+                fieldNumberToCheck = fieldNumberToCheck - step;
                 if (movesRegistry.moveExists(fieldNumberToCheck)) {
                     diagonal.addFirst(movesRegistry.getMove(fieldNumberToCheck).toString());
                     if (fieldNumberToCheck % settings.getBoardDimensions().getWidth() == backwardBoundaryConditions) {
@@ -97,7 +134,7 @@ class MoveScanner {
         //scanforward
         if(executeLoop) {
             for(int i=0; i<=settings.getWinningCondition(); i++){
-                fieldNumberToCheck = fieldNumberToCheck + interval;
+                fieldNumberToCheck = fieldNumberToCheck + step;
                 if(movesRegistry.moveExists(fieldNumberToCheck)){
                     diagonal.addLast(movesRegistry.getMove(fieldNumberToCheck).toString());
                     if (fieldNumberToCheck % settings.getBoardDimensions().getWidth() == forwardBoundaryConditions){
@@ -115,21 +152,21 @@ class MoveScanner {
         int interval = 1;
         int backwardBoundaryConditions = 0;
         int forwardBoundaryConditions = settings.getBoardDimensions().getWidth() - 1;
-        return scanDiagonal(fieldNumber, interval, backwardBoundaryConditions, forwardBoundaryConditions);
+        return scanDiagonal(SequenceType.horizontal, fieldNumber);
     }
 
     Sequence scanMinorDiagonal(int fieldNumber){
         int interval = settings.getBoardDimensions().getWidth() - 1;
         int backwardBoundaryConditions = settings.getBoardDimensions().getWidth() - 1;
         int forwardBoundaryConditions = 0;
-        return scanDiagonal(fieldNumber, interval, backwardBoundaryConditions, forwardBoundaryConditions);
+        return scanDiagonal(SequenceType.minorDiagonal, fieldNumber);
     }
 
     Sequence scanMajorDiagonal(int fieldNumber){
         int interval = settings.getBoardDimensions().getWidth() + 1;
         int backwardBoundaryConditions = 0;
         int forwardBoundaryConditions = settings.getBoardDimensions().getWidth() - 1;
-        return scanDiagonal(fieldNumber, interval, backwardBoundaryConditions, forwardBoundaryConditions);
+        return scanDiagonal(SequenceType.majorDiagonal, fieldNumber);
     }
 
 
