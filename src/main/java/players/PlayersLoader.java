@@ -2,16 +2,17 @@ package players;
 
 import game.MarkType;
 import io.ConsoleReader;
+import io.Writer;
 
 import java.util.function.Consumer;
 
 public class PlayersLoader {
 
-    private final Consumer<String> consoleWriter;
+    private final Writer consoleWriter;
     private final ConsoleReader consoleReader;
     PlayersRegister playersRegister;
 
-    public PlayersLoader(Consumer<String> consoleWriter, ConsoleReader consoleReader) {
+    public PlayersLoader(Writer consoleWriter, ConsoleReader consoleReader) {
         this.consoleWriter = consoleWriter;
         this.consoleReader = consoleReader;
         playersRegister = new PlayersRegister(2);

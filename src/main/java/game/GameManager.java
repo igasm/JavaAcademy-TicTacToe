@@ -1,6 +1,7 @@
 package game;
 
 import io.ConsoleReader;
+import io.Writer;
 import players.PlayersQueue;
 import settings.Settings;
 
@@ -8,13 +9,13 @@ import java.util.function.Consumer;
 
 class GameManager {
     private final PlayersQueue playersQueue;
-    private final Consumer<String> consoleWriter;
+    private final Writer consoleWriter;
     private final Settings settings;
     private final ScoresManager scoresManager;
     private final ConsoleReader consoleReader;
     private final GameEnd gameEnd;
 
-    GameManager(PlayersQueue playersQueue, Consumer<String> consoleWriter, Settings settings, ScoresManager scoresManager, ConsoleReader consoleReader) {
+    GameManager(PlayersQueue playersQueue, Writer consoleWriter, Settings settings, ScoresManager scoresManager, ConsoleReader consoleReader) {
         this.playersQueue = playersQueue;
         this.consoleWriter = consoleWriter;
         this.settings = settings;

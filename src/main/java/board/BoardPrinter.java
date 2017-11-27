@@ -1,6 +1,7 @@
 package board;
 
 import game.MovesRegistry;
+import io.Writer;
 import settings.BoardDimensions;
 
 import java.util.function.Consumer;
@@ -9,9 +10,9 @@ public class BoardPrinter {
 
     private final Board board;
     private final BoardDimensions boardDimensions;
-    private final Consumer<String> consoleWriter;
+    private final Writer consoleWriter;
 
-    public BoardPrinter(Board board, BoardDimensions boardDimensions, Consumer<String> consoleWriter) {
+    public BoardPrinter(Board board, BoardDimensions boardDimensions, Writer consoleWriter) {
         this.board = board;
         this.boardDimensions = boardDimensions;
         this.consoleWriter = consoleWriter;

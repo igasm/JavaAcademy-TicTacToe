@@ -1,6 +1,7 @@
 package settings;
 
 import io.ConsoleReader;
+import io.Writer;
 
 import java.util.function.Consumer;
 
@@ -10,10 +11,10 @@ public class SettingsManager {
     private final Integer maxBorderDimension = 101;
     private final Integer minWinningCondition = minBorderDimension;
     private final String settingsFilePath = "./src/main/resources/settings.json";
-    private final Consumer<String> consoleWriter;
+    private final Writer consoleWriter;
     private final ConsoleReader consoleReader;
 
-    public SettingsManager(Consumer<String> consoleWriter, ConsoleReader consoleReader) {
+    public SettingsManager(Writer consoleWriter, ConsoleReader consoleReader) {
         this.consoleWriter = consoleWriter;
         this.consoleReader = consoleReader;
     }
@@ -50,7 +51,7 @@ public class SettingsManager {
         return settings;
     }
 
-    Settings reconfigure(ConsoleReader consoleReader, Consumer<String> consoleWriter) {
+    Settings reconfigure(ConsoleReader consoleReader, Writer consoleWriter) {
         int width = 3, height = 3, winningCondition = 3;
         boolean validValue = false;
         SettingsValidator settingsValidator = new SettingsValidator(minBorderDimension, maxBorderDimension, minWinningCondition);

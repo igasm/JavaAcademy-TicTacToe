@@ -1,6 +1,7 @@
 package game;
 
 import io.ConsoleReader;
+import io.Writer;
 import players.PlayersLoader;
 import players.PlayersQueue;
 import players.PlayersRegister;
@@ -11,11 +12,11 @@ import java.util.function.Consumer;
 
 class GameLoader {
 
-    final private Consumer<String> consoleWriter;
+    final private Writer consoleWriter;
     final private ConsoleReader consoleReader;
     final private Settings settings;
 
-    GameLoader(Consumer<String> consoleWriter, ConsoleReader consoleReader, Settings settingsLoader) {
+    GameLoader(Writer consoleWriter, ConsoleReader consoleReader, Settings settingsLoader) {
         this.consoleWriter = consoleWriter;
         this.consoleReader = consoleReader;
         this.settings = settingsLoader;

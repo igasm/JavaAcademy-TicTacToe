@@ -3,6 +3,7 @@ package game;
 import board.BoardBuilder;
 import board.BoardPrinter;
 import io.ConsoleReader;
+import io.Writer;
 import players.Player;
 import players.PlayersQueue;
 import settings.Settings;
@@ -12,7 +13,7 @@ import java.util.function.Consumer;
 
 class Match {
 
-    private final Consumer<String> consoleWriter;
+    private final Writer consoleWriter;
     private final PlayersQueue playersQueue;
     private final MoveSupervisor moveSupervisor;
     private final MoveScanner moveScanner;
@@ -23,7 +24,7 @@ class Match {
     private final ConsoleReader consoleReader;
     private final BoardBuilder boardBuilder;
 
-    Match(Consumer<String> consoleWriter, PlayersQueue playersQueue, Settings settings, ScoresManager scoresManager, ConsoleReader consoleReader) {
+    Match(Writer consoleWriter, PlayersQueue playersQueue, Settings settings, ScoresManager scoresManager, ConsoleReader consoleReader) {
         this.consoleWriter = consoleWriter;
         this.playersQueue = playersQueue;
         this.settings = settings;

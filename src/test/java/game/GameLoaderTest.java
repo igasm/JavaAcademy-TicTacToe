@@ -1,6 +1,7 @@
 package game;
 
 import io.ConsoleReader;
+import io.WriterBuilder;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -41,7 +42,7 @@ public class GameLoaderTest {
 
     @Test(dataProvider = "dataProviderForMarkTypeValidation")
     public void givenStringForMarkType_expectedMarkType(Map<String, MarkType> map){
-        GameLoader gameLoader = new GameLoader(System.out::println, new ConsoleReader(), new Settings(new BoardDimensions(3, 3), 3));
+        GameLoader gameLoader = new GameLoader(new WriterBuilder().byDefault(), new ConsoleReader(), new Settings(new BoardDimensions(3, 3), 3));
         for(Map.Entry<String, MarkType> entry : map.entrySet()){
             Assert.assertEquals(gameLoader.getMarkType(entry.getKey()), entry.getValue());
         }
