@@ -89,83 +89,76 @@ class MoveScanner {
         return condition;
     }
 
+    private Integer previousField(Integer step, Integer fieldNumber){
+        return fieldNumber - step;
+    }
+
+    private Integer nextField(Integer step, Integer fieldNumber){
+        return fieldNumber + step;
+    }
+
+    private Boolean onBackwardBorder(SequenceType sequenceType, Integer fieldNumber){
+        return fieldNumber % settings.getBoardDimensions().getWidth() == calculateBackwardBoundaryCondition(sequenceType);
+    }
+
+    private Boolean onForwardBorder(SequenceType sequenceType, Integer fieldNumber){
+        return fieldNumber % settings.getBoardDimensions().getWidth() == calculateForwardBoundaryConditions(sequenceType);
+    }
+
+    private List<String> scanBackward(SequenceType sequenceType, Integer fieldNumber){
+        LinkedList<String> sequence = new LinkedList<>();
+        Integer step = calculateStep(sequenceType);
+        Integer currentFieldNumber = fieldNumber;
+
+        while(sequence.size() < settings.getWinningCondition()
+                && movesRegistry.moveExists(previousField(step, currentFieldNumber))
+                && !onBackwardBorder(sequenceType, currentFieldNumber)){
+            sequence.addFirst(movesRegistry.getMove(previousField(step, currentFieldNumber)).toString());
+            currentFieldNumber = previousField(step, currentFieldNumber);
+        }
+
+        return sequence;
+    }
+
+    private List<String> scanForward(SequenceType sequenceType, Integer fieldNumber){
+        LinkedList<String> sequence = new LinkedList<>();
+        Integer step = calculateStep(sequenceType);
+        Integer currentFieldNumber = fieldNumber;
+
+        while(sequence.size() < settings.getWinningCondition()
+                && movesRegistry.moveExists(nextField(step, currentFieldNumber))
+                && !onForwardBorder(sequenceType, currentFieldNumber)){
+            sequence.addFirst(movesRegistry.getMove(nextField(step, currentFieldNumber)).toString());
+            currentFieldNumber = nextField(step, currentFieldNumber);
+        }
+
+        return sequence;
+    }
+
+
     Sequence scanDiagonal(SequenceType sequenceType, int fieldNumber){
         LinkedList<String> diagonal = new LinkedList<>();
-        boolean executeLoop = true;
-        int fieldNumberToCheck = fieldNumber;
-        Integer step = calculateStep(sequenceType);
-        Integer backwardBoundaryConditions = calculateBackwardBoundaryCondition(sequenceType);
-        Integer forwardBoundaryConditions = calculateForwardBoundaryConditions(sequenceType);
 
-        //scan chosen field
-        if(movesRegistry.moveExists(fieldNumberToCheck)){
-            diagonal.addFirst(movesRegistry.getMove(fieldNumberToCheck).toString());
+        diagonal.addAll(scanBackward(sequenceType, fieldNumber));
+        if(movesRegistry.moveExists(fieldNumber)){
+            diagonal.addLast(movesRegistry.getMove(fieldNumber).toString());
         }else{
             return new Sequence(diagonal);
         }
+        diagonal.addAll(scanForward(sequenceType, fieldNumber));
 
-        if (fieldNumberToCheck % settings.getBoardDimensions().getWidth() == backwardBoundaryConditions) {
-            executeLoop = false;
-        }
-
-        //scanBackward
-        if(executeLoop) {
-            for (int i = 0; i <= settings.getWinningCondition(); i++) {
-                fieldNumberToCheck = fieldNumberToCheck - step;
-                if (movesRegistry.moveExists(fieldNumberToCheck)) {
-                    diagonal.addFirst(movesRegistry.getMove(fieldNumberToCheck).toString());
-                    if (fieldNumberToCheck % settings.getBoardDimensions().getWidth() == backwardBoundaryConditions) {
-                        break;
-                    }
-                } else {
-                    break;
-                }
-            }
-        }
-
-        fieldNumberToCheck = fieldNumber;
-
-        if(fieldNumberToCheck % settings.getBoardDimensions().getWidth() == forwardBoundaryConditions){
-            executeLoop = false;
-        }else{
-            executeLoop = true;
-        }
-
-        //scanforward
-        if(executeLoop) {
-            for(int i=0; i<=settings.getWinningCondition(); i++){
-                fieldNumberToCheck = fieldNumberToCheck + step;
-                if(movesRegistry.moveExists(fieldNumberToCheck)){
-                    diagonal.addLast(movesRegistry.getMove(fieldNumberToCheck).toString());
-                    if (fieldNumberToCheck % settings.getBoardDimensions().getWidth() == forwardBoundaryConditions){
-                        break;
-                    }
-                }else{
-                    break;
-                }
-            }
-        }
         return new Sequence(diagonal);
     }
 
     Sequence scanHorizontally(int fieldNumber){
-        int interval = 1;
-        int backwardBoundaryConditions = 0;
-        int forwardBoundaryConditions = settings.getBoardDimensions().getWidth() - 1;
         return scanDiagonal(SequenceType.horizontal, fieldNumber);
     }
 
     Sequence scanMinorDiagonal(int fieldNumber){
-        int interval = settings.getBoardDimensions().getWidth() - 1;
-        int backwardBoundaryConditions = settings.getBoardDimensions().getWidth() - 1;
-        int forwardBoundaryConditions = 0;
         return scanDiagonal(SequenceType.minorDiagonal, fieldNumber);
     }
 
     Sequence scanMajorDiagonal(int fieldNumber){
-        int interval = settings.getBoardDimensions().getWidth() + 1;
-        int backwardBoundaryConditions = 0;
-        int forwardBoundaryConditions = settings.getBoardDimensions().getWidth() - 1;
         return scanDiagonal(SequenceType.majorDiagonal, fieldNumber);
     }
 
