@@ -3,10 +3,10 @@ package game.engine;
 import game.players.Player;
 import game.players.PlayersRegister;
 
-class ScoresManager {
+public class ScoresManager {
     private final PlayersRegister playersRegister;
 
-    ScoresManager(PlayersRegister playersRegister) {
+    public ScoresManager(PlayersRegister playersRegister) {
         this.playersRegister = playersRegister;
     }
 

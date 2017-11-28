@@ -1,4 +1,4 @@
-package game.engine;
+package game;
 
 public class ArgsManager {
     private final String args[];

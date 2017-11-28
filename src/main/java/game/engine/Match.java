@@ -10,7 +10,7 @@ import game.settings.Settings;
 
 import java.util.List;
 
-class Match {
+public class Match {
 
     private final Writer consoleWriter;
     private final PlayersQueue playersQueue;
@@ -23,7 +23,7 @@ class Match {
     private final ConsoleReader consoleReader;
     private final BoardBuilder boardBuilder;
 
-    Match(Writer consoleWriter, PlayersQueue playersQueue, Settings settings, ScoresManager scoresManager, ConsoleReader consoleReader) {
+    public Match(Writer consoleWriter, PlayersQueue playersQueue, Settings settings, ScoresManager scoresManager, ConsoleReader consoleReader) {
         this.consoleWriter = consoleWriter;
         this.playersQueue = playersQueue;
         this.settings = settings;
@@ -37,7 +37,7 @@ class Match {
     }
 
 
-    void run(){
+    public void run(){
         movesRegistry.clear();
         String newline = System.getProperty("line.separator");
         BoardPrinter boardPrinter = new BoardPrinter(boardBuilder.viaBoard(), settings.getBoardDimensions(), consoleWriter);

@@ -1,5 +1,6 @@
-package game.engine;
+package game;
 
+import game.ArgsManager;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;

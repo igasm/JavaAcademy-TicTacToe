@@ -1,5 +1,8 @@
-package game.engine;
+package game;
 
+import game.GameManager;
+import game.engine.MarkType;
+import game.engine.ScoresManager;
 import game.io.ConsoleReader;
 import game.io.Writer;
 import game.players.PlayersLoader;

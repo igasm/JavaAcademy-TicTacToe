@@ -1,4 +1,4 @@
-package game.engine;
+package game;
 
 import game.io.ConsoleReader;
 import game.io.Writer;

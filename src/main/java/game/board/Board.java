@@ -26,5 +26,5 @@ public class Board{
         return stringBuilder.toString().toString().trim();
     }
 
-    public int getFieldNumber(int i) { return board.get(i); }
+    int getFieldNumber(int i) { return board.get(i); }
 }

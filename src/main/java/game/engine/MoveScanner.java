@@ -11,13 +11,13 @@ import java.util.List;
  *      / minor diagonal
  */
 
-class MoveScanner {
+public class MoveScanner {
 
     private final MovesRegistry movesRegistry;
     private final Settings settings;
     private enum SequenceType { majorDiagonal, minorDiagonal, vertical, horizontal };
 
-    MoveScanner(MovesRegistry movesRegistry, Settings settings) {
+    public MoveScanner(MovesRegistry movesRegistry, Settings settings) {
         this.movesRegistry = movesRegistry;
         this.settings = settings;
     }

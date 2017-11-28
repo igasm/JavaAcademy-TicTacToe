@@ -2,13 +2,13 @@ package game.engine;
 
 import game.settings.Settings;
 
-class MoveSupervisor {
+public class MoveSupervisor {
 
     private final MoveValidator moveValidator;
     private final MovesRegistry movesRegistry;
     private final Settings settings;
 
-    MoveSupervisor(MovesRegistry movesRegistry, Settings settings) {
+    public MoveSupervisor(MovesRegistry movesRegistry, Settings settings) {
         this.settings = settings;
         this.moveValidator = new MoveValidator(settings, movesRegistry);
         this.movesRegistry = movesRegistry;

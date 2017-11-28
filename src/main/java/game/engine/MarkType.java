@@ -10,7 +10,7 @@ public enum MarkType {
         this.mark = mark;
     }
 
-    public String getMark(){
+    String getMark(){
         return mark;
     }
 

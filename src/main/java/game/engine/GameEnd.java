@@ -2,10 +2,10 @@ package game.engine;
 
 import game.players.Player;
 
-class GameEnd {
+public class GameEnd {
     private final ScoresManager scoresManager;
 
-    GameEnd(ScoresManager scoresManager) {
+    public GameEnd(ScoresManager scoresManager) {
         this.scoresManager = scoresManager;
     }
 
@@ -22,7 +22,7 @@ class GameEnd {
         return winner;
     }
 
-    String announce(){
+    public String announce(){
         String newline = System.getProperty("line.separator");
         Player winner = getWinner();
         String message;
