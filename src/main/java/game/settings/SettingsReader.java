@@ -15,7 +15,7 @@ class SettingsReader {
         this.jsonParser = new JSONParser();
     }
 
-    Settings load(){
+    Settings load() throws SettingsLoadingException {
         Settings settings;
         try {
             Object obj = jsonParser.parse(new FileReader(settingsFilePath));
@@ -27,7 +27,7 @@ class SettingsReader {
             int winningCondition = ((Long) jsonObject.get("winning_condition")).intValue();
             settings = new Settings(boardDimensions, winningCondition);
         }catch (Exception e){
-            settings = null;
+            throw new SettingsLoadingException();
         }
 
         return settings;

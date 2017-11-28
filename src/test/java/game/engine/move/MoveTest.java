@@ -9,9 +9,7 @@ import game.players.Player;
 import game.players.PlayersRegister;
 import game.settings.BoardDimensions;
 import game.settings.Settings;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -27,13 +25,13 @@ public class MoveTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private PrintStream originalOutStream;
 
-    @BeforeTest
+    @BeforeMethod
     public void setUpStream(){
         originalOutStream = System.out;
         System.setOut(new PrintStream(outContent));
     }
 
-    @AfterTest
+    @AfterMethod
     public void cleanUpStream(){
         System.setOut(originalOutStream);
     }
@@ -87,7 +85,7 @@ public class MoveTest {
         Move move = new MoveBuilder()
                 .withWriter(writer)
                 .withSettings(new Settings(new BoardDimensions(3, 3), 3))
-                .withScoresManager(new ScoresManager(new PlayersRegister(2)))
+                .withScoresManager(new ScoresManager(playersRegister))
                 .withMovesRegistry(new MovesRegistry())
                 .withConsoleReader(new ConsoleReader(writer))
                 .build();
@@ -98,6 +96,37 @@ public class MoveTest {
         System.setIn(orgInStream);
     }
 
+    @Test
+    public void  givenBoardDimension3x3_playerRegisterWithSomeDummyPlayer_whenAllMovesMade_matchEnds(){
+        Writer writer = new WriterBuilder().byDefault();
+        PlayersRegister playersRegister = new PlayersRegister(2);
+        Player dummy = new Player("dummyPlayer1", MarkType.CROSS);
+        Player dummy2 = new Player("dummyPlayer2", MarkType.NAUGHT);
+        playersRegister.registerPlayer(dummy);
+        playersRegister.registerPlayer(dummy2);
+        MovesRegistry movesRegistry = new MovesRegistry();
+        movesRegistry.addMove(0, dummy.getMark());
+        movesRegistry.addMove(1, dummy.getMark());
+        movesRegistry.addMove(2, dummy2.getMark());
+        movesRegistry.addMove(3, dummy2.getMark());
+        movesRegistry.addMove(4, dummy.getMark());
+        movesRegistry.addMove(5, dummy2.getMark());
+        movesRegistry.addMove(6, dummy.getMark());
+        movesRegistry.addMove(7, dummy2.getMark());
+        movesRegistry.addMove(8, dummy.getMark());
+        Move move = new MoveBuilder()
+                .withWriter(writer)
+                .withSettings(new Settings(new BoardDimensions(3, 3), 3))
+                .withScoresManager(new ScoresManager(playersRegister))
+                .withMovesRegistry(movesRegistry)
+                .withConsoleReader(new ConsoleReader(writer))
+                .build();
+
+        //when
+        move.checkDraw();
+        //then
+        assertEquals(move.getMatchState(), MatchState.MATCH_END);
+    }
 
 
 }

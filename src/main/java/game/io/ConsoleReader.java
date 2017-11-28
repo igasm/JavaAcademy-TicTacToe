@@ -24,7 +24,7 @@ public class ConsoleReader {
                 str = scanner.nextLine();
                 value = Integer.parseInt(str);
             } catch (NumberFormatException e) {
-                System.out.println("Podaj liczbę całkowitą");
+                consoleWriter.accept("Podaj liczbę całkowitą");
             }
         }
         return value;

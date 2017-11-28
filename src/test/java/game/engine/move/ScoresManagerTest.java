@@ -15,6 +15,7 @@ public class ScoresManagerTest {
     ScoresManager scoresManager;
     Player playerA;
     Player playerB;
+    String newline = System.getProperty("line.separator");
 
     @BeforeMethod
     public void beforeMethod() throws InvalidPlayerNameException {
@@ -49,5 +50,13 @@ public class ScoresManagerTest {
         //when-then
         assertEquals(playerA.getScore(), 0);
         assertEquals(playerB.getScore(), 0);
+    }
+
+    @Test
+    public void playerAHas3Points_playerBHas0Points_submitTest(){
+        //when
+        scoresManager.addWin(playerA);
+        //then
+        assertEquals(scoresManager.getSubmit().trim(), "Adam: 3" + newline + "Beata: 0" );
     }
 }

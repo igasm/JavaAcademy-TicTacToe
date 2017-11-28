@@ -94,4 +94,7 @@ public class Move {
         consoleWriter.accept(scoresManager.getSubmit());
     }
 
+    MatchState getMatchState() {
+        return matchState;
+    }
 }

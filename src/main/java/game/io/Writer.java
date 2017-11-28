@@ -10,7 +10,6 @@ public class Writer {
 
     public Writer(PrintStream printStream) {
         consoleWriter = printStream::println;
-        printStream.getClass().getName();
     }
 
     public void accept(String message){
@@ -19,10 +18,6 @@ public class Writer {
 
     public void addNewLine(){
         consoleWriter.accept("");
-    }
-
-    public String getPrintStreamClass(){
-        return consoleWriter.toString();
     }
 
 }

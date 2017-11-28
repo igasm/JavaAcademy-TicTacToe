@@ -27,7 +27,7 @@ public class GameEnd {
         Player winner = getWinner();
         String message;
         if(winner!=null){
-            message = "Wygrywa " + winner.getName() + " (" + winner.getMark() + ") ";
+            message = "Wygrywa " + winner.getName() + " (" + winner.getMark() + ")";
         }else{
             message = "Remis";
         }
