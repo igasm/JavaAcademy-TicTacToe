@@ -1,10 +1,11 @@
-package game.engine.move;
+package game.engine.move.scanner;
 
+import game.engine.move.MovesRegistry;
 import game.settings.Settings;
 
 import java.util.LinkedList;
 
-public class HorizontalScanner implements MoveScanner{
+public class HorizontalScanner implements MoveScanner {
 
     private final MovesRegistry movesRegistry;
     private final Settings settings;

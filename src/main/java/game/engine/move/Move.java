@@ -1,6 +1,8 @@
 package game.engine.move;
 
 import game.engine.ScoresManager;
+import game.engine.move.scanner.MoveScanner;
+import game.engine.move.scanner.Sequence;
 import game.io.ConsoleReader;
 import game.io.Writer;
 import game.players.Player;
@@ -17,7 +19,6 @@ public class Move {
     private Integer fieldNumber;
     private List<Sequence> sequences;
     private final Arbiter arbiter;
-    private Player player;
     private final ScoresManager scoresManager;
     private MatchState matchState;
     private String message;
@@ -37,10 +38,9 @@ public class Move {
     }
 
     public MatchState run(Player player){
-        this.player = player;
         matchState = MatchState.MATCH_ON;
-        offerPlayerMove();
-        checkWin();
+        offerPlayerMove(player);
+        checkWin(player);
         if(matchState == MatchState.MATCH_ON){
             checkDraw();
         }
@@ -50,18 +50,18 @@ public class Move {
         return matchState;
     }
 
-    boolean isMoveIsCorrect(Player player, Integer fieldNumber){
+    boolean isMoveCorrect(Player player, Integer fieldNumber){
         return moveSupervisor.move(player.getMark(), fieldNumber);
     }
 
-    void offerPlayerMove(){
+    void offerPlayerMove(Player player){
         do{
             consoleWriter.accept(consoleWriter.newline + "Ruch dla " + player.getName() + " (" + player.getMark().toString() +"), podaj numer pola" );
             fieldNumber = consoleReader.getInt();
-        }while (!isMoveIsCorrect(player, fieldNumber));
+        }while (!isMoveCorrect(player, fieldNumber));
     }
 
-    void checkWin(){
+    void checkWin(Player player){
         for(MoveScanner moveScanner : scanners){
             sequences.add(moveScanner.scan(fieldNumber));
         }

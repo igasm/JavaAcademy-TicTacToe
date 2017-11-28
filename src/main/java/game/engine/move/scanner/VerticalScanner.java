@@ -1,5 +1,6 @@
-package game.engine.move;
+package game.engine.move.scanner;
 
+import game.engine.move.MovesRegistry;
 import game.settings.Settings;
 
 import java.util.LinkedList;

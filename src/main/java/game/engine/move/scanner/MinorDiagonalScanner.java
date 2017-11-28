@@ -1,10 +1,12 @@
-package game.engine.move;
+package game.engine.move.scanner;
 
+import game.engine.move.MovesRegistry;
+import game.engine.move.scanner.DiagonalScanner;
 import game.settings.Settings;
 
 public class MinorDiagonalScanner extends DiagonalScanner {
 
-    MinorDiagonalScanner(MovesRegistry movesRegistry, Settings settings){
+    public MinorDiagonalScanner(MovesRegistry movesRegistry, Settings settings){
         super(movesRegistry, settings, settings.getBoardDimensions().getWidth() - 1);
     }
 

@@ -1,8 +1,10 @@
-package game.engine.move;
+package game.engine.move.scanner;
 
-import game.board.Board;
-import game.board.BoardBuilder;
 import game.engine.MarkType;
+import game.engine.move.MoveSupervisor;
+import game.engine.move.MovesRegistry;
+import game.engine.move.scanner.Sequence;
+import game.engine.move.scanner.VerticalScanner;
 import game.settings.BoardDimensions;
 import game.settings.Settings;
 import org.testng.annotations.BeforeMethod;

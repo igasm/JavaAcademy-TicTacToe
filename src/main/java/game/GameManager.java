@@ -3,6 +3,7 @@ package game;
 import game.engine.GameEnd;
 import game.engine.Match;
 import game.engine.ScoresManager;
+import game.engine.move.Move;
 import game.engine.move.MoveBuilder;
 import game.engine.move.MovesRegistry;
 import game.io.ConsoleReader;
@@ -30,8 +31,13 @@ class GameManager {
     void runGame(){
         String newline = System.getProperty("line.separator");
         MovesRegistry movesRegistry = new MovesRegistry();
-        MoveBuilder moveBuilder = new MoveBuilder(movesRegistry, settings, consoleWriter, consoleReader, scoresManager);
-        Match match = new Match(consoleWriter, playersQueue, settings, movesRegistry, moveBuilder.build());
+        Move move = new MoveBuilder()
+                .withConsoleReader(consoleReader)
+                .withMovesRegistry(movesRegistry)
+                .withScoresManager(scoresManager)
+                .withSettings(settings)
+                .withWriter(consoleWriter).build();
+        Match match = new Match(consoleWriter, playersQueue, settings, movesRegistry, move);
         for(int i=1; i<=3; i++) {
             consoleWriter.accept(newline + "==== Runda nr " + i + "====" + newline);
             match.run();

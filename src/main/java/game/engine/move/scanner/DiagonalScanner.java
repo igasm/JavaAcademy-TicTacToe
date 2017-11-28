@@ -1,11 +1,12 @@
-package game.engine.move;
+package game.engine.move.scanner;
 
+import game.engine.move.MovesRegistry;
 import game.settings.Settings;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class DiagonalScanner implements MoveScanner{
+public abstract class DiagonalScanner implements MoveScanner {
 
     private final MovesRegistry movesRegistry;
     protected final Settings settings;

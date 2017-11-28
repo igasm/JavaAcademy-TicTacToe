@@ -1,4 +1,4 @@
-package game.engine.move;
+package game.engine.move.scanner;
 
 import java.util.List;
 
