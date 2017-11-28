@@ -1,5 +1,7 @@
-package game.engine;
+package game.engine.move;
 
+import game.engine.MarkType;
+import game.engine.move.Arbiter;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;

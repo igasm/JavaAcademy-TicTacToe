@@ -1,4 +1,6 @@
-package game.engine;
+package game.engine.move;
+
+import game.engine.MarkType;
 
 import java.util.*;
 
@@ -18,7 +20,7 @@ public class MovesRegistry {
         return moves.containsKey(fieldNumber);
     }
 
-    void clear(){
+    public void clear(){
         moves.clear();
     }
 

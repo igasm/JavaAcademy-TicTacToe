@@ -1,5 +1,6 @@
-package game.engine;
+package game.engine.move;
 
+import game.engine.move.MovesRegistry;
 import game.settings.Settings;
 
 class MoveValidator {

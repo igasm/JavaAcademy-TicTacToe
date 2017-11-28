@@ -10,17 +10,17 @@ public class ScoresManager {
         this.playersRegister = playersRegister;
     }
 
-    void addWin(Player player){
+    public void addWin(Player player){
         player.addPoints(3);
     }
 
-    void addDraw(){
+    public void addDraw(){
         for(Player player : playersRegister.getPlayersList()){
             player.addPoints(1);
         }
     }
 
-    String getSubmit(){
+    public String getSubmit(){
         String newline = System.getProperty("line.separator");
         StringBuilder stringBuilder = new StringBuilder();
         for(Player player : playersRegister.getPlayersList()){

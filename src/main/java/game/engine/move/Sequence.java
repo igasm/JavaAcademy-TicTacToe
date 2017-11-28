@@ -1,8 +1,8 @@
-package game.engine;
+package game.engine.move;
 
 import java.util.List;
 
-class Sequence {
+public class Sequence {
 
     private final List<String> sequencyList;
 

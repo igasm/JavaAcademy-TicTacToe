@@ -2,81 +2,45 @@ package game.engine;
 
 import game.board.BoardBuilder;
 import game.board.BoardPrinter;
-import game.io.ConsoleReader;
+import game.engine.move.MatchState;
+import game.engine.move.Move;
+import game.engine.move.MovesRegistry;
 import game.io.Writer;
 import game.players.Player;
 import game.players.PlayersQueue;
 import game.settings.Settings;
 
-import java.util.List;
-
 public class Match {
 
     private final Writer consoleWriter;
     private final PlayersQueue playersQueue;
-    private final MoveSupervisor moveSupervisor;
-    private final MoveScanner moveScanner;
     private final Settings settings;
-    private final ScoresManager scoresManager;
     private final MovesRegistry movesRegistry;
-    private boolean matchOn;
-    private final ConsoleReader consoleReader;
-    private final BoardBuilder boardBuilder;
+    private MatchState matchState;
+    private final Move move;
 
-    public Match(Writer consoleWriter, PlayersQueue playersQueue, Settings settings, ScoresManager scoresManager, ConsoleReader consoleReader) {
+    public Match(Writer consoleWriter, PlayersQueue playersQueue, Settings settings, MovesRegistry movesRegistry, Move move) {
         this.consoleWriter = consoleWriter;
         this.playersQueue = playersQueue;
         this.settings = settings;
-        this.scoresManager = scoresManager;
-        this.consoleReader = consoleReader;
-        this.matchOn = true;
-        this.boardBuilder = new BoardBuilder(settings.getBoardDimensions());
-        this.movesRegistry = new MovesRegistry();
-        this.moveScanner = new MoveScanner(movesRegistry, settings);
-        this.moveSupervisor = new MoveSupervisor(movesRegistry, settings);
+        this.movesRegistry = movesRegistry;
+        this.move = move;
     }
 
 
     public void run(){
         movesRegistry.clear();
-        String newline = System.getProperty("line.separator");
-        BoardPrinter boardPrinter = new BoardPrinter(boardBuilder.viaBoard(), settings.getBoardDimensions(), consoleWriter);
-        matchOn = true;
-        boolean moveIsCorrect;
-        int fieldNumber = 0;
+        BoardPrinter boardPrinter = new BoardPrinter(new BoardBuilder(settings.getBoardDimensions()).viaBoard(), settings.getBoardDimensions(), consoleWriter);
+        matchState = MatchState.MATCH_ON;
         boardPrinter.printBord();
-        while(matchOn){
-            moveIsCorrect = false;
+        while(matchState == MatchState.MATCH_ON){
             Player currentPlayer = playersQueue.getNextPlayer();
-            while (!moveIsCorrect) {
-                try {
-                    consoleWriter.accept(newline + "Ruch dla " + currentPlayer.getName() + " (" + currentPlayer.getMark().toString() +"), podaj numer pola" );
-                    fieldNumber = consoleReader.getInt();
-                    moveIsCorrect = moveSupervisor.move(currentPlayer.getMark(), fieldNumber);
-                }catch (Exception e){
-                    consoleWriter.accept(e.getMessage());
-                }
-            }
+            matchState = move.run(currentPlayer);
+            consoleWriter.addNewLine();
             boardPrinter.printBoardWithMoves(movesRegistry);
-            List<Sequence> sequences = moveScanner.scanAllDirections(fieldNumber);
-            Arbiter arbiter = new Arbiter(settings.getWinningCondition());
-            for(Sequence sequence : sequences ){
-                if (arbiter.isWin(currentPlayer.getMark(), sequence.toString())) {
-                    consoleWriter.accept(newline + currentPlayer.getName() + " wygrywa rundę");
-                    scoresManager.addWin(currentPlayer);
-                    consoleReader.getString();
-                    matchOn=false;
-                }
-            }
-            if(matchOn && !moveSupervisor.isFreeMoveExists()){
-                consoleWriter.accept(newline + "Koniec rundy - remis");
-                scoresManager.addDraw();
-                consoleReader.getString();
-                matchOn=false;
-            }
         }
-        consoleWriter.accept(newline + "Wyniki");
-        consoleWriter.accept(scoresManager.getSubmit());
+        boardPrinter.printBoardWithMoves(movesRegistry);
+        move.announceMatchResults();
     }
 
 }

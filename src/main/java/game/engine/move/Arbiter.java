@@ -1,4 +1,6 @@
-package game.engine;
+package game.engine.move;
+
+import game.engine.MarkType;
 
 class Arbiter {
 

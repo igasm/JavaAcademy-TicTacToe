@@ -1,7 +1,11 @@
-package game.engine;
+package game.engine.move;
 
 import game.board.Board;
 import game.board.BoardBuilder;
+import game.engine.MarkType;
+import game.engine.move.MoveSupervisor;
+import game.engine.move.MovesRegistry;
+import game.engine.move.Sequence;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import game.settings.BoardDimensions;
@@ -11,19 +15,16 @@ import static org.testng.Assert.*;
 
 public class MoveScannerMajorDiagonalRectangle3x3Test {
 
-    MoveScanner boardScanner;
-    Board board;
+    MajorDiagonalScanner boardScanner;
     MoveSupervisor moveSupervisor;
 
     @BeforeMethod
     public void beforeMethod(){
         //given
         BoardDimensions boardDimensions = new BoardDimensions(3, 3);
-        BoardBuilder boardBuilder = new BoardBuilder(boardDimensions);
-        board = new Board(boardBuilder.viaList(), boardDimensions);
         MovesRegistry movesRegistry = new MovesRegistry();
         Settings settings = new Settings(boardDimensions, 3);
-        boardScanner = new MoveScanner(movesRegistry, settings);
+        boardScanner = new MajorDiagonalScanner(movesRegistry, settings);
         moveSupervisor = new MoveSupervisor(movesRegistry, settings);
     }
 
@@ -37,7 +38,7 @@ public class MoveScannerMajorDiagonalRectangle3x3Test {
         moveSupervisor.move(MarkType.CROSS, 7);
         moveSupervisor.move(MarkType.NAUGHT, 8);
         //when
-        Sequence sequence = boardScanner.scanMajorDiagonal(8);
+        Sequence sequence = boardScanner.scan(8);
         //then
         assertEquals(sequence.toString(), "ooo");
     }
@@ -52,7 +53,7 @@ public class MoveScannerMajorDiagonalRectangle3x3Test {
         moveSupervisor.move(MarkType.CROSS, 7);
         moveSupervisor.move(MarkType.NAUGHT, 8);
         //when
-        Sequence sequence = boardScanner.scanMajorDiagonal(4);
+        Sequence sequence = boardScanner.scan(4);
         //then
         assertEquals(sequence.toString(), "ooo");
     }
@@ -67,7 +68,7 @@ public class MoveScannerMajorDiagonalRectangle3x3Test {
         moveSupervisor.move(MarkType.CROSS, 7);
         moveSupervisor.move(MarkType.NAUGHT, 8);
         //when
-        Sequence sequence = boardScanner.scanMajorDiagonal(4);
+        Sequence sequence = boardScanner.scan(4);
         //then
         assertEquals(sequence.toString(), "ooo");
     }
@@ -78,7 +79,7 @@ public class MoveScannerMajorDiagonalRectangle3x3Test {
         moveSupervisor.move(MarkType.NAUGHT, 1);
         moveSupervisor.move(MarkType.NAUGHT, 5);
         //when
-        Sequence sequence = boardScanner.scanMajorDiagonal(1);
+        Sequence sequence = boardScanner.scan(1);
         //then
         assertEquals(sequence.toString(), "oo");
     }
@@ -89,7 +90,7 @@ public class MoveScannerMajorDiagonalRectangle3x3Test {
         moveSupervisor.move(MarkType.NAUGHT, 1);
         moveSupervisor.move(MarkType.NAUGHT, 5);
         //when
-        Sequence sequence = boardScanner.scanMajorDiagonal(5);
+        Sequence sequence = boardScanner.scan(5);
         //then
         assertEquals(sequence.toString(), "oo");
     }
@@ -100,7 +101,7 @@ public class MoveScannerMajorDiagonalRectangle3x3Test {
         moveSupervisor.move(MarkType.NAUGHT, 3);
         moveSupervisor.move(MarkType.NAUGHT, 7);
         //when
-        Sequence sequence = boardScanner.scanMajorDiagonal(3);
+        Sequence sequence = boardScanner.scan(3);
         //then
         assertEquals(sequence.toString(), "oo");
     }
@@ -111,7 +112,7 @@ public class MoveScannerMajorDiagonalRectangle3x3Test {
         moveSupervisor.move(MarkType.NAUGHT, 3);
         moveSupervisor.move(MarkType.NAUGHT, 7);
         //when
-        Sequence sequence = boardScanner.scanMajorDiagonal(7);
+        Sequence sequence = boardScanner.scan(7);
         //then
         assertEquals(sequence.toString(), "oo");
     }
@@ -123,7 +124,7 @@ public class MoveScannerMajorDiagonalRectangle3x3Test {
         moveSupervisor.move(MarkType.CROSS, 4);
         moveSupervisor.move(MarkType.CROSS, 2);
         //when
-        Sequence sequence = boardScanner.scanMajorDiagonal(4);
+        Sequence sequence = boardScanner.scan(4);
         //then
         assertEquals(sequence.toString(), MarkType.CROSS.toString());
     }
@@ -134,7 +135,7 @@ public class MoveScannerMajorDiagonalRectangle3x3Test {
         //given
         moveSupervisor.move(MarkType.CROSS, 0);
         //when
-        Sequence sequence = boardScanner.scanMajorDiagonal(0);
+        Sequence sequence = boardScanner.scan(0);
         assertEquals(sequence.toString(), MarkType.CROSS.toString());
     }
 
@@ -143,7 +144,7 @@ public class MoveScannerMajorDiagonalRectangle3x3Test {
         //given
         moveSupervisor.move(MarkType.CROSS, 2);
         //when
-        Sequence sequence = boardScanner.scanMajorDiagonal(2);
+        Sequence sequence = boardScanner.scan(2);
         assertEquals(sequence.toString(), MarkType.CROSS.toString());
     }
 
@@ -152,7 +153,7 @@ public class MoveScannerMajorDiagonalRectangle3x3Test {
         //given
         moveSupervisor.move(MarkType.CROSS, 6);
         //when
-        Sequence sequence = boardScanner.scanMajorDiagonal(6);
+        Sequence sequence = boardScanner.scan(6);
         assertEquals(sequence.toString(), MarkType.CROSS.toString());
     }
 
@@ -161,7 +162,7 @@ public class MoveScannerMajorDiagonalRectangle3x3Test {
         //given
         moveSupervisor.move(MarkType.CROSS, 8);
         //when
-        Sequence sequence = boardScanner.scanMajorDiagonal(8);
+        Sequence sequence = boardScanner.scan(8);
         assertEquals(sequence.toString(), MarkType.CROSS.toString());
     }
 

@@ -1,5 +1,7 @@
-package game.engine;
+package game.engine.move;
 
+import game.engine.MarkType;
+import game.engine.ScoresManager;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import game.players.InvalidPlayerNameException;

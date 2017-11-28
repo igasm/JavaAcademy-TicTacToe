@@ -1,7 +1,7 @@
-package game.engine;
+package game.engine.move;
 
-import game.board.Board;
 import game.board.BoardBuilder;
+import game.engine.MarkType;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import game.settings.BoardDimensions;
@@ -11,8 +11,7 @@ import static org.testng.Assert.*;
 
 public class MoveScannerMinorDiagonalTest {
 
-    MoveScanner boardScanner;
-    Board board;
+    MinorDiagonalScanner boardScanner;
     MoveSupervisor moveSupervisor;
 
     @BeforeMethod
@@ -20,10 +19,9 @@ public class MoveScannerMinorDiagonalTest {
         //given
         BoardDimensions boardDimensions = new BoardDimensions(3, 3);
         BoardBuilder boardBuilder = new BoardBuilder(boardDimensions);
-        board = new Board(boardBuilder.viaList(), boardDimensions);
         MovesRegistry movesRegistry = new MovesRegistry();
         Settings settings = new Settings(boardDimensions, 3);
-        boardScanner = new MoveScanner(movesRegistry, settings);
+        boardScanner = new MinorDiagonalScanner(movesRegistry, settings);
         moveSupervisor = new MoveSupervisor(movesRegistry, settings);
     }
 
@@ -34,7 +32,7 @@ public class MoveScannerMinorDiagonalTest {
         moveSupervisor.move(MarkType.CROSS, 4);
         moveSupervisor.move(MarkType.CROSS, 2);
         //when
-        Sequence sequence = boardScanner.scanMinorDiagonal(4);
+        Sequence sequence = boardScanner.scan(4);
         //then
         assertEquals(sequence.toString(), "xxx");
     }
@@ -45,7 +43,7 @@ public class MoveScannerMinorDiagonalTest {
         moveSupervisor.move(MarkType.CROSS, 7);
         moveSupervisor.move(MarkType.CROSS, 5);
         //when
-        Sequence sequence = boardScanner.scanMinorDiagonal(5);
+        Sequence sequence = boardScanner.scan(5);
         //then
         assertEquals(sequence.toString(), "xx");
     }
@@ -56,7 +54,7 @@ public class MoveScannerMinorDiagonalTest {
         moveSupervisor.move(MarkType.CROSS, 3);
         moveSupervisor.move(MarkType.CROSS, 1);
         //when
-        Sequence sequence = boardScanner.scanMinorDiagonal(1);
+        Sequence sequence = boardScanner.scan(1);
         //then
         assertEquals(sequence.toString(), "xx");
     }
@@ -66,7 +64,7 @@ public class MoveScannerMinorDiagonalTest {
         //given
         moveSupervisor.move(MarkType.CROSS, 0);
         //when
-        Sequence sequence = boardScanner.scanMinorDiagonal(0);
+        Sequence sequence = boardScanner.scan(0);
         //then
         assertEquals(sequence.toString(), MarkType.CROSS.toString());
     }
@@ -76,7 +74,7 @@ public class MoveScannerMinorDiagonalTest {
         //given
         moveSupervisor.move(MarkType.CROSS, 2);
         //when
-        Sequence sequence = boardScanner.scanMinorDiagonal(2);
+        Sequence sequence = boardScanner.scan(2);
         //then
         assertEquals(sequence.toString(), MarkType.CROSS.toString());
     }
@@ -86,7 +84,7 @@ public class MoveScannerMinorDiagonalTest {
         //given
         moveSupervisor.move(MarkType.CROSS, 8);
         //when
-        Sequence sequence = boardScanner.scanMinorDiagonal(8);
+        Sequence sequence = boardScanner.scan(8);
         //then
         assertEquals(sequence.toString(), MarkType.CROSS.toString());
     }
@@ -96,7 +94,7 @@ public class MoveScannerMinorDiagonalTest {
         //given
         moveSupervisor.move(MarkType.CROSS, 6);
         //when
-        Sequence sequence = boardScanner.scanMinorDiagonal(6);
+        Sequence sequence = boardScanner.scan(6);
         //then
         assertEquals(sequence.toString(), MarkType.CROSS.toString());
     }

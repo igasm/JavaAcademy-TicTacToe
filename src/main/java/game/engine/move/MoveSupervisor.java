@@ -1,5 +1,6 @@
-package game.engine;
+package game.engine.move;
 
+import game.engine.MarkType;
 import game.settings.Settings;
 
 public class MoveSupervisor {
@@ -14,7 +15,7 @@ public class MoveSupervisor {
         this.movesRegistry = movesRegistry;
     }
 
-    boolean move(MarkType mark, int fieldNumber){
+    public boolean move(MarkType mark, int fieldNumber){
         boolean moved;
         if (moved = moveValidator.moveIsValid(fieldNumber)) {
             movesRegistry.addMove(fieldNumber, mark);
@@ -22,7 +23,7 @@ public class MoveSupervisor {
         return moved;
     }
 
-    boolean isFreeMoveExists(){
+    public boolean isFreeMoveExists(){
         return movesRegistry.movesCount() < settings.getBoardElementsCount();
     }
 

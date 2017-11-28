@@ -1,5 +1,8 @@
-package game.engine;
+package game.engine.move;
 
+import game.engine.MarkType;
+import game.engine.move.MoveValidator;
+import game.engine.move.MovesRegistry;
 import org.testng.annotations.Test;
 import game.settings.BoardDimensions;
 import game.settings.Settings;

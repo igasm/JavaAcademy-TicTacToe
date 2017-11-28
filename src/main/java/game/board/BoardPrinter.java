@@ -1,6 +1,6 @@
 package game.board;
 
-import game.engine.MovesRegistry;
+import game.engine.move.MovesRegistry;
 import game.io.Writer;
 import game.settings.BoardDimensions;
 
