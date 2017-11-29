@@ -6,14 +6,11 @@ import org.testng.annotations.Test;
 import game.players.Player;
 import game.players.PlayersRegister;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
 import static org.testng.Assert.*;
 public class GameEndTest {
 
-    String newline = System.getProperty("line.separator");
-    Writer writer = new WriterBuilder().buildByDefault();
+    private String newline = System.getProperty("line.separator");
+    private Writer writer = new WriterBuilder().buildByDefault();
 
     @Test
     public void whenPlayerAHas3PointsAndPlayerBHas3Points_thenGetWinnerReturnsNull(){

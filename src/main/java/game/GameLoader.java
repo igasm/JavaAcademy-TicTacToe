@@ -32,9 +32,7 @@ class GameLoader {
         return new GameManager(playersQueue, consoleWriter, settings, scoresManager, consoleReader);
     }
 
-    PlayersQueue playersOrderSetting(PlayersQueue playersQueue, PlayersRegister playersRegister){
-        String newline = System.getProperty("line.separator");
-
+    private PlayersQueue playersOrderSetting(PlayersQueue playersQueue, PlayersRegister playersRegister){
         consoleWriter.addNewLine();
         consoleWriter.printlnViaTranslator("players_header");
         consoleWriter.println(playersRegister.toString());
@@ -54,7 +52,6 @@ class GameLoader {
         HashMap<String, MarkType> markTypeHashMap = new HashMap<>();
         markTypeHashMap.put("X", MarkType.CROSS);
         markTypeHashMap.put("O", MarkType.NAUGHT);
-        MarkType markType = markTypeHashMap.get(mark.toUpperCase());
-        return markType;
+        return markTypeHashMap.get(mark.toUpperCase());
     }
 }

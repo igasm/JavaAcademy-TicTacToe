@@ -29,7 +29,7 @@ public class SettingsManager {
         return settings;
     }
 
-    Settings load(){
+    private Settings load(){
         Settings settings;
 
         try {
@@ -55,7 +55,7 @@ public class SettingsManager {
         return settings;
     }
 
-    Settings reconfigure() {
+    private Settings reconfigure() {
         SettingsValidator settingsValidator = new SettingsValidator(minBorderDimension, maxBorderDimension, minWinningCondition);
         consoleWriter.printViaTranslator("min_board_dimension_info");
         consoleWriter.println(" " + minBorderDimension.toString());

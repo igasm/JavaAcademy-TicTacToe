@@ -62,7 +62,7 @@ public class Move {
         }while (!isMoveCorrect(player, fieldNumber));
     }
 
-    void checkWin(Player player){
+    private void checkWin(Player player){
         for(MoveScanner moveScanner : scanners){
             sequences.add(moveScanner.scan(fieldNumber));
         }
@@ -85,7 +85,7 @@ public class Move {
         }
     }
 
-    void announceMatchEnd(){
+    private void announceMatchEnd(){
         writer.println(message);
         consoleReader.getString();
     }

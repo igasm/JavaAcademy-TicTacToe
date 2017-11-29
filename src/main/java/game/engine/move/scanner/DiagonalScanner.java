@@ -9,11 +9,11 @@ import java.util.List;
 public abstract class DiagonalScanner implements MoveScanner {
 
     private final MovesRegistry movesRegistry;
-    protected final Settings settings;
-    protected LinkedList<String> diagonal = new LinkedList<>();
-    private Integer step;
+    final Settings settings;
+    private LinkedList<String> diagonal = new LinkedList<>();
+    private final Integer step;
 
-    public DiagonalScanner(MovesRegistry movesRegistry, Settings settings, Integer step) {
+    DiagonalScanner(MovesRegistry movesRegistry, Settings settings, Integer step) {
         this.movesRegistry = movesRegistry;
         this.settings = settings;
         this.step = step;
@@ -47,11 +47,11 @@ public abstract class DiagonalScanner implements MoveScanner {
         return sequence;
     }
 
-    protected Integer nextField(Integer fieldNumber){
+    private Integer nextField(Integer fieldNumber){
         return fieldNumber + step;
     }
 
-    protected Integer previousField(Integer fieldNumber){
+    private Integer previousField(Integer fieldNumber){
         return fieldNumber - step;
     }
 

@@ -16,7 +16,6 @@ public class Match {
     private final PlayersQueue playersQueue;
     private final Settings settings;
     private final MovesRegistry movesRegistry;
-    private MatchState matchState;
     private final Move move;
 
     public Match(Writer consoleWriter, PlayersQueue playersQueue, Settings settings, MovesRegistry movesRegistry, Move move) {
@@ -31,7 +30,7 @@ public class Match {
     public void run(){
         movesRegistry.clear();
         BoardPrinter boardPrinter = new BoardPrinter(new BoardBuilder(settings.getBoardDimensions()).viaBoard(), settings.getBoardDimensions(), consoleWriter);
-        matchState = MatchState.MATCH_ON;
+        MatchState matchState = MatchState.MATCH_ON;
         boardPrinter.printBord();
         while(matchState == MatchState.MATCH_ON){
             Player currentPlayer = playersQueue.getNextPlayer();

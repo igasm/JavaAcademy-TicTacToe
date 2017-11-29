@@ -15,8 +15,7 @@ public class BoardBuilder {
     }
 
     public List<Integer> viaList(){
-        List<Integer> board = IntStream.range(0, boardDimensions.getElementsCount()).mapToObj(a->new Integer(a)).collect(Collectors.toList());
-        return board;
+        return IntStream.range(0, boardDimensions.getElementsCount()).mapToObj(Integer::new).collect(Collectors.toList());
     }
 
     public Board viaBoard(){

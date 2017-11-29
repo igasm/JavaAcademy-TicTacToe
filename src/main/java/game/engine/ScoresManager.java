@@ -24,7 +24,7 @@ public class ScoresManager {
         String newline = System.getProperty("line.separator");
         StringBuilder stringBuilder = new StringBuilder();
         for(Player player : playersRegister.getPlayersList()){
-            stringBuilder.append(player.getName() + ": " + player.getScore() + newline);
+            stringBuilder.append(player.getName()).append(": ").append(player.getScore()).append(newline);
         }
         return stringBuilder.toString();
     }

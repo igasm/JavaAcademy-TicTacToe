@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class PlayerNameValidatorTest {
 
-    PlayerNameValidator playerNameValidator;
+    private PlayerNameValidator playerNameValidator;
 
     @BeforeTest
     public void beforeTest(){

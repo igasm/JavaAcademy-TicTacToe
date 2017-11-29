@@ -13,8 +13,8 @@ import static org.testng.Assert.*;
 
 public class MoveScannerMajorDiagonalRectangle3x3Test {
 
-    MajorDiagonalScanner boardScanner;
-    MoveSupervisor moveSupervisor;
+    private MajorDiagonalScanner boardScanner;
+    private MoveSupervisor moveSupervisor;
 
     @BeforeMethod
     public void beforeMethod(){

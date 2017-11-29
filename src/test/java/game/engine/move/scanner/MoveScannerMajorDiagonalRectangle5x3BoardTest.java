@@ -13,9 +13,9 @@ import static org.testng.Assert.assertEquals;
 
 public class MoveScannerMajorDiagonalRectangle5x3BoardTest {
 
-    MajorDiagonalScanner scanner;
-    MoveSupervisor moveSupervisor;
-    Settings settings;
+    private MajorDiagonalScanner scanner;
+    private MoveSupervisor moveSupervisor;
+    private Settings settings;
 
     @BeforeMethod
     public void beforeMethod(){

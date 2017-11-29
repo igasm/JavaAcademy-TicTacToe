@@ -8,7 +8,7 @@ public class PlayersLoader {
 
     private final Writer consoleWriter;
     private final ConsoleReader consoleReader;
-    PlayersRegister playersRegister;
+    private PlayersRegister playersRegister;
 
     public PlayersLoader(Writer consoleWriter, ConsoleReader consoleReader) {
         this.consoleWriter = consoleWriter;

@@ -13,8 +13,8 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 public class VerticalScannerTest {
-    VerticalScanner verticalScanner;
-    MoveSupervisor moveSupervisor;
+    private VerticalScanner verticalScanner;
+    private MoveSupervisor moveSupervisor;
 
     @BeforeMethod
     public void beforeMethod(){
@@ -26,19 +26,19 @@ public class VerticalScannerTest {
         moveSupervisor = new MoveSupervisor(movesRegistry, settings, new WriterBuilder().buildByDefault());
     }
 
-    public void setWinningSequenceInFirstColumn(){
+    private void setWinningSequenceInFirstColumn(){
         moveSupervisor.move(MarkType.CROSS, 0);
         moveSupervisor.move(MarkType.CROSS, 3);
         moveSupervisor.move(MarkType.CROSS, 6);
     }
 
-    public void setWinningSequenceInSecondColumn(){
+    private void setWinningSequenceInSecondColumn(){
         moveSupervisor.move(MarkType.CROSS, 1);
         moveSupervisor.move(MarkType.CROSS, 4);
         moveSupervisor.move(MarkType.CROSS, 7);
     }
 
-    public void setWinningSequenceInThirdColumn(){
+    private void setWinningSequenceInThirdColumn(){
         moveSupervisor.move(MarkType.CROSS, 2);
         moveSupervisor.move(MarkType.CROSS, 5);
         moveSupervisor.move(MarkType.CROSS, 8);

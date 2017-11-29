@@ -11,7 +11,7 @@ import static org.testng.Assert.*;
 
 public class BoardTest {
 
-    Board board;
+    private Board board;
 
     @BeforeTest
     public void beforeTest(){

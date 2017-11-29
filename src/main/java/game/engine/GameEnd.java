@@ -18,7 +18,7 @@ public class GameEnd {
             if(player.getScore() > winner.getScore()){
                 winner = player;
             }else if(winner.getScore() == player.getScore()
-                    && winner.getName() != player.getName()){
+                    && !winner.getName().equals(player.getName())){
                 winner = null;
             }
         }

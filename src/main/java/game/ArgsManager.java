@@ -1,6 +1,6 @@
 package game;
 
-public class ArgsManager {
+class ArgsManager {
     private final String args[];
 
     ArgsManager(String[] args) {

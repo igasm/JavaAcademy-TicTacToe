@@ -2,5 +2,5 @@ package game.engine.move;
 
 public enum MatchState {
     MATCH_ON,
-    MATCH_END;
+    MATCH_END
 }

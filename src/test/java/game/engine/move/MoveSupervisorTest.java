@@ -11,7 +11,7 @@ import static org.testng.Assert.*;
 
 public class MoveSupervisorTest {
 
-    MoveSupervisor moveSupervisor;
+    private MoveSupervisor moveSupervisor;
 
     @BeforeMethod
     public void beforeMethod(){

@@ -12,10 +12,10 @@ import static org.testng.Assert.*;
 
 public class ScoresManagerTest {
 
-    ScoresManager scoresManager;
-    Player playerA;
-    Player playerB;
-    String newline = System.getProperty("line.separator");
+    private ScoresManager scoresManager;
+    private Player playerA;
+    private Player playerB;
+    private String newline = System.getProperty("line.separator");
 
     @BeforeMethod
     public void beforeMethod() throws InvalidPlayerNameException {

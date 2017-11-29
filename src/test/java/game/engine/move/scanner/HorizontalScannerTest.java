@@ -13,8 +13,8 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 public class HorizontalScannerTest {
-    MoveSupervisor moveSupervisor;
-    HorizontalScanner horizontalScanner;
+    private MoveSupervisor moveSupervisor;
+    private HorizontalScanner horizontalScanner;
 
     @BeforeMethod
     public void beforeMethod(){
@@ -26,19 +26,19 @@ public class HorizontalScannerTest {
         horizontalScanner = new HorizontalScanner(movesRegistry, settings);
     }
 
-    public void setWinningSequenceInFirstRow(){
+    private void setWinningSequenceInFirstRow(){
         moveSupervisor.move(MarkType.CROSS, 0);
         moveSupervisor.move(MarkType.CROSS, 1);
         moveSupervisor.move(MarkType.CROSS, 2);
     }
 
-    public void setWinningSequenceInSecondRow(){
+    private void setWinningSequenceInSecondRow(){
         moveSupervisor.move(MarkType.CROSS, 3);
         moveSupervisor.move(MarkType.CROSS, 4);
         moveSupervisor.move(MarkType.CROSS, 5);
     }
 
-    public void setWinningSequenceInThirdRow(){
+    private void setWinningSequenceInThirdRow(){
         moveSupervisor.move(MarkType.CROSS, 6);
         moveSupervisor.move(MarkType.CROSS, 7);
         moveSupervisor.move(MarkType.CROSS, 8);

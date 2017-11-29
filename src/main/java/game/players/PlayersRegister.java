@@ -10,7 +10,7 @@ public class PlayersRegister {
 
     public PlayersRegister(int count){
         this.playersCount = count;
-        playersList = new ArrayList<Player>(count);
+        playersList = new ArrayList<>(count);
     }
 
     public boolean registerPlayer(Player player){
@@ -32,8 +32,8 @@ public class PlayersRegister {
     public String toString(){
         String newline = System.getProperty("line.separator");
         String body = "";
-        for(int i=0; i<playersList.size(); i++){
-            body += playersList.get(i).toString() + newline;
+        for(Player player : playersList){
+            body += player.toString() + newline;
         }
         return body;
     }

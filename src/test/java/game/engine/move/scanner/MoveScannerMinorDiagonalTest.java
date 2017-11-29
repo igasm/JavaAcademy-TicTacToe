@@ -1,6 +1,5 @@
 package game.engine.move.scanner;
 
-import game.board.BoardBuilder;
 import game.engine.MarkType;
 import game.engine.move.MoveSupervisor;
 import game.engine.move.MovesRegistry;
@@ -14,14 +13,13 @@ import static org.testng.Assert.*;
 
 public class MoveScannerMinorDiagonalTest {
 
-    MinorDiagonalScanner boardScanner;
-    MoveSupervisor moveSupervisor;
+    private MinorDiagonalScanner boardScanner;
+    private MoveSupervisor moveSupervisor;
 
     @BeforeMethod
     public void beforeMethod(){
         //given
         BoardDimensions boardDimensions = new BoardDimensions(3, 3);
-        BoardBuilder boardBuilder = new BoardBuilder(boardDimensions);
         MovesRegistry movesRegistry = new MovesRegistry();
         Settings settings = new Settings(boardDimensions, 3);
         boardScanner = new MinorDiagonalScanner(movesRegistry, settings);

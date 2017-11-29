@@ -7,7 +7,7 @@ public class PlayersQueue{
     private LinkedList<Player> queue;
 
     public PlayersQueue(PlayersRegister playersRegister) {
-        this.queue = new LinkedList<Player>(playersRegister.getPlayersList());
+        this.queue = new LinkedList<>(playersRegister.getPlayersList());
     }
 
     public void changeQueueOrder(Player playerToSetFirst){

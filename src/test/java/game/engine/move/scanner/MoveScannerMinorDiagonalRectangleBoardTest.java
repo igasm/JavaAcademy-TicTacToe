@@ -13,9 +13,9 @@ import static org.testng.Assert.assertEquals;
 
 public class MoveScannerMinorDiagonalRectangleBoardTest {
 
-    MinorDiagonalScanner boardScanner;
-    MoveSupervisor moveSupervisor;
-    Settings settings;
+    private MinorDiagonalScanner boardScanner;
+    private MoveSupervisor moveSupervisor;
+    private Settings settings;
 
     @BeforeMethod
     public void beforeMethod(){

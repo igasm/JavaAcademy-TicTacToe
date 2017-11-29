@@ -18,12 +18,12 @@ public class Board{
         StringBuilder stringBuilder = new StringBuilder();
         String newline = System.getProperty("line.separator");
         for(int i = 0; i < board.size(); i++){
-            stringBuilder.append("[" + String.format("%3d", board.get(i)) + "]");
+            stringBuilder.append("[").append(String.format("%3d", board.get(i))).append("]");
             if ((i+1)%boardDimensions.getWidth() == 0){
                 stringBuilder.append(newline);
             }
         }
-        return stringBuilder.toString().toString().trim();
+        return stringBuilder.toString().trim();
     }
 
     int getFieldNumber(int i) { return board.get(i); }

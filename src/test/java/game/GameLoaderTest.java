@@ -13,7 +13,7 @@ import game.settings.Settings;
 
 public class GameLoaderTest {
 
-    GameLoader gameLoader;
+    private GameLoader gameLoader;
 
     @BeforeTest
     public void beforeTest(){

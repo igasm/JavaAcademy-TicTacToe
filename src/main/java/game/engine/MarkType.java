@@ -10,10 +10,6 @@ public enum MarkType {
         this.mark = mark;
     }
 
-    String getMark(){
-        return mark;
-    }
-
     @Override
     public String toString() {
         return mark;

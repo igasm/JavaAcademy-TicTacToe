@@ -25,15 +25,15 @@ public class BoardPrinter {
         String newline = System.getProperty("line.separator");
         for(int i = 0; i < boardDimensions.getElementsCount(); i++){
             if(movesRegistry.moveExists(i)){
-                stringBuilder.append("[" + String.format("%3s", movesRegistry.getMove(i)) + "]");
+                stringBuilder.append("[").append(String.format("%3s", movesRegistry.getMove(i))).append("]");
             }else {
-                stringBuilder.append("[" + String.format("%3d", board.getFieldNumber(i)) + "]");
+                stringBuilder.append("[").append(String.format("%3d", board.getFieldNumber(i))).append("]");
             }
             if ((i+1)%boardDimensions.getWidth() == 0){
                 stringBuilder.append(newline);
             }
         }
-        consoleWriter.println(stringBuilder.toString().toString().trim());
+        consoleWriter.println(stringBuilder.toString().trim());
     }
 
 }
