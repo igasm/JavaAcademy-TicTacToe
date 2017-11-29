@@ -18,6 +18,8 @@ class GameManager {
     private final ScoresManager scoresManager;
     private final ConsoleReader consoleReader;
     private final GameEnd gameEnd;
+    private boolean gameExit = false;
+    private Integer matchNo = 0;
 
     GameManager(PlayersQueue playersQueue, Writer consoleWriter, Settings settings, ScoresManager scoresManager, ConsoleReader consoleReader) {
         this.playersQueue = playersQueue;
@@ -29,7 +31,6 @@ class GameManager {
     }
 
     void runGame(){
-        String newline = System.getProperty("line.separator");
         MovesRegistry movesRegistry = new MovesRegistry();
         Move move = new MoveBuilder()
                 .withConsoleReader(consoleReader)
@@ -38,14 +39,26 @@ class GameManager {
                 .withSettings(settings)
                 .withWriter(consoleWriter).build();
         Match match = new Match(consoleWriter, playersQueue, settings, movesRegistry, move);
-        for(int i=1; i<=3; i++) {
+        while (matchNo++ < 3 && !gameExit){
             consoleWriter.print("======");
             consoleWriter.printViaTranslator("match_no_header");
+            consoleWriter.print(" " + matchNo);
             consoleWriter.println("======");
             match.run();
+            offerPlayerGameEnd();
         }
-        consoleWriter.println("===========================");
-        consoleWriter.print(gameEnd.announce());
+
+        if(!gameExit) {
+            consoleWriter.println("===========================");
+            consoleWriter.print(gameEnd.announce());
+        }
+    }
+
+    private void offerPlayerGameEnd() {
+        consoleWriter.printlnViaTranslator("ask_for_exit");
+        if(consoleReader.getString().trim().equalsIgnoreCase("q")){
+            gameExit = true;
+        }
     }
 
 

@@ -3,6 +3,7 @@ Requirement | Done | Date
 It must work |
 60% unit test code coverage |
 Code quality – non-OO code is tolerated in little amounts |
+Project mantra followed (Git, Maven, test cases, etc.). |
 Best of tree |
 Characters: O (naught) and X (cross) |
 Players have names and scores |
