@@ -3,8 +3,8 @@ package game.engine.move.scanner;
 import game.engine.MarkType;
 import game.engine.move.MoveSupervisor;
 import game.engine.move.MovesRegistry;
-import game.engine.move.scanner.HorizontalScanner;
-import game.engine.move.scanner.Sequence;
+import game.io.Writer;
+import game.io.WriterBuilder;
 import game.settings.BoardDimensions;
 import game.settings.Settings;
 import org.testng.annotations.BeforeMethod;
@@ -23,7 +23,7 @@ public class HorizontalScannerTest {
         BoardDimensions boardDimensions = new BoardDimensions(3, 3);
         MovesRegistry movesRegistry = new MovesRegistry();
         Settings settings = new Settings(boardDimensions, 3);
-        moveSupervisor = new MoveSupervisor(movesRegistry, settings);
+        moveSupervisor = new MoveSupervisor(movesRegistry, settings, new WriterBuilder().byDefault());
         horizontalScanner = new HorizontalScanner(movesRegistry, settings);
     }
 

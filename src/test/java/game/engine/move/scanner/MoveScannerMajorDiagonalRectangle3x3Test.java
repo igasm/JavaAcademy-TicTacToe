@@ -3,8 +3,7 @@ package game.engine.move.scanner;
 import game.engine.MarkType;
 import game.engine.move.MoveSupervisor;
 import game.engine.move.MovesRegistry;
-import game.engine.move.scanner.MajorDiagonalScanner;
-import game.engine.move.scanner.Sequence;
+import game.io.WriterBuilder;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import game.settings.BoardDimensions;
@@ -24,7 +23,7 @@ public class MoveScannerMajorDiagonalRectangle3x3Test {
         MovesRegistry movesRegistry = new MovesRegistry();
         Settings settings = new Settings(boardDimensions, 3);
         boardScanner = new MajorDiagonalScanner(movesRegistry, settings);
-        moveSupervisor = new MoveSupervisor(movesRegistry, settings);
+        moveSupervisor = new MoveSupervisor(movesRegistry, settings, new WriterBuilder().byDefault());
     }
 
     @Test

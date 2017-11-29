@@ -1,8 +1,7 @@
 package game.engine.move;
 
 import game.engine.MarkType;
-import game.engine.move.MoveSupervisor;
-import game.engine.move.MovesRegistry;
+import game.io.WriterBuilder;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import game.settings.BoardDimensions;
@@ -18,7 +17,7 @@ public class MoveSupervisorTest {
     public void beforeMethod(){
         BoardDimensions boardDimensions = new BoardDimensions(3, 3);
         Settings settings = new Settings(boardDimensions, 3);
-        moveSupervisor = new MoveSupervisor(new MovesRegistry(), settings);
+        moveSupervisor = new MoveSupervisor(new MovesRegistry(), settings, new WriterBuilder().byDefault());
     }
 
     @Test

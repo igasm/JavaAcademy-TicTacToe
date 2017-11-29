@@ -56,7 +56,7 @@ public class MoveBuilder {
         scanners.add(new MajorDiagonalScanner(movesRegistry, settings));
         scanners.add(new MinorDiagonalScanner(movesRegistry, settings));
 
-        MoveSupervisor moveSupervisor = new MoveSupervisor(movesRegistry, settings);
+        MoveSupervisor moveSupervisor = new MoveSupervisor(movesRegistry, settings, writer);
         Arbiter arbiter = new Arbiter(settings.getWinningCondition());
 
         return new Move(scanners, moveSupervisor, writer, consoleReader, arbiter, scoresManager);

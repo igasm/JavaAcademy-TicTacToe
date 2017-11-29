@@ -3,8 +3,7 @@ package game.engine.move.scanner;
 import game.engine.MarkType;
 import game.engine.move.MoveSupervisor;
 import game.engine.move.MovesRegistry;
-import game.engine.move.scanner.Sequence;
-import game.engine.move.scanner.VerticalScanner;
+import game.io.WriterBuilder;
 import game.settings.BoardDimensions;
 import game.settings.Settings;
 import org.testng.annotations.BeforeMethod;
@@ -24,7 +23,7 @@ public class VerticalScannerTest {
         MovesRegistry movesRegistry = new MovesRegistry();
         Settings settings = new Settings(boardDimensions, 3);
         verticalScanner = new VerticalScanner(movesRegistry, settings);
-        moveSupervisor = new MoveSupervisor(movesRegistry, settings);
+        moveSupervisor = new MoveSupervisor(movesRegistry, settings, new WriterBuilder().byDefault());
     }
 
     public void setWinningSequenceInFirstColumn(){

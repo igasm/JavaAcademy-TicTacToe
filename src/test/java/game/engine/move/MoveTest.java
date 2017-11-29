@@ -54,7 +54,7 @@ public class MoveTest {
         assertTrue(move.isMoveCorrect(playerA, 0));
     }
 
-    @Test(expectedExceptions = IndexOutOfBoundsException.class)
+    @Test
     public void givenBoardDimension3x3_movesRegistryEmpty_whenMovingSomeFieldOutsideBord_moveIsIncorrect(){
         Writer writer = new WriterBuilder().byDefault();
         PlayersRegister playersRegister = new PlayersRegister(2);

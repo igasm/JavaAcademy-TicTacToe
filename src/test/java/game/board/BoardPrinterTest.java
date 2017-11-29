@@ -3,13 +3,11 @@ package game.board;
 import game.engine.MarkType;
 import game.engine.move.MoveSupervisor;
 import game.engine.move.MovesRegistry;
-import game.io.Writer;
 import game.io.WriterBuilder;
 import game.settings.BoardDimensions;
 import game.settings.Settings;
 import org.testng.annotations.*;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -91,7 +89,7 @@ public class BoardPrinterTest {
         Board board = new BoardBuilder(boardDimensions).viaBoard();
         BoardPrinter boardPrinter = new BoardPrinter(board, boardDimensions, new WriterBuilder().byDefault());
         MovesRegistry movesRegistry = new MovesRegistry();
-        MoveSupervisor moveSupervisor = new MoveSupervisor(movesRegistry, new Settings(boardDimensions, 3));
+        MoveSupervisor moveSupervisor = new MoveSupervisor(movesRegistry, new Settings(boardDimensions, 3), new WriterBuilder().byDefault());
         moveSupervisor.move(MarkType.CROSS, 0);
         moveSupervisor.move(MarkType.CROSS, 4);
         moveSupervisor.move(MarkType.CROSS, 8);

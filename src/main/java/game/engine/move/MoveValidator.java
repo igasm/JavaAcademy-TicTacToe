@@ -12,19 +12,19 @@ class MoveValidator {
         this.movesRegistry = movesRegistry;
     }
 
-    boolean moveIsValid(int fieldNumber){
+    boolean moveIsValid(int fieldNumber) throws TooBigFieldNumberException, NegativeFieldNumberException, FieldAlreadyMarkedException {
         boolean moveIsValid = true;
         if(fieldNumber >= settings.getBoardElementsCount()){
-            throw new IndexOutOfBoundsException("Numer pola "
+            throw new TooBigFieldNumberException("Numer pola "
                     + fieldNumber
                     + " jest większe niż numer ostatniego pola ("
                     + settings.getBoardElementsCount() + ")");
         }else if(fieldNumber < 0){
-            throw new IndexOutOfBoundsException("Numer pola nie może byc ujemny ");
+            throw new NegativeFieldNumberException("Numer pola nie może byc ujemny ");
         }
 
         if(movesRegistry.moveExists(fieldNumber)){
-            throw new RuntimeException("Pole o numerze " + fieldNumber + " jest już zaznaczone");
+            throw new FieldAlreadyMarkedException("Pole o numerze " + fieldNumber + " jest już zaznaczone");
         }
         return moveIsValid;
     }

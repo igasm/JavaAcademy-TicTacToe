@@ -12,7 +12,7 @@ import static org.testng.Assert.*;
 public class MoveValidatorTest {
 
     @Test
-    public void givenClearBoard3x3_whenMovingToField3_moveIsCorrect(){
+    public void givenClearBoard3x3_whenMovingToField3_moveIsCorrect() throws NegativeFieldNumberException, FieldAlreadyMarkedException, TooBigFieldNumberException {
         //given
         Settings settings = new Settings(new BoardDimensions(3, 3), 3);
         MovesRegistry movesRegistry = new MovesRegistry();
@@ -21,8 +21,8 @@ public class MoveValidatorTest {
         assertEquals(moveValidator.moveIsValid(3), true);
     }
 
-    @Test(expectedExceptions = IndexOutOfBoundsException.class)
-    public void givenClearBoard3x3_whenMovingToFieldWithNumberLowerThen0_exceptionExpected(){
+    @Test(expectedExceptions = NegativeFieldNumberException.class)
+    public void givenClearBoard3x3_whenMovingToFieldWithNumberLowerThen0_exceptionExpected() throws NegativeFieldNumberException, FieldAlreadyMarkedException, TooBigFieldNumberException {
         //given
         Settings settings = new Settings(new BoardDimensions(3, 3), 3);
         MovesRegistry movesRegistry = new MovesRegistry();
@@ -31,8 +31,8 @@ public class MoveValidatorTest {
         moveValidator.moveIsValid(-1); //here -> exception expected
     }
 
-    @Test(expectedExceptions = IndexOutOfBoundsException.class)
-    public void givenClearBoard3x3_whenMovingToFieldWithNumberGraterThenLastFieldNumber_exceptionExpected(){
+    @Test(expectedExceptions = TooBigFieldNumberException.class)
+    public void givenClearBoard3x3_whenMovingToFieldWithNumberGraterThenLastFieldNumber_exceptionExpected() throws NegativeFieldNumberException, FieldAlreadyMarkedException, TooBigFieldNumberException {
         //given
         Settings settings = new Settings(new BoardDimensions(3, 3), 3);
         MovesRegistry movesRegistry = new MovesRegistry();
@@ -41,8 +41,8 @@ public class MoveValidatorTest {
         moveValidator.moveIsValid(12); //here -> exception expected
     }
 
-    @Test(expectedExceptions = RuntimeException.class)
-    public void givenClearBoard3x3_whenMovingCheckingMoveOnFieldWithMark_exceptionExpected(){
+    @Test(expectedExceptions = FieldAlreadyMarkedException.class)
+    public void givenClearBoard3x3_whenMovingCheckingMoveOnFieldWithMark_exceptionExpected() throws NegativeFieldNumberException, FieldAlreadyMarkedException, TooBigFieldNumberException {
         //given
         Settings settings = new Settings(new BoardDimensions(3, 3), 3);
         MovesRegistry movesRegistry = new MovesRegistry();
