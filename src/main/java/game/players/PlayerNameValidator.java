@@ -8,7 +8,7 @@ class PlayerNameValidator {
             throw new InvalidPlayerNameException("Imię gracza nie może składac się wyłącznie z baiłych znaków");
         }else if(name.equals("")){
             throw new InvalidPlayerNameException("Imię gracza nie może byc puste");
-        }else if(!name.matches("[a-zA-Z0-9]+")){
+        }else if(!name.matches("[a-zA-Z0-9ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+")){
             throw new InvalidPlayerNameException("Imię gracza może się składać wyłącznie ze znaków alfanumerycznych");
         }else{
             isValid = true;

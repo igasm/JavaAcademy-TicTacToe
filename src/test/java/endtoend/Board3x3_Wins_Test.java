@@ -52,4 +52,30 @@ public class Board3x3_Wins_Test {
         System.setIn(orgInStream);
     }
 
+    @Test
+    public void verticalWinsCheck_playerAWinsAllMatches_playerAShouldWinGame() throws UnsupportedEncodingException {
+        String settings = "y" + nl + "3" + nl + "3" + nl + "3" + nl;
+        String playersRegistration = "playerA" + nl + "playerB" + nl + "x" + nl; //playerA starts
+        //win by 1st row
+        String match1Moves = "0" + nl + "3" + nl + "1" + nl + "8" + nl + "2" + nl + nl + nl;
+        //win by 2nd row
+        String match2Moves = "0" + nl + "3" + nl + "6" + nl + "4" + nl + "8" + nl + "5" + nl + nl + nl;
+        //win by 3rd row
+        String match3Moves = "0" + nl + "6" + nl + "3" + nl + "7" + nl + "2" + nl + "8" + nl + nl + nl;
+
+        String all = settings + playersRegistration + match1Moves + match2Moves + match3Moves;
+
+        ByteArrayInputStream in = new ByteArrayInputStream(all.getBytes("UTF-8"));
+        InputStream orgInStream = System.in;
+        System.setIn(in);
+
+        Main.main(new String[]{});
+
+        String expectedGameSubmit = "Podsumowanie gry" + nl + "Wygrywa playerA (x)" + nl + "playerA: 9" + nl + "playerB: 0";
+
+        assertTrue(outContent.toString("UTF-8").contains(expectedGameSubmit));
+
+        System.setIn(orgInStream);
+    }
+
 }
