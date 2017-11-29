@@ -31,11 +31,11 @@ public class PlayersRegister {
     @Override
     public String toString(){
         String newline = System.getProperty("line.separator");
-        String body = "";
+        StringBuilder stringBuilder = new StringBuilder();
         for(Player player : playersList){
-            body += player.toString() + newline;
+            stringBuilder.append(player.toString()).append(newline);
         }
-        return body;
+        return stringBuilder.toString();
     }
 
 

@@ -2,7 +2,7 @@ package game.io;
 
 import java.util.Scanner;
 
-public class ConsoleReader {
+public class ConsoleReader implements AutoCloseable {
 
     private final Scanner scanner;
     private final Writer consoleWriter;
@@ -31,7 +31,7 @@ public class ConsoleReader {
     }
 
     @Override
-    public void finalize(){
+    public void close() throws Exception {
         scanner.close();
     }
 }

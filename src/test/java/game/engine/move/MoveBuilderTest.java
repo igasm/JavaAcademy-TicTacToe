@@ -16,7 +16,7 @@ public class MoveBuilderTest {
     @Test
     public void whenAllWithSet_thenBuildIsOK(){
         Writer writer = new WriterBuilder().buildByDefault();
-        Move move = new MoveBuilder().withConsoleReader(new ConsoleReader(writer))
+        new MoveBuilder().withConsoleReader(new ConsoleReader(writer))
                 .withMovesRegistry(new MovesRegistry())
                 .withScoresManager(new ScoresManager(new PlayersRegister(2)))
                 .withSettings(new Settings(new BoardDimensions(3,3), 3))
@@ -28,7 +28,7 @@ public class MoveBuilderTest {
     @Test(expectedExceptions = AssertionError.class)
     public void whenConsoleReaderNotSet_thenBuildFails(){
         Writer writer = new WriterBuilder().buildByDefault();
-        Move move = new MoveBuilder()
+        new MoveBuilder()
                 .withMovesRegistry(new MovesRegistry())
                 .withScoresManager(new ScoresManager(new PlayersRegister(2)))
                 .withSettings(new Settings(new BoardDimensions(3,3), 3))
@@ -39,7 +39,7 @@ public class MoveBuilderTest {
     @Test(expectedExceptions = AssertionError.class)
     public void whenMovesRegistryNotSet_thenBuildFails(){
         Writer writer = new WriterBuilder().buildByDefault();
-        Move move = new MoveBuilder()
+        new MoveBuilder()
                 .withConsoleReader(new ConsoleReader(writer))
                 .withScoresManager(new ScoresManager(new PlayersRegister(2)))
                 .withSettings(new Settings(new BoardDimensions(3,3), 3))
@@ -50,7 +50,7 @@ public class MoveBuilderTest {
     @Test(expectedExceptions = AssertionError.class)
     public void whenScoresManagerNotSet_thenBuildFails(){
         Writer writer = new WriterBuilder().buildByDefault();
-        Move move = new MoveBuilder()
+        new MoveBuilder()
                 .withConsoleReader(new ConsoleReader(writer))
                 .withMovesRegistry(new MovesRegistry())
                 .withSettings(new Settings(new BoardDimensions(3,3), 3))
@@ -61,7 +61,7 @@ public class MoveBuilderTest {
     @Test(expectedExceptions = AssertionError.class)
     public void whenSettingsNotSet_thenBuildFails(){
         Writer writer = new WriterBuilder().buildByDefault();
-        Move move = new MoveBuilder().withConsoleReader(new ConsoleReader(writer))
+        new MoveBuilder().withConsoleReader(new ConsoleReader(writer))
                 .withMovesRegistry(new MovesRegistry())
                 .withScoresManager(new ScoresManager(new PlayersRegister(2)))
                 .withWriter(writer)
@@ -71,7 +71,7 @@ public class MoveBuilderTest {
     @Test(expectedExceptions = AssertionError.class)
     public void whenWriterNotSet_thenBuildFails(){
         Writer writer = new WriterBuilder().buildByDefault();
-        Move move = new MoveBuilder().withConsoleReader(new ConsoleReader(writer))
+        new MoveBuilder().withConsoleReader(new ConsoleReader(writer))
                 .withMovesRegistry(new MovesRegistry())
                 .withScoresManager(new ScoresManager(new PlayersRegister(2)))
                 .withSettings(new Settings(new BoardDimensions(3,3), 3))

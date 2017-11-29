@@ -1,6 +1,6 @@
 package game.engine.move;
 
-class FieldAlreadyMarkedException extends Throwable {
+class FieldAlreadyMarkedException extends Exception {
     FieldAlreadyMarkedException(String s) {
         super(s);
     }
