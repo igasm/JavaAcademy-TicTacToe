@@ -20,7 +20,7 @@ public class ConsoleReaderTest {
         InputStream orgInStream = System.in;
         System.setIn(in);
 
-        Writer writer = new WriterBuilder().byDefault();
+        Writer writer = new WriterBuilder().buildByDefault();
         ConsoleReader consoleReader = new ConsoleReader(writer);
         assertEquals(consoleReader.getString(), "first line");
 
@@ -35,7 +35,7 @@ public class ConsoleReaderTest {
         InputStream orgInStream = System.in;
         System.setIn(in);
 
-        Writer writer = new WriterBuilder().byDefault();
+        Writer writer = new WriterBuilder().buildByDefault();
         ConsoleReader consoleReader = new ConsoleReader(writer);
         assertEquals(consoleReader.getInt(), 1);
 
@@ -43,7 +43,7 @@ public class ConsoleReaderTest {
     }
 
     @Test
-    public void usingGetInt_whenInputContainsLetters_messegeIsPrinted(){
+    public void usingGetInt_whenInputContainsLetters_messageIsPrinted(){
         //redirecting I/O
         ByteArrayInputStream in = new ByteArrayInputStream(("aaaaa"+newline+"1").getBytes());
         InputStream orgInStream = System.in;
@@ -54,7 +54,7 @@ public class ConsoleReaderTest {
         System.setOut(new PrintStream(outContent));
 
         //test
-        Writer writer = new WriterBuilder().byDefault();
+        Writer writer = new WriterBuilder().buildByDefault();
         ConsoleReader consoleReader = new ConsoleReader(writer);
         consoleReader.getInt();
         assertEquals(outContent.toString().trim(), "Podaj liczbę całkowitą");

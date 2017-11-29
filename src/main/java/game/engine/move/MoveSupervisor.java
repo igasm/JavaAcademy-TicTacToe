@@ -25,11 +25,11 @@ public class MoveSupervisor {
                 movesRegistry.addMove(fieldNumber, mark);
             }
         } catch (TooBigFieldNumberException e) {
-            writer.accept("TooBigFieldNumberException");
+            writer.printlnViaTranslator("TooBigFieldNumberException");
         } catch (NegativeFieldNumberException e) {
-            writer.accept("NegativeFieldNumberException");
+            writer.printlnViaTranslator("NegativeFieldNumberException");
         } catch (FieldAlreadyMarkedException e) {
-            writer.accept("FieldAlreadyMarkedException");
+            writer.printlnViaTranslator("FieldAlreadyMarkedException");
         }
         return moved;
     }

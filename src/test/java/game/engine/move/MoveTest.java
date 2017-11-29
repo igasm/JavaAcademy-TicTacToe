@@ -38,7 +38,7 @@ public class MoveTest {
 
     @Test
     public void givenBoardDimension3x3_movesRegistryEmpty_whenMovingSomeFieldInBord_moveIsCorrect(){
-        Writer writer = new WriterBuilder().byDefault();
+        Writer writer = new WriterBuilder().buildByDefault();
         PlayersRegister playersRegister = new PlayersRegister(2);
         Player playerA = new Player("playerA", MarkType.CROSS);
         Player playerB = new Player("playerB", MarkType.NAUGHT);
@@ -56,7 +56,7 @@ public class MoveTest {
 
     @Test
     public void givenBoardDimension3x3_movesRegistryEmpty_whenMovingSomeFieldOutsideBord_moveIsIncorrect(){
-        Writer writer = new WriterBuilder().byDefault();
+        Writer writer = new WriterBuilder().buildByDefault();
         PlayersRegister playersRegister = new PlayersRegister(2);
         Player playerA = new Player("playerA", MarkType.CROSS);
         Player playerB = new Player("playerB", MarkType.NAUGHT);
@@ -78,7 +78,7 @@ public class MoveTest {
         InputStream orgInStream = System.in;
         System.setIn(in);
 
-        Writer writer = new WriterBuilder().byDefault();
+        Writer writer = new WriterBuilder().buildByDefault();
         PlayersRegister playersRegister = new PlayersRegister(2);
         Player dummy = new Player("dummyPlayer", MarkType.CROSS);
         playersRegister.registerPlayer(dummy);
@@ -98,7 +98,7 @@ public class MoveTest {
 
     @Test
     public void  givenBoardDimension3x3_playerRegisterWithSomeDummyPlayer_whenAllMovesMade_matchEnds(){
-        Writer writer = new WriterBuilder().byDefault();
+        Writer writer = new WriterBuilder().buildByDefault();
         PlayersRegister playersRegister = new PlayersRegister(2);
         Player dummy = new Player("dummyPlayer1", MarkType.CROSS);
         Player dummy2 = new Player("dummyPlayer2", MarkType.NAUGHT);

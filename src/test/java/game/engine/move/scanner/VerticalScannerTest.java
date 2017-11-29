@@ -23,7 +23,7 @@ public class VerticalScannerTest {
         MovesRegistry movesRegistry = new MovesRegistry();
         Settings settings = new Settings(boardDimensions, 3);
         verticalScanner = new VerticalScanner(movesRegistry, settings);
-        moveSupervisor = new MoveSupervisor(movesRegistry, settings, new WriterBuilder().byDefault());
+        moveSupervisor = new MoveSupervisor(movesRegistry, settings, new WriterBuilder().buildByDefault());
     }
 
     public void setWinningSequenceInFirstColumn(){

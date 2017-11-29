@@ -1,6 +1,5 @@
 package game;
 
-import game.GameManager;
 import game.engine.MarkType;
 import game.engine.ScoresManager;
 import game.io.ConsoleReader;
@@ -36,13 +35,13 @@ class GameLoader {
     PlayersQueue playersOrderSetting(PlayersQueue playersQueue, PlayersRegister playersRegister){
         String newline = System.getProperty("line.separator");
 
-        consoleWriter.accept(newline);
-        consoleWriter.accept("Gracze:");
-        consoleWriter.accept(playersRegister.toString());
+        consoleWriter.addNewLine();
+        consoleWriter.printlnViaTranslator("players_header");
+        consoleWriter.println(playersRegister.toString());
 
         MarkType markType = null;
         while (markType == null){
-            consoleWriter.accept("Wybierz gracza, który zaczyna grę (x/o)");
+            consoleWriter.printlnViaTranslator("ask_for_first_player");
             markType = getMarkType(consoleReader.getString());
         }
 
@@ -51,9 +50,6 @@ class GameLoader {
         return playersQueue;
     }
 
-    //TODO nie zwracać boolena! stworzyć walidator
-    //z funkcjami: boolean isValid(String )
-    //              getMarkType()
     MarkType getMarkType(String mark){
         HashMap<String, MarkType> markTypeHashMap = new HashMap<>();
         markTypeHashMap.put("X", MarkType.CROSS);

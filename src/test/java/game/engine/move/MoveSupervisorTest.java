@@ -17,7 +17,7 @@ public class MoveSupervisorTest {
     public void beforeMethod(){
         BoardDimensions boardDimensions = new BoardDimensions(3, 3);
         Settings settings = new Settings(boardDimensions, 3);
-        moveSupervisor = new MoveSupervisor(new MovesRegistry(), settings, new WriterBuilder().byDefault());
+        moveSupervisor = new MoveSupervisor(new MovesRegistry(), settings, new WriterBuilder().buildByDefault());
     }
 
     @Test

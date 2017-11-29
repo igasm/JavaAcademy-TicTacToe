@@ -25,7 +25,7 @@ class GameManager {
         this.settings = settings;
         this.scoresManager = scoresManager;
         this.consoleReader = consoleReader;
-        gameEnd = new GameEnd(scoresManager);
+        gameEnd = new GameEnd(scoresManager, consoleWriter);
     }
 
     void runGame(){
@@ -39,12 +39,13 @@ class GameManager {
                 .withWriter(consoleWriter).build();
         Match match = new Match(consoleWriter, playersQueue, settings, movesRegistry, move);
         for(int i=1; i<=3; i++) {
-            consoleWriter.accept(newline + "==== Runda nr " + i + "====" + newline);
+            consoleWriter.print("======");
+            consoleWriter.printViaTranslator("match_no_header");
+            consoleWriter.println("======");
             match.run();
         }
-        consoleWriter.accept(newline + "=========================");
-        consoleWriter.accept("Podsumowanie gry");
-        consoleWriter.accept(gameEnd.announce());
+        consoleWriter.println("===========================");
+        consoleWriter.print(gameEnd.announce());
     }
 
 

@@ -23,7 +23,7 @@ public class MoveScannerMajorDiagonalRectangle3x3Test {
         MovesRegistry movesRegistry = new MovesRegistry();
         Settings settings = new Settings(boardDimensions, 3);
         boardScanner = new MajorDiagonalScanner(movesRegistry, settings);
-        moveSupervisor = new MoveSupervisor(movesRegistry, settings, new WriterBuilder().byDefault());
+        moveSupervisor = new MoveSupervisor(movesRegistry, settings, new WriterBuilder().buildByDefault());
     }
 
     @Test

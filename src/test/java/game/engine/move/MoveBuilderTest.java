@@ -15,7 +15,7 @@ public class MoveBuilderTest {
 
     @Test
     public void whenAllWithSet_thenBuildIsOK(){
-        Writer writer = new WriterBuilder().byDefault();
+        Writer writer = new WriterBuilder().buildByDefault();
         Move move = new MoveBuilder().withConsoleReader(new ConsoleReader(writer))
                 .withMovesRegistry(new MovesRegistry())
                 .withScoresManager(new ScoresManager(new PlayersRegister(2)))
@@ -27,7 +27,7 @@ public class MoveBuilderTest {
 
     @Test(expectedExceptions = AssertionError.class)
     public void whenConsoleReaderNotSet_thenBuildFails(){
-        Writer writer = new WriterBuilder().byDefault();
+        Writer writer = new WriterBuilder().buildByDefault();
         Move move = new MoveBuilder()
                 .withMovesRegistry(new MovesRegistry())
                 .withScoresManager(new ScoresManager(new PlayersRegister(2)))
@@ -38,7 +38,7 @@ public class MoveBuilderTest {
 
     @Test(expectedExceptions = AssertionError.class)
     public void whenMovesRegistryNotSet_thenBuildFails(){
-        Writer writer = new WriterBuilder().byDefault();
+        Writer writer = new WriterBuilder().buildByDefault();
         Move move = new MoveBuilder()
                 .withConsoleReader(new ConsoleReader(writer))
                 .withScoresManager(new ScoresManager(new PlayersRegister(2)))
@@ -49,7 +49,7 @@ public class MoveBuilderTest {
 
     @Test(expectedExceptions = AssertionError.class)
     public void whenScoresManagerNotSet_thenBuildFails(){
-        Writer writer = new WriterBuilder().byDefault();
+        Writer writer = new WriterBuilder().buildByDefault();
         Move move = new MoveBuilder()
                 .withConsoleReader(new ConsoleReader(writer))
                 .withMovesRegistry(new MovesRegistry())
@@ -60,7 +60,7 @@ public class MoveBuilderTest {
 
     @Test(expectedExceptions = AssertionError.class)
     public void whenSettingsNotSet_thenBuildFails(){
-        Writer writer = new WriterBuilder().byDefault();
+        Writer writer = new WriterBuilder().buildByDefault();
         Move move = new MoveBuilder().withConsoleReader(new ConsoleReader(writer))
                 .withMovesRegistry(new MovesRegistry())
                 .withScoresManager(new ScoresManager(new PlayersRegister(2)))
@@ -70,7 +70,7 @@ public class MoveBuilderTest {
 
     @Test(expectedExceptions = AssertionError.class)
     public void whenWriterNotSet_thenBuildFails(){
-        Writer writer = new WriterBuilder().byDefault();
+        Writer writer = new WriterBuilder().buildByDefault();
         Move move = new MoveBuilder().withConsoleReader(new ConsoleReader(writer))
                 .withMovesRegistry(new MovesRegistry())
                 .withScoresManager(new ScoresManager(new PlayersRegister(2)))

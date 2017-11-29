@@ -24,7 +24,7 @@ public class MoveScannerMinorDiagonalRectangleBoardTest {
         MovesRegistry movesRegistry = new MovesRegistry();
         settings = new Settings(boardDimensions, 3);
         boardScanner = new MinorDiagonalScanner(movesRegistry, settings);
-        moveSupervisor = new MoveSupervisor(movesRegistry, settings, new WriterBuilder().byDefault());
+        moveSupervisor = new MoveSupervisor(movesRegistry, settings, new WriterBuilder().buildByDefault());
     }
 
     @Test

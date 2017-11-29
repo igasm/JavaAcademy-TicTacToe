@@ -14,7 +14,7 @@ public class Move {
 
     private final List<MoveScanner> scanners;
     private final MoveSupervisor moveSupervisor;
-    private final Writer consoleWriter;
+    private final Writer writer;
     private final ConsoleReader consoleReader;
     private Integer fieldNumber;
     private List<Sequence> sequences;
@@ -27,7 +27,7 @@ public class Move {
     public Move(List<MoveScanner> scanners, MoveSupervisor moveSupervisor, Writer consoleWriter, ConsoleReader consoleReader, Arbiter arbiter, ScoresManager scoresManager) {
         this.scanners = scanners;
         this.moveSupervisor = moveSupervisor;
-        this.consoleWriter = consoleWriter;
+        this.writer = consoleWriter;
         this.consoleReader = consoleReader;
         this.arbiter = arbiter;
         this.scoresManager = scoresManager;
@@ -56,7 +56,8 @@ public class Move {
 
     void offerPlayerMove(Player player){
         do{
-            consoleWriter.accept(consoleWriter.newline + "Ruch dla " + player.getName() + " (" + player.getMark().toString() +"), podaj numer pola" );
+            writer.println(writer.newline + writer.getTranslator().messageByCode("move_for") +
+                    player.getName() + " (" + player.getMark().toString() +"), " + writer.getTranslator().messageByCode("enter_field_number") );
             fieldNumber = consoleReader.getInt();
         }while (!isMoveCorrect(player, fieldNumber));
     }
@@ -68,7 +69,7 @@ public class Move {
 
         for(Sequence sequence : sequences ){
             if (arbiter.isWin(player.getMark(), sequence.toString())) {
-                message = consoleWriter.newline + player.getName() + " wygrywa rundę";
+                message = writer.newline + player.getName() + " " + writer.getTranslator().messageByCode("match_wins");
                 scoresManager.addWin(player);
                 matchState = MatchState.MATCH_END;
                 break;
@@ -78,20 +79,21 @@ public class Move {
 
     void checkDraw(){
         if(!moveSupervisor.isFreeMoveExists()){
-            message = consoleWriter.newline + "Koniec rundy - remis";
+            message = writer.newline + writer.getTranslator().messageByCode("checkDraw_message");
             scoresManager.addDraw();
             matchState = MatchState.MATCH_END;
         }
     }
 
     void announceMatchEnd(){
-        consoleWriter.accept(message);
+        writer.println(message);
         consoleReader.getString();
     }
 
     public void announceMatchResults(){
-        consoleWriter.accept(consoleWriter.newline + "Wyniki");
-        consoleWriter.accept(scoresManager.getSubmit());
+        writer.addNewLine();
+        writer.printlnViaTranslator("announceMatchResults_header");
+        writer.println(scoresManager.getSubmit());
     }
 
     MatchState getMatchState() {

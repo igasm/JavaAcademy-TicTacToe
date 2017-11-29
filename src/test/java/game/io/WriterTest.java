@@ -34,14 +34,14 @@ public class WriterTest {
 
     @Test
     public void acceptMethodTest(){
-        Writer writer = new WriterBuilder().byDefault();
-        writer.accept("this is dummy message");
+        Writer writer = new WriterBuilder().buildByDefault();
+        writer.println("this is dummy message");
         assertEquals(outContent.toString(), "this is dummy message" + newline);
     }
 
     @Test
     public void addNewLineMethodTest(){
-        Writer writer = new WriterBuilder().byDefault();
+        Writer writer = new WriterBuilder().buildByDefault();
         writer.addNewLine();
         assertEquals(outContent.toString(), newline);
     }

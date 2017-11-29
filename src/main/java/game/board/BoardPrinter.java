@@ -17,7 +17,7 @@ public class BoardPrinter {
     }
 
     public void printBord(){
-        consoleWriter.accept(board.toString());
+        consoleWriter.println(board.toString());
     }
 
     public void printBoardWithMoves(MovesRegistry movesRegistry){
@@ -33,7 +33,7 @@ public class BoardPrinter {
                 stringBuilder.append(newline);
             }
         }
-        consoleWriter.accept(stringBuilder.toString().toString().trim());
+        consoleWriter.println(stringBuilder.toString().toString().trim());
     }
 
 }

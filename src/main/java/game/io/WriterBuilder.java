@@ -4,35 +4,56 @@ import java.io.*;
 
 public class WriterBuilder {
 
-    public Writer byTargetName(String targetName){
-        Writer writer;
+    private PrintStream printStream = null;
+    private Translator translator = null;
+
+    public WriterBuilder byOutputName(String targetName){
 
         try {
             switch (targetName.toUpperCase()) {
                 case "ERR":
-                    writer = new Writer(System.err);
+                    printStream = System.err;
                     break;
                 case "OUT":
-                    writer = new Writer(System.out);
+                    printStream = System.out;
                     break;
                 case "FILE": {
                     String fileName = "./out.txt";
-                    PrintStream printOut =  new PrintStream(new BufferedOutputStream(new FileOutputStream(fileName)), true);
-                    writer = new Writer(printOut);
+                    printStream =  new PrintStream(new BufferedOutputStream(new FileOutputStream(fileName)), true);
                     break;
                 }
-                default: writer = byDefault();
+                default: printStream = System.out;
             }
         }catch (FileNotFoundException e){
-            writer = byDefault();
+            printStream = System.out;
         }
 
-        return writer;
+        return this;
 
     }
 
-    public Writer byDefault(){
-        return new Writer(System.out);
+    public WriterBuilder byLanguage(String language){
+
+        translator = new Translator();
+
+        if(language.toLowerCase().equals("pl") || language.toLowerCase().equals("en")){
+            translator.load(language.toLowerCase());
+        }else{
+            translator.load("pl");
+        }
+
+        return this;
+    }
+
+    public Writer buildByDefault(){
+        printStream = System.out;
+        translator = new Translator();
+        translator.load("pl");
+        return new Writer(printStream, translator);
+    }
+
+    public Writer build(){
+        return new Writer(printStream, translator);
     }
 
 }

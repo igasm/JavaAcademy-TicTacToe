@@ -1,14 +1,19 @@
 package game.engine;
 
+import game.io.Writer;
+import game.io.WriterBuilder;
 import org.testng.annotations.Test;
-import game.players.InvalidPlayerNameException;
 import game.players.Player;
 import game.players.PlayersRegister;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.testng.Assert.*;
 public class GameEndTest {
 
     String newline = System.getProperty("line.separator");
+    Writer writer = new WriterBuilder().buildByDefault();
 
     @Test
     public void whenPlayerAHas3PointsAndPlayerBHas3Points_thenGetWinnerReturnsNull(){
@@ -20,7 +25,7 @@ public class GameEndTest {
         playersRegister.registerPlayer(playerA);
         playersRegister.registerPlayer(playerB);
         ScoresManager scoresManager = new ScoresManager(playersRegister);
-        GameEnd gameEnd = new GameEnd(scoresManager);
+        GameEnd gameEnd = new GameEnd(scoresManager, writer);
         assertEquals(gameEnd.getWinner(), null);
     }
 
@@ -34,7 +39,7 @@ public class GameEndTest {
         playersRegister.registerPlayer(playerA);
         playersRegister.registerPlayer(playerB);
         ScoresManager scoresManager = new ScoresManager(playersRegister);
-        GameEnd gameEnd = new GameEnd(scoresManager);
+        GameEnd gameEnd = new GameEnd(scoresManager, writer);
         assertEquals(gameEnd.getWinner(), playerA);
     }
 
@@ -48,8 +53,8 @@ public class GameEndTest {
         playersRegister.registerPlayer(playerA);
         playersRegister.registerPlayer(playerB);
         ScoresManager scoresManager = new ScoresManager(playersRegister);
-        GameEnd gameEnd = new GameEnd(scoresManager);
-        assertEquals(gameEnd.announce().trim(), "Remis" + newline + "playerA: 3" + newline + "playerB: 3");
+        GameEnd gameEnd = new GameEnd(scoresManager, writer);
+        assertEquals(gameEnd.announce().trim(), "Podsumowanie gry" + newline + "Remis" + newline + "playerA: 3" + newline + "playerB: 3");
     }
 
     @Test
@@ -62,8 +67,8 @@ public class GameEndTest {
         playersRegister.registerPlayer(playerA);
         playersRegister.registerPlayer(playerB);
         ScoresManager scoresManager = new ScoresManager(playersRegister);
-        GameEnd gameEnd = new GameEnd(scoresManager);
-        assertEquals(gameEnd.announce().trim(), "Wygrywa playerA (o)" + newline +
+        GameEnd gameEnd = new GameEnd(scoresManager, writer);
+        assertEquals( gameEnd.announce().trim(), "Podsumowanie gry" + newline + "Wygrywa playerA (o)" + newline +
                 "playerA: 3" + newline + "playerB: 0");
     }
 

@@ -1,50 +1,38 @@
 package game.io;
 
-import game.settings.BoardDimensions;
-import game.settings.Settings;
-import game.settings.SettingsLoadingException;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.io.UnsupportedEncodingException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class Translator {
 
-    private final HashMap<String, String> translationList;
-    private final String languageFilePath = "./src/main/resources/messages_template.json";
+    private ResourceBundle resourceBundle = null;
 
+    void load(String languageCode){
 
-    Translator() {
-        translationList = null;
+        if(languageCode.equalsIgnoreCase("en")) {
+            resourceBundle = ResourceBundle.getBundle("messages", new Locale("en", "US"), ResourceBundle.Control.getNoFallbackControl(ResourceBundle.Control.FORMAT_PROPERTIES));
+        }else{
+            resourceBundle = ResourceBundle.getBundle("messages", new Locale("pl", "PL"), ResourceBundle.Control.getNoFallbackControl(ResourceBundle.Control.FORMAT_PROPERTIES));
+        }
     }
 
-    public void load(String languageCode){
-        JSONParser jsonParser = new JSONParser();
+    public String messageByCode(String key){
+
+        String message;
+
         try {
-            Object obj = jsonParser.parse(new FileReader(languageFilePath));
-            JSONObject jsonObject = (JSONObject) obj;
-            JSONArray messagesArray = (JSONArray) jsonObject.get("messages");
-
-            Iterator<String> iterator = messagesArray.iterator();
-            while (iterator.hasNext()){
-                String messageCode = (String) jsonObject.get("code");
-                String message = (String) jsonObject.get(languageCode.toLowerCase());
-                translationList.put(messageCode, message);
-            }
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
+            message = resourceBundle.getString(key);
+            message = new String(message.getBytes("ISO-8859-1"), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            message = "";
         }
+
+       return message;
+    }
+
+    String getTranslatorLanguage(){
+        return resourceBundle.getLocale().toString();
     }
 
 }

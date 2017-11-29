@@ -1,9 +1,0 @@
-{
-  "messages" : [
-	{ 
-		"code" : "welcome",
-		"pl" : "Witaj w grze w kółko i krzyżyk",
-		"eng" : "Welcome in TicTacToe game"
-	}
-  ]
-}

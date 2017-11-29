@@ -1,6 +1,5 @@
 package game;
 
-import game.GameLoader;
 import game.engine.MarkType;
 import game.io.ConsoleReader;
 import game.io.Writer;
@@ -18,7 +17,7 @@ public class GameLoaderTest {
 
     @BeforeTest
     public void beforeTest(){
-        Writer writer = new WriterBuilder().byDefault();
+        Writer writer = new WriterBuilder().buildByDefault();
         gameLoader = new GameLoader(
                 writer,
                 new ConsoleReader(writer),

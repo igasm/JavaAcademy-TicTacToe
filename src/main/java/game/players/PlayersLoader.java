@@ -28,11 +28,12 @@ public class PlayersLoader {
         String playerName = "";
         while (!valid){
             try {
-                consoleWriter.accept("Podaj imię gracza grającego " + markType.toString());
+                consoleWriter.printViaTranslator("player_name_for_mark");
+                consoleWriter.println(" " + markType.toString());
                 playerName = consoleReader.getString();
                 valid = playerNameValidator.validate(playerName);
             } catch (InvalidPlayerNameException e) {
-                consoleWriter.accept(e.getMessage());
+                consoleWriter.printlnViaTranslator("bad_characters_in_player_name");
             }
         }
         playersRegister.registerPlayer(new Player(playerName, markType));

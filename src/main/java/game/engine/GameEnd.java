@@ -1,12 +1,15 @@
 package game.engine;
 
+import game.io.Writer;
 import game.players.Player;
 
 public class GameEnd {
     private final ScoresManager scoresManager;
+    private final Writer writer;
 
-    public GameEnd(ScoresManager scoresManager) {
+    public GameEnd(ScoresManager scoresManager, Writer writer) {
         this.scoresManager = scoresManager;
+        this.writer = writer;
     }
 
     Player getWinner(){
@@ -23,16 +26,17 @@ public class GameEnd {
     }
 
     public String announce(){
-        String newline = System.getProperty("line.separator");
+        String message = writer.getTranslator().messageByCode("game_submit_header") + writer.newline;
+
         Player winner = getWinner();
-        String message;
         if(winner!=null){
-            message = "Wygrywa " + winner.getName() + " (" + winner.getMark() + ")";
+            message += writer.getTranslator().messageByCode("the_winner_is") + " " + winner.getName() + " (" + winner.getMark() + ")";
         }else{
-            message = "Remis";
+            message += writer.getTranslator().messageByCode("draw_info");
         }
 
-        message += newline + scoresManager.getSubmit();
+        message += writer.newline + scoresManager.getSubmit();
+
         return message;
     }
 

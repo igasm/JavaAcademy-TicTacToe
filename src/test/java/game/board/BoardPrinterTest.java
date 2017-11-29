@@ -34,7 +34,7 @@ public class BoardPrinterTest {
     public void emptyBord3x3_printBoardTest(){
         BoardDimensions boardDimensions = new BoardDimensions(3, 3);
         Board board = new BoardBuilder(boardDimensions).viaBoard();
-        BoardPrinter boardPrinter = new BoardPrinter(board, boardDimensions, new WriterBuilder().byDefault());
+        BoardPrinter boardPrinter = new BoardPrinter(board, boardDimensions, new WriterBuilder().buildByDefault());
         boardPrinter.printBord();
         assertEquals(outContent.toString(), "[  0][  1][  2]" + newline + "[  3][  4][  5]" + newline + "[  6][  7][  8]" + newline);
         outContent.reset();
@@ -44,7 +44,7 @@ public class BoardPrinterTest {
     public void emptyBord3x5_printBoardTest(){
         BoardDimensions boardDimensions = new BoardDimensions(3, 5);
         Board board = new BoardBuilder(boardDimensions).viaBoard();
-        BoardPrinter boardPrinter = new BoardPrinter(board, boardDimensions, new WriterBuilder().byDefault());
+        BoardPrinter boardPrinter = new BoardPrinter(board, boardDimensions, new WriterBuilder().buildByDefault());
         boardPrinter.printBord();
         assertEquals(outContent.toString(), "[  0][  1][  2]" + newline
                 + "[  3][  4][  5]" + newline
@@ -59,7 +59,7 @@ public class BoardPrinterTest {
     public void emptyBord5x5_printBoardTest(){
         BoardDimensions boardDimensions = new BoardDimensions(5, 5);
         Board board = new BoardBuilder(boardDimensions).viaBoard();
-        BoardPrinter boardPrinter = new BoardPrinter(board, boardDimensions, new WriterBuilder().byDefault());
+        BoardPrinter boardPrinter = new BoardPrinter(board, boardDimensions, new WriterBuilder().buildByDefault());
         boardPrinter.printBord();
         assertEquals(outContent.toString(), "[  0][  1][  2][  3][  4]" + newline
                 + "[  5][  6][  7][  8][  9]" + newline
@@ -74,7 +74,7 @@ public class BoardPrinterTest {
     public void emptyBord5x3_printBoardTest(){
         BoardDimensions boardDimensions = new BoardDimensions(5, 3);
         Board board = new BoardBuilder(boardDimensions).viaBoard();
-        BoardPrinter boardPrinter = new BoardPrinter(board, boardDimensions, new WriterBuilder().byDefault());
+        BoardPrinter boardPrinter = new BoardPrinter(board, boardDimensions, new WriterBuilder().buildByDefault());
         boardPrinter.printBord();
         assertEquals(outContent.toString(), "[  0][  1][  2][  3][  4]" + newline
                 + "[  5][  6][  7][  8][  9]" + newline
@@ -87,9 +87,9 @@ public class BoardPrinterTest {
     public void bord3x3_withCrossesAtMajorDiagonal_printBoardTest(){
         BoardDimensions boardDimensions = new BoardDimensions(3, 3);
         Board board = new BoardBuilder(boardDimensions).viaBoard();
-        BoardPrinter boardPrinter = new BoardPrinter(board, boardDimensions, new WriterBuilder().byDefault());
+        BoardPrinter boardPrinter = new BoardPrinter(board, boardDimensions, new WriterBuilder().buildByDefault());
         MovesRegistry movesRegistry = new MovesRegistry();
-        MoveSupervisor moveSupervisor = new MoveSupervisor(movesRegistry, new Settings(boardDimensions, 3), new WriterBuilder().byDefault());
+        MoveSupervisor moveSupervisor = new MoveSupervisor(movesRegistry, new Settings(boardDimensions, 3), new WriterBuilder().buildByDefault());
         moveSupervisor.move(MarkType.CROSS, 0);
         moveSupervisor.move(MarkType.CROSS, 4);
         moveSupervisor.move(MarkType.CROSS, 8);

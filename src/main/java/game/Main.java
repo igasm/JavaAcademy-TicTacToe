@@ -9,9 +9,11 @@ import game.settings.SettingsManager;
 public class Main {
     public static void main(String[] args) {
         ArgsManager argsManager = new ArgsManager(args);
-        Writer consoleWriter = new WriterBuilder().byTargetName(argsManager.getOutputArg());
+
+        Writer consoleWriter = new WriterBuilder().byOutputName(argsManager.getOutputArg()).byLanguage(argsManager.getLanguageArg()).build();
         ConsoleReader consoleReader = new ConsoleReader(consoleWriter);
-        consoleWriter.accept("Witaj w grze kółko i krzyżyk"+System.getProperty("line.separator"));
+        consoleWriter.printlnViaTranslator("welcome");
+        consoleWriter.addNewLine();
         Settings settings = new SettingsManager(consoleWriter, consoleReader).run();
         GameManager boardManager = new GameLoader(consoleWriter, consoleReader, settings).load();
         boardManager.runGame();

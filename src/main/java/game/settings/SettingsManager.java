@@ -19,9 +19,10 @@ public class SettingsManager {
 
     public Settings run(){
         Settings settings = load();
-        consoleWriter.accept("Czy chcesz modyfikować ustawienia planszy? [T/N]");
+        consoleWriter.addNewLine();
+        consoleWriter.printlnViaTranslator("ask_for_settings_change");
 
-        if(consoleReader.getString().toUpperCase().equals("T")){
+        if(consoleReader.getString().toUpperCase().equals("Y")){
             consoleWriter.addNewLine();
             settings = reconfigure();
         }
@@ -29,44 +30,50 @@ public class SettingsManager {
     }
 
     Settings load(){
-        String newline = System.getProperty("line.separator");
-        String message;
         Settings settings;
 
         try {
             settings = new SettingsReader(settingsFilePath).load();
-            message = "Wczytane ustawienia planszy:" +
-                    newline + "\tWymiary planszy: "
-                    + settings.getBoardDimensions().getWidth() + "x" + settings.getBoardDimensions().getWidth() +
-                    newline + "\tWarunek wygranej: " + settings.getWinningCondition() + " znaków" + newline;
+            consoleWriter.printlnViaTranslator("loaded_board_settings_header");
+            consoleWriter.printViaTranslator("board_dimensions");
+            consoleWriter.print(Integer.toString(settings.getBoardDimensions().getWidth()));
+            consoleWriter.print("x");
+            consoleWriter.println(Integer.toString(settings.getBoardDimensions().getHeight()));
+            consoleWriter.printViaTranslator("winning_conditon");
+            consoleWriter.println(Integer.toString(settings.getWinningCondition()));
         } catch (SettingsLoadingException e) {
             settings =  new Settings(new BoardDimensions(3, 3), 3);
-            message = "Błąd podczas wczytywania ustawień planszy." + newline +
-                    "Wczytywanie domyślnych ustawień" + newline +
-                    "\tWymiary planszy: 3x3." + newline +
-                    "\tWarunek wygranej: 3 znaki" + newline;
+            consoleWriter.printlnViaTranslator("default_loaded_board_settings_header");
+            consoleWriter.printViaTranslator("board_dimensions");
+            consoleWriter.print(Integer.toString(settings.getBoardDimensions().getWidth()));
+            consoleWriter.print("x");
+            consoleWriter.println(Integer.toString(settings.getBoardDimensions().getHeight()));
+            consoleWriter.printViaTranslator("winning_conditon");
+            consoleWriter.println(Integer.toString(settings.getWinningCondition()));
         }
 
-        consoleWriter.accept(message);
         return settings;
     }
 
     Settings reconfigure() {
         SettingsValidator settingsValidator = new SettingsValidator(minBorderDimension, maxBorderDimension, minWinningCondition);
-        consoleWriter.accept("Minimalna szerokość/wysokość planszy  to " + minBorderDimension);
-        consoleWriter.accept("Maksymalna szerokość/wysokość planszy  to " +  maxBorderDimension);
+        consoleWriter.printViaTranslator("min_board_dimension_info");
+        consoleWriter.println(" " + minBorderDimension.toString());
+        consoleWriter.printViaTranslator("max_board_dimension_info");
+        consoleWriter.println(" " + maxBorderDimension.toString());
 
-        Integer width = askForBoardDimension("Podaj szerokość planszy", settingsValidator);
-        Integer height = askForBoardDimension("Podaj wysokość planszy", settingsValidator);
+
+        Integer width = askForBoardDimension("ask_for_border_width", settingsValidator);
+        Integer height = askForBoardDimension("ask_for_border_height", settingsValidator);
         BoardDimensions boardDimensions = new BoardDimensions(width, height);
         Integer winningCondition = askForWinningCondition(settingsValidator, boardDimensions);
         Settings settings = new Settings(boardDimensions, winningCondition);
 
         SettingsWriter settingsWriter = new SettingsWriter(settingsFilePath);
         if(settingsWriter.save(settings)){
-            consoleWriter.accept("Ustawienia zostały zapisane");
+            consoleWriter.printlnViaTranslator("settings_saved_info");
         }else{
-            consoleWriter.accept("Zapisywanie ustawień nie powiodło się");
+            consoleWriter.printlnViaTranslator("settings_not_saved_info");
         }
         consoleWriter.addNewLine();
         return settings;
@@ -78,7 +85,7 @@ public class SettingsManager {
         consoleWriter.addNewLine();
         validValue = false;
         while (!validValue){
-            consoleWriter.accept(messageForUser);
+            consoleWriter.printlnViaTranslator(messageForUser);
             dimension = consoleReader.getInt();
             validValue = settingsValidator.validBorderDimension(dimension);
         }
@@ -90,9 +97,8 @@ public class SettingsManager {
         Integer winningCondition = -1;
         consoleWriter.addNewLine();
         while (!validValue){
-            consoleWriter.accept("Podaj warunek wygranej (liczba znaków w linii)");
-            consoleWriter.accept("(Maksymalny dopuszczalny warunek zwycięstwa to "
-                    + boardDimensions.getMinDimension() + " znaki)");
+            consoleWriter.printViaTranslator("ask_for_winning_condition");
+            consoleWriter.println(" max " + boardDimensions.getMinDimension());
             winningCondition = consoleReader.getInt();
             validValue = settingsValidator.validWinningCondition(boardDimensions, winningCondition);
         }

@@ -38,9 +38,9 @@ public class SettingsManagerTest {
         InputStream orgInStream = System.in;
         System.setIn(in);
 
-        Writer writer = new WriterBuilder().byDefault();
+        Writer writer = new WriterBuilder().buildByDefault();
         SettingsManager settingsManager = new SettingsManager(writer, new ConsoleReader(writer));
-        Integer validatedDimension = settingsManager.askForBoardDimension("some message", new SettingsValidator(3, 101, 3));
+        Integer validatedDimension = settingsManager.askForBoardDimension("ask_for_border_width", new SettingsValidator(3, 101, 3));
 
         assertEquals(validatedDimension.intValue(), 5);
 
@@ -54,9 +54,9 @@ public class SettingsManagerTest {
         InputStream orgInStream = System.in;
         System.setIn(in);
 
-        Writer writer = new WriterBuilder().byDefault();
+        Writer writer = new WriterBuilder().buildByDefault();
         SettingsManager settingsManager = new SettingsManager(writer, new ConsoleReader(writer));
-        settingsManager.askForBoardDimension("some message", new SettingsValidator(3, 101, 3));
+        settingsManager.askForBoardDimension("ask_for_border_width", new SettingsValidator(3, 101, 3));
 
         outContent.reset();
         System.setIn(orgInStream);
@@ -69,9 +69,9 @@ public class SettingsManagerTest {
         InputStream orgInStream = System.in;
         System.setIn(in);
 
-        Writer writer = new WriterBuilder().byDefault();
+        Writer writer = new WriterBuilder().buildByDefault();
         SettingsManager settingsManager = new SettingsManager(writer, new ConsoleReader(writer));
-        Integer validatedDimension = settingsManager.askForBoardDimension("some message", new SettingsValidator(3, 101, 3));
+        Integer validatedDimension = settingsManager.askForBoardDimension("ask_for_winning_condition", new SettingsValidator(3, 101, 3));
 
         assertEquals(validatedDimension.intValue(), 5);
 
@@ -85,7 +85,7 @@ public class SettingsManagerTest {
         InputStream orgInStream = System.in;
         System.setIn(in);
 
-        Writer writer = new WriterBuilder().byDefault();
+        Writer writer = new WriterBuilder().buildByDefault();
         SettingsManager settingsManager = new SettingsManager(writer, new ConsoleReader(writer));
         settingsManager.askForWinningCondition(new SettingsValidator(3, 101, 3), new BoardDimensions(3, 5));
 
@@ -99,7 +99,7 @@ public class SettingsManagerTest {
         InputStream orgInStream = System.in;
         System.setIn(in);
 
-        Writer writer = new WriterBuilder().byDefault();
+        Writer writer = new WriterBuilder().buildByDefault();
         SettingsManager settingsManager = new SettingsManager(writer, new ConsoleReader(writer));
         Integer winningCondition = settingsManager.askForWinningCondition(new SettingsValidator(3, 101, 3), new BoardDimensions(3, 5));
         assertEquals(winningCondition.intValue(), 3);

@@ -20,4 +20,6 @@ public class ArgsManager {
     String getOutputArg(){
         return byIndex(0);
     }
+
+    String getLanguageArg() { return byIndex(1); }
 }

@@ -39,7 +39,6 @@ public class Match {
             consoleWriter.addNewLine();
             boardPrinter.printBoardWithMoves(movesRegistry);
         }
-        boardPrinter.printBoardWithMoves(movesRegistry);
         move.announceMatchResults();
     }
 
