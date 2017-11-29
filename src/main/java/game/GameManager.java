@@ -40,12 +40,11 @@ class GameManager {
                 .withWriter(consoleWriter).build();
         Match match = new Match(consoleWriter, playersQueue, settings, movesRegistry, move);
         while (matchNo++ < 3 && !gameExit){
-            consoleWriter.print("======");
+            consoleWriter.print(consoleWriter.newline + "======");
             consoleWriter.printViaTranslator("match_no_header");
             consoleWriter.print(" " + matchNo);
             consoleWriter.println("======");
             match.run();
-            offerPlayerGameEnd();
         }
 
         if(!gameExit) {
@@ -53,13 +52,5 @@ class GameManager {
             consoleWriter.print(gameEnd.announce());
         }
     }
-
-    private void offerPlayerGameEnd() {
-        consoleWriter.printlnViaTranslator("ask_for_exit");
-        if(consoleReader.getString().trim().equalsIgnoreCase("q")){
-            gameExit = true;
-        }
-    }
-
 
 }

@@ -13,17 +13,20 @@ public class ConsoleReader implements AutoCloseable {
     }
 
     public String getString(){
-        return scanner.nextLine();
+        String line = scanner.nextLine();
+        checkExit(line);
+        return line;
     }
 
     public int getInt(){
         Integer value = null;
-        String str;
+        String str = "";
         while (value == null) {
             try {
                 str = scanner.nextLine();
                 value = Integer.parseInt(str);
             } catch (NumberFormatException e) {
+                checkExit(str);
                 consoleWriter.printlnViaTranslator("integer_enter");
             }
         }
@@ -33,5 +36,18 @@ public class ConsoleReader implements AutoCloseable {
     @Override
     public void close() throws Exception {
         scanner.close();
+    }
+
+    private void checkExit(String s){
+        if(s.equals(":q")){
+            if(confirmExit()){
+                System.exit(0);
+            }
+        }
+    }
+
+    private boolean confirmExit() {
+        consoleWriter.printlnViaTranslator("ask_for_exit");
+        return getString().equalsIgnoreCase("y");
     }
 }

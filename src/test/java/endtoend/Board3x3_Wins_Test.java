@@ -31,11 +31,11 @@ public class Board3x3_Wins_Test {
         String settings = "y" + nl + "3" + nl + "3" + nl + "3" + nl;
         String playersRegistration = "playerA" + nl + "playerB" + nl + "x" + nl; //playerA starts
         //win by 1st column
-        String match1Moves = "0" + nl + "1" + nl + "3" + nl + "5" + nl + "6" + nl + nl + nl;
+        String match1Moves = "0" + nl + "1" + nl + "3" + nl + "5" + nl + "6" + nl + nl;
         //win by 2nd column
-        String match2Moves = "0" + nl + "1" + nl + "5" + nl + "3" + nl + "2" + nl + "4" + nl + "6" + nl + "7" + nl + nl + nl;
+        String match2Moves = "0" + nl + "1" + nl + "5" + nl + "3" + nl + "2" + nl + "4" + nl + "6" + nl + "7" + nl + nl;
         //win by 3rd column
-        String match3Moves = "7" + nl + "2" + nl + "1" + nl + "5" + nl + "3" + nl + "8" + nl + nl + nl;
+        String match3Moves = "7" + nl + "2" + nl + "1" + nl + "5" + nl + "3" + nl + "8" + nl + nl;
 
         String all = settings + playersRegistration + match1Moves + match2Moves + match3Moves;
 
@@ -57,11 +57,11 @@ public class Board3x3_Wins_Test {
         String settings = "y" + nl + "3" + nl + "3" + nl + "3" + nl;
         String playersRegistration = "playerA" + nl + "playerB" + nl + "x" + nl; //playerA starts
         //win by 1st row
-        String match1Moves = "0" + nl + "3" + nl + "1" + nl + "8" + nl + "2" + nl + nl + nl;
+        String match1Moves = "0" + nl + "3" + nl + "1" + nl + "8" + nl + "2" + nl + nl;
         //win by 2nd row
-        String match2Moves = "0" + nl + "3" + nl + "6" + nl + "4" + nl + "8" + nl + "5" + nl + nl + nl;
+        String match2Moves = "0" + nl + "3" + nl + "6" + nl + "4" + nl + "8" + nl + "5" + nl + nl;
         //win by 3rd row
-        String match3Moves = "0" + nl + "6" + nl + "3" + nl + "7" + nl + "2" + nl + "8" + nl + nl + nl;
+        String match3Moves = "0" + nl + "6" + nl + "3" + nl + "7" + nl + "2" + nl + "8" + nl + nl;
 
         String all = settings + playersRegistration + match1Moves + match2Moves + match3Moves;
 

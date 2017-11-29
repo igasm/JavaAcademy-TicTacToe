@@ -16,6 +16,8 @@ public class Main {
         try(ConsoleReader consoleReader = new ConsoleReader(consoleWriter)) {
             consoleWriter.printlnViaTranslator("welcome");
             consoleWriter.addNewLine();
+            consoleWriter.printlnViaTranslator("exit_info");
+            consoleWriter.addNewLine();
             Settings settings = new SettingsManager(consoleWriter, consoleReader).run();
             GameManager boardManager = new GameLoader(consoleWriter, consoleReader, settings).load();
             boardManager.runGame();
