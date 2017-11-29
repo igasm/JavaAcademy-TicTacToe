@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 
 import static org.testng.Assert.*;
 
@@ -17,9 +18,9 @@ public class WriterTest {
     private String newline = System.getProperty("line.separator");
 
     @BeforeTest
-    public void setUpStream(){
+    public void setUpStream() throws UnsupportedEncodingException {
         originalOutStream = System.out;
-        System.setOut(new PrintStream(outContent));
+        System.setOut(new PrintStream(outContent, true, "UTF-8"));
     }
 
     @AfterTest
@@ -33,17 +34,17 @@ public class WriterTest {
     }
 
     @Test
-    public void acceptMethodTest(){
+    public void acceptMethodTest() throws UnsupportedEncodingException {
         Writer writer = new WriterBuilder().buildByDefault();
         writer.println("this is dummy message");
-        assertEquals(outContent.toString(), "this is dummy message" + newline);
+        assertEquals(outContent.toString("UTF-8"), "this is dummy message" + newline);
     }
 
     @Test
-    public void addNewLineMethodTest(){
+    public void addNewLineMethodTest() throws UnsupportedEncodingException {
         Writer writer = new WriterBuilder().buildByDefault();
         writer.addNewLine();
-        assertEquals(outContent.toString(), newline);
+        assertEquals(outContent.toString("UTF-8"), newline);
     }
 
 }

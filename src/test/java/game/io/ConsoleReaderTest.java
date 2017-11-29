@@ -2,10 +2,7 @@ package game.io;
 
 import org.testng.annotations.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
+import java.io.*;
 
 import static org.testng.Assert.*;
 
@@ -14,9 +11,9 @@ public class ConsoleReaderTest {
     private String newline = System.getProperty("line.separator");
 
     @Test
-    public void whenUsingGetString_firstLineFromInputIsReturned(){
+    public void whenUsingGetString_firstLineFromInputIsReturned() throws UnsupportedEncodingException {
         String input = "first line" + newline + "second line";
-        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes("UTF-8"));
         InputStream orgInStream = System.in;
         System.setIn(in);
 
@@ -29,9 +26,9 @@ public class ConsoleReaderTest {
 
 
     @Test
-    public void usingGetInt_whenInputContainOnlyIntegerValue_integerIsReturned(){
+    public void usingGetInt_whenInputContainOnlyIntegerValue_integerIsReturned() throws UnsupportedEncodingException {
         String input = "1";
-        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes("UTF-8"));
         InputStream orgInStream = System.in;
         System.setIn(in);
 
@@ -43,21 +40,21 @@ public class ConsoleReaderTest {
     }
 
     @Test
-    public void usingGetInt_whenInputContainsLetters_messageIsPrinted(){
+    public void usingGetInt_whenInputContainsLetters_messageIsPrinted() throws UnsupportedEncodingException {
         //redirecting I/O
-        ByteArrayInputStream in = new ByteArrayInputStream(("aaaaa"+newline+"1").getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream(("aaaaa"+newline+"1").getBytes("UTF-8"));
         InputStream orgInStream = System.in;
         System.setIn(in);
 
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         PrintStream originalOutStream = System.out;
-        System.setOut(new PrintStream(outContent));
+        System.setOut(new PrintStream(outContent, true, "UTF-8"));
 
         //test
         Writer writer = new WriterBuilder().buildByDefault();
         ConsoleReader consoleReader = new ConsoleReader(writer);
         consoleReader.getInt();
-        assertEquals(outContent.toString().trim(), "Podaj liczbę całkowitą");
+        assertEquals(outContent.toString("UTF-8").trim(), "Podaj liczbę całkowitą");
 
         //cleaning Up
         outContent.reset();

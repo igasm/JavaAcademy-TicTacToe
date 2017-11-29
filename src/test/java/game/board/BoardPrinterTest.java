@@ -10,6 +10,7 @@ import org.testng.annotations.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 
 import static org.testng.Assert.*;
 
@@ -20,9 +21,9 @@ public class BoardPrinterTest {
     private PrintStream originalOutStream;
 
     @BeforeMethod
-    public void setUpStream(){
+    public void setUpStream() throws UnsupportedEncodingException {
         originalOutStream = System.out;
-        System.setOut(new PrintStream(outContent));
+        System.setOut(new PrintStream(outContent, true, "UTF-8"));
     }
 
     @AfterMethod
@@ -31,22 +32,22 @@ public class BoardPrinterTest {
     }
 
     @Test
-    public void emptyBord3x3_printBoardTest(){
+    public void emptyBord3x3_printBoardTest() throws UnsupportedEncodingException {
         BoardDimensions boardDimensions = new BoardDimensions(3, 3);
         Board board = new BoardBuilder(boardDimensions).viaBoard();
         BoardPrinter boardPrinter = new BoardPrinter(board, boardDimensions, new WriterBuilder().buildByDefault());
         boardPrinter.printBord();
-        assertEquals(outContent.toString(), "[  0][  1][  2]" + newline + "[  3][  4][  5]" + newline + "[  6][  7][  8]" + newline);
+        assertEquals(outContent.toString("UTF-8"), "[  0][  1][  2]" + newline + "[  3][  4][  5]" + newline + "[  6][  7][  8]" + newline);
         outContent.reset();
     }
 
     @Test
-    public void emptyBord3x5_printBoardTest(){
+    public void emptyBord3x5_printBoardTest() throws UnsupportedEncodingException {
         BoardDimensions boardDimensions = new BoardDimensions(3, 5);
         Board board = new BoardBuilder(boardDimensions).viaBoard();
         BoardPrinter boardPrinter = new BoardPrinter(board, boardDimensions, new WriterBuilder().buildByDefault());
         boardPrinter.printBord();
-        assertEquals(outContent.toString(), "[  0][  1][  2]" + newline
+        assertEquals(outContent.toString("UTF-8"), "[  0][  1][  2]" + newline
                 + "[  3][  4][  5]" + newline
                 + "[  6][  7][  8]" + newline
                 + "[  9][ 10][ 11]" + newline
@@ -56,12 +57,12 @@ public class BoardPrinterTest {
     }
 
     @Test
-    public void emptyBord5x5_printBoardTest(){
+    public void emptyBord5x5_printBoardTest() throws UnsupportedEncodingException {
         BoardDimensions boardDimensions = new BoardDimensions(5, 5);
         Board board = new BoardBuilder(boardDimensions).viaBoard();
         BoardPrinter boardPrinter = new BoardPrinter(board, boardDimensions, new WriterBuilder().buildByDefault());
         boardPrinter.printBord();
-        assertEquals(outContent.toString(), "[  0][  1][  2][  3][  4]" + newline
+        assertEquals(outContent.toString("UTF-8"), "[  0][  1][  2][  3][  4]" + newline
                 + "[  5][  6][  7][  8][  9]" + newline
                 + "[ 10][ 11][ 12][ 13][ 14]" + newline
                 + "[ 15][ 16][ 17][ 18][ 19]" + newline
@@ -71,12 +72,12 @@ public class BoardPrinterTest {
     }
 
     @Test
-    public void emptyBord5x3_printBoardTest(){
+    public void emptyBord5x3_printBoardTest() throws UnsupportedEncodingException {
         BoardDimensions boardDimensions = new BoardDimensions(5, 3);
         Board board = new BoardBuilder(boardDimensions).viaBoard();
         BoardPrinter boardPrinter = new BoardPrinter(board, boardDimensions, new WriterBuilder().buildByDefault());
         boardPrinter.printBord();
-        assertEquals(outContent.toString(), "[  0][  1][  2][  3][  4]" + newline
+        assertEquals(outContent.toString("UTF-8"), "[  0][  1][  2][  3][  4]" + newline
                 + "[  5][  6][  7][  8][  9]" + newline
                 + "[ 10][ 11][ 12][ 13][ 14]" + newline
         );
@@ -84,7 +85,7 @@ public class BoardPrinterTest {
     }
 
     @Test
-    public void bord3x3_withCrossesAtMajorDiagonal_printBoardTest(){
+    public void bord3x3_withCrossesAtMajorDiagonal_printBoardTest() throws UnsupportedEncodingException {
         BoardDimensions boardDimensions = new BoardDimensions(3, 3);
         Board board = new BoardBuilder(boardDimensions).viaBoard();
         BoardPrinter boardPrinter = new BoardPrinter(board, boardDimensions, new WriterBuilder().buildByDefault());
@@ -94,7 +95,7 @@ public class BoardPrinterTest {
         moveSupervisor.move(MarkType.CROSS, 4);
         moveSupervisor.move(MarkType.CROSS, 8);
         boardPrinter.printBoardWithMoves(movesRegistry);
-        assertEquals(outContent.toString(), "[  x][  1][  2]" + newline + "[  3][  x][  5]" + newline + "[  6][  7][  x]" + newline);
+        assertEquals(outContent.toString("UTF-8"), "[  x][  1][  2]" + newline + "[  3][  x][  5]" + newline + "[  6][  7][  x]" + newline);
         outContent.reset();
     }
 }

@@ -19,12 +19,14 @@ public class WriterBuilder {
                     break;
                 case "FILE": {
                     String fileName = "./out.txt";
-                    printStream =  new PrintStream(new BufferedOutputStream(new FileOutputStream(fileName)), true);
+                    printStream =  new PrintStream(new BufferedOutputStream(new FileOutputStream(fileName)), true, "UTF-8");
                     break;
                 }
                 default: printStream = System.out;
             }
         }catch (FileNotFoundException e){
+            printStream = System.out;
+        } catch (UnsupportedEncodingException e) {
             printStream = System.out;
         }
 

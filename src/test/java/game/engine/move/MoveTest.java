@@ -11,10 +11,7 @@ import game.settings.BoardDimensions;
 import game.settings.Settings;
 import org.testng.annotations.*;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
+import java.io.*;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
@@ -26,9 +23,9 @@ public class MoveTest {
     private PrintStream originalOutStream;
 
     @BeforeMethod
-    public void setUpStream(){
+    public void setUpStream() throws UnsupportedEncodingException {
         originalOutStream = System.out;
-        System.setOut(new PrintStream(outContent));
+        System.setOut(new PrintStream(outContent, true, "UTF-8"));
     }
 
     @AfterMethod
@@ -73,8 +70,8 @@ public class MoveTest {
     }
 
     @Test
-    public void  givenBoardDimension3x3_movesRegistryEmpty_playerRegisterWithSomeDummyPlayer_offerPlayerMoveMethodPrintCheck(){
-        ByteArrayInputStream in = new ByteArrayInputStream("5".getBytes());
+    public void  givenBoardDimension3x3_movesRegistryEmpty_playerRegisterWithSomeDummyPlayer_offerPlayerMoveMethodPrintCheck() throws UnsupportedEncodingException {
+        ByteArrayInputStream in = new ByteArrayInputStream("5".getBytes("UTF-8"));
         InputStream orgInStream = System.in;
         System.setIn(in);
 
@@ -90,7 +87,7 @@ public class MoveTest {
                 .withConsoleReader(new ConsoleReader(writer))
                 .build();
         move.offerPlayerMove(dummy);
-        assertEquals(outContent.toString().trim(), "Ruch dla dummyPlayer (x), podaj numer pola");
+        assertEquals(outContent.toString("UTF-8").trim(), "Ruch dla dummyPlayer (x), podaj numer pola");
 
         outContent.reset();
         System.setIn(orgInStream);

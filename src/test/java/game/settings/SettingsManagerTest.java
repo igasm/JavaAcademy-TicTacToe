@@ -7,10 +7,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
+import java.io.*;
 import java.util.NoSuchElementException;
 
 import static org.testng.Assert.*;
@@ -22,9 +19,9 @@ public class SettingsManagerTest {
     private String newline = System.getProperty("line.separator");
 
     @BeforeMethod
-    public void setUpStream(){
+    public void setUpStream() throws UnsupportedEncodingException {
         originalOutStream = System.out;
-        System.setOut(new PrintStream(outContent));
+        System.setOut(new PrintStream(outContent, true, "UTF-8"));
     }
 
     @AfterMethod
@@ -33,8 +30,8 @@ public class SettingsManagerTest {
     }
 
     @Test
-    public void given_minBoardDimension3_maxBoardDimension101_whenTypingBoardDimension5_ThenItIsOk(){
-        ByteArrayInputStream in = new ByteArrayInputStream("5".getBytes());
+    public void given_minBoardDimension3_maxBoardDimension101_whenTypingBoardDimension5_ThenItIsOk() throws UnsupportedEncodingException {
+        ByteArrayInputStream in = new ByteArrayInputStream("5".getBytes("UTF-8"));
         InputStream orgInStream = System.in;
         System.setIn(in);
 
@@ -49,8 +46,8 @@ public class SettingsManagerTest {
     }
 
     @Test(expectedExceptions = NoSuchElementException.class)
-    public void given_minBoardDimension3_maxBoardDimension101_whenTypingBoardDimension2_exceptionExpected(){
-        ByteArrayInputStream in = new ByteArrayInputStream("2".getBytes());
+    public void given_minBoardDimension3_maxBoardDimension101_whenTypingBoardDimension2_exceptionExpected() throws UnsupportedEncodingException {
+        ByteArrayInputStream in = new ByteArrayInputStream("2".getBytes("UTF-8"));
         InputStream orgInStream = System.in;
         System.setIn(in);
 
@@ -63,9 +60,9 @@ public class SettingsManagerTest {
     }
 
     @Test
-    public void given_minBoardDimension3_maxBoardDimension101_whenTypingBoardDimensionFirstly2Then5_ThenItIsOk(){
+    public void given_minBoardDimension3_maxBoardDimension101_whenTypingBoardDimensionFirstly2Then5_ThenItIsOk() throws UnsupportedEncodingException {
         String dimensions = "2" + newline + "5";
-        ByteArrayInputStream in = new ByteArrayInputStream(dimensions.getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream(dimensions.getBytes("UTF-8"));
         InputStream orgInStream = System.in;
         System.setIn(in);
 
@@ -80,8 +77,8 @@ public class SettingsManagerTest {
     }
 
     @Test(expectedExceptions = NoSuchElementException.class)
-    public void given_minBoardDimension3_maxBoardDimension101_boardWidth3_and_boardHeight5_whenTypingWinningConditionLargerFromOneOfThis_exceptionExpected(){
-        ByteArrayInputStream in = new ByteArrayInputStream("4".getBytes());
+    public void given_minBoardDimension3_maxBoardDimension101_boardWidth3_and_boardHeight5_whenTypingWinningConditionLargerFromOneOfThis_exceptionExpected() throws UnsupportedEncodingException {
+        ByteArrayInputStream in = new ByteArrayInputStream("4".getBytes("UTF-8"));
         InputStream orgInStream = System.in;
         System.setIn(in);
 
@@ -94,8 +91,8 @@ public class SettingsManagerTest {
     }
 
     @Test
-    public void given_minBoardDimension3_maxBoardDimension101_boardWidth3_and_boardHeight5_whenTypingWinningConditionAsMinOfBoardDimensions_thenIsOK(){
-        ByteArrayInputStream in = new ByteArrayInputStream("3".getBytes());
+    public void given_minBoardDimension3_maxBoardDimension101_boardWidth3_and_boardHeight5_whenTypingWinningConditionAsMinOfBoardDimensions_thenIsOK() throws UnsupportedEncodingException {
+        ByteArrayInputStream in = new ByteArrayInputStream("3".getBytes("UTF-8"));
         InputStream orgInStream = System.in;
         System.setIn(in);
 
